@@ -968,7 +968,7 @@ table.response-summary td.placescore span {
     bottom: 0;
     left: 0;
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   table.response-summary th.placescore span,
   table.response-summary td.placescore span {
     top: 0;
@@ -1592,3 +1592,8 @@ a.readmore-js-toggle:hover {
 }
 
 table.table th.place-name {vertical-align: middle !important;}
+
+/* hacks for global census 2015 */
+.site-global th.health, .site-global td.health {
+    background-color: rgb(119, 25, 23);
+}
