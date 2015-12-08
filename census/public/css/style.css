@@ -348,7 +348,7 @@ html.readonly {
 	background-color:#e9d046;
 }
 
-.navbar .navbar-inner {
+.navbar .container {
 	background-image: url(header-map.png);
 	background-repeat: no-repeat;
 	background-position: center top;
@@ -360,13 +360,14 @@ html.readonly {
 	filter: none;
 }
 
-.navbar .navbar-inner .brand {
+.navbar .navbar-header .brand {
 	padding: 3px 0 0 0;
 	margin: 0 20px 0 0;
 	color: #2b2a2a;
 	text-shadow: none;
 	font-family: 'BebasNeueRegular',Arial,Helvetica, sans-serif;
 	font-size: 22px;
+    font-weight: 200;
 	letter-spacing: 1.5px;
 }
 
@@ -470,6 +471,7 @@ footer a:hover {
 div.nav-logo {
   float: right;
   height: 30px;
+  line-height: 70px;
 }
 
 div.nav-logo a {
@@ -1592,3 +1594,155 @@ a.readmore-js-toggle:hover {
 }
 
 table.table th.place-name {vertical-align: middle !important;}
+
+/* Bootstrap3 + Mobile overrides */
+
+/*
+ * wrap the entire page content but not nav inside this div if not a fixed top,
+ * don't add any top padding
+ * */
+#page-content {
+    position: relative;
+    padding-top: 50px;
+    left: 0;
+}
+
+#slide-nav {
+    margin-bottom: 0;
+}
+
+/* put toggle bars on the left :: not using button */
+#slide-nav .navbar-toggle {
+    cursor: pointer;
+    position: relative;
+    line-height: 0;
+    float: left;
+    margin: 0;
+    width: 30px;
+    height: 40px;
+    padding: 10px 0 0 0;
+    border: 0;
+    background: transparent;
+}
+/* icon bar prettyup - optional */
+#slide-nav .navbar-toggle > .icon-bar {
+    width: 100%;
+    display: block;
+    height: 3px;
+    margin: 5px 0 0 0;
+}
+#slide-nav .navbar-toggle.slide-active .icon-bar {
+    background: orange
+}
+.navbar-header {
+    position: relative
+}
+/* un fix the navbar when active so that all the menu items are accessible */
+.navbar.navbar-fixed-top.slide-active {
+    position: relative
+}
+
+/* screw writing importants and shit, just stick it in max width since these classes are not shared between sizes */
+@media (max-width:767px) {
+    #page-content {
+        padding-top: 30px;
+    }
+    #page-content.slide-active {
+         padding-top: 0;
+    }
+    #slide-nav .container {
+        margin: 0!important;
+        padding: 0!important;
+        height:100%;
+    }
+    #slide-nav .navbar-header {
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    #slide-nav .navbar.slide-active {
+        position: absolute;
+        width: 80%;
+        top: -1px;
+        z-index: 1000;
+    }
+    #slide-nav #slidemenu {
+        background: #f7f7f7;
+        left: -100%;
+        width: 80%;
+        min-width: 0;
+        position: absolute;
+        padding-left: 0;
+        z-index: 2;
+        top: -8px;
+        margin: 0;
+    }
+    #slide-nav #slidemenu .navbar-nav {
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+    }
+    #slide-nav #slidemenu .navbar-nav .dropdown-menu li a {
+        min-width: 0;
+        width: 80%;
+        white-space: normal;
+    }
+    #slide-nav {
+        border-top: 0
+    }
+    #slide-nav.navbar-inverse #slidemenu {
+        background: #333
+    }
+    /* this is behind the navigation but the navigation is not inside it so that the navigation is accessible and scrolls*/
+    #navbar-height-col {
+        position: fixed;
+        top: 0;
+        height: 100%;
+        bottom:0;
+        width: 80%;
+        left: -80%;
+        background: #f7f7f7;
+        height: 100%;
+    }
+    #navbar-height-col.inverse {
+        background: #333;
+        z-index: 1;
+        border: 0;
+        height: 100%;
+    }
+    #slide-nav .navbar-form {
+        width: 100%;
+        margin: 8px 0;
+        text-align: center;
+        overflow: hidden;
+        /*fast clearfixer*/
+    }
+    #slide-nav .navbar-form .form-control {
+        text-align: center
+    }
+    #slide-nav .navbar-form .btn {
+        width: 100%
+    }
+    .navbar .navbar-header .brand {
+        line-height: 45px;
+        margin-left: 10px;
+    }
+    div.nav-logo {
+        float: left;
+    }
+}
+@media (min-width:768px) { 
+    #page-content {
+        left: 0!important
+    }
+    .navbar.navbar-fixed-top.slide-active {
+        position: fixed
+    }
+    .navbar-header {
+        left: 0!important
+    }
+    .brand {
+        line-height: 70px;
+    }
+}
+
+
