@@ -503,17 +503,17 @@ div.section-right {
 	float: right;
 }
 
-.summary dd, .summary dt {
+.summary .dd, .summary .dt {
 	display: inline-block;
 	font-weight: normal;
 }
 
-.summary dd {
-	margin-left: 2px;
-	margin-right: 20px;
-}
+/*.summary .dd {*/
+	/*margin-left: 2px;*/
+	/*margin-right: 20px;*/
+/*}*/
 
-.summary dd , .summary td.amount {
+.summary .dd , .summary td.amount {
 	color: white;
 	background: #2c2c2c;
 	text-align: center;
@@ -536,14 +536,14 @@ div.section-right {
 	margin-top: 30px;
 }
 
-.featured.summary dt {
+.featured.summary .dt {
 	font-size: 20px;
 	font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;
 	letter-spacing: 1px;
 	font-weight: normal;
 }
 
-.featured.summary dd {
+.featured.summary .dd {
 	font-size: 26px;
 	line-height: 28px;
 }
@@ -721,7 +721,7 @@ tr.active > td.bpvalue > div {
 	background: #ff9900 !important;
 }
 
-input.span2 {
+input.col-xs-2 {
 	margin-bottom: 0px;
 	margin-left: 0px;
 }
@@ -792,11 +792,11 @@ body.overview.extrawidth .container {
 }
 
 
-.span6.sorting {
+.col-xs-6.sorting {
     text-align: right;
 }
 
-.span6.sorting label {
+.col-xs-6 label {
     display: inline-block;
     margin-left: 10px;
 }
@@ -1285,7 +1285,7 @@ td.dependant {width:924px !important;}/*Setting the width of column 3.*/
     width: 90%;
 }
 
-.submission-dependant .span12 {
+.submission-dependant .col-xs-12 {
     margin-left: 0;
 }
 
@@ -1745,4 +1745,13 @@ table.table th.place-name {vertical-align: middle !important;}
     }
 }
 
+.summary .col-md-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.summary.row {
+  margin-left: 0;
+  margin-right: 0;
+}
 

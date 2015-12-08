@@ -6,17 +6,23 @@
 {% block content %}
 
 <div class="page-header">
-  <div class="summary featured">
-    <dl>
-      <dt>{{gettext("Number of places")}}</dt>
-      <dd id="nc">{{ stats.placeCount }}</dd>
-      <dt>{{gettext("Number of datasets")}}</dt>
-      <dd id="nds">{{ stats.currentEntryCount }}</dd>
-      <dt>{{gettext("Number of open datasets")}}</dt>
-      <dd id="nok">{{ stats.currentEntryOpenCount }}</dd>
-      <dt>{{gettext("Percentage")}} <a href="http://okfn.org/opendata/">{{gettext("open")}}</a></dt>
-      <dd id="nokpercent">{{ stats.openDataPercent }}%</dd>
-    </dl>
+  <div class="summary featured row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <span class="dt">{{gettext("Number of places")}}</span>
+      <span id="nc" class="dd">{{ stats.placeCount }}</span>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <span class="dt">{{gettext("Number of datasets")}}</span>
+      <span id="nds" class="dd">{{ stats.currentEntryCount }}</span>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <span class="dt">{{gettext("Number of open datasets")}}</span>
+      <span id="nok" class="dd">{{ stats.currentEntryOpenCount }}</span>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <span class="dt">{{gettext("Percentage")}} <a href="http://okfn.org/opendata/">{{gettext("open")}}</a></span>
+      <span id="nokpercent" class="dd">{{ stats.openDataPercent }}%</span>
+    </div>
   </div>
 </div>
 
@@ -38,7 +44,7 @@
 
 <div>
   {% include '_snippets/year_navigation.html' %}
-    <div class="span6" id="sorting">
+    <div class="col-xs-6" id="sorting">
     </div>
 </div>
 
