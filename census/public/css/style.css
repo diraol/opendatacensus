@@ -1755,3 +1755,6 @@ table.table th.place-name {vertical-align: middle !important;}
   margin-right: 0;
 }
 
+#sorting {
+  margin-top: 0;
+}

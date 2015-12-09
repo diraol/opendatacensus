@@ -62,15 +62,15 @@ $(document).ready(function($) {
     $('#sorting')
       .addClass('sorting')
       .html(function (idx) {
-        return 'Sort' +
-        '<label class="radio">' +
-          '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="alpha">' +
-          'alphabetically' +
-        '</label>' +
-        '<label class="radio">' +
-          '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="score" checked>' +
-          'by score' +
-      '</label>';
+        return 'Sort: ' +
+          '<label>' +
+            '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="alpha">' +
+            'alphabetically' +
+          '</label> ' +
+          '<label>' +
+            '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="score" checked>' +
+            'by score' +
+          '</label>';
       });
 
     $('.sort-table').change(function(){

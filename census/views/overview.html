@@ -27,25 +27,32 @@
 </div>
 
 {% if customText %}
-<div class="custom-intro">
-  {{ customText }}
+<div class="custom-intro row">
+  <div class="col-xs-12">
+    {{ customText }}
+  </div>
 </div>
 {% endif %}
 
-<div>
-  <div class="pull-left">{% include '_snippets/key.html' %}</div>
+<div class="row" id="filter-and-ordering">
+  <div class="col-md-5 col-sm-12">{% include '_snippets/key.html' %}</div>
 
-  <div class="pull-right">
+  <div class="col-md-7 col-sm-12">
+    <div class="row">
+      <div class="col-sm-6 col-xs-12">
+        {% include '_snippets/year_navigation.html' %}
+      </div>
+      <div class="col-sm-6 col-xs-12 radio" id="sorting"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-xs-12">
     {% if missingPlaceText %}
     {% include '_snippets/missing_place_button.html' %}
     {% endif %}
   </div>
-</div>
-
-<div>
-  {% include '_snippets/year_navigation.html' %}
-    <div class="col-xs-6" id="sorting">
-    </div>
 </div>
 
 <table class="response-summary table sexyTable">
