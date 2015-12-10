@@ -3,7 +3,7 @@
 </div>
 
 <div class="row" style="margin-top: 30px;">
-  <div class="span5">
+  <div class="col-xs-5">
     <div class="toc well">
       <h3>Table of Contents</h3>
       <ul>

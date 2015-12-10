@@ -3,15 +3,15 @@
 <h2 class="review-heading">{{ gettext("Review") }}</h2>
 <div class="row-fluid">
 
-    <div class="span6">
+    <div class="col-xs-6">
         <h4 class="review-heading">{{ gettext("Actions") }}</h4>
         <span class="help-block">{{ gettext("Please add a short comment as to why you are accepting or rejecting this submission. **Note that your message will be publicly visible**.")|marked }}</span>
-        <textarea id="reviewcomments" name="reviewcomments" class="span12" {% if canReview != true %}disabled="disabled"{% endif %} required>{{ prefill[reviewcomments] }}</textarea>
+        <textarea id="reviewcomments" name="reviewcomments" class="col-xs-12" {% if canReview != true %}disabled="disabled"{% endif %} required>{{ prefill[reviewcomments] }}</textarea>
         <input name="submit" type="submit" value="{{ gettext("Publish") }}" class="btn btn-primary" />&nbsp;
         <input type="submit" name="submit" class="btn btn-danger" value="{{ gettext("Reject") }}" />&nbsp;
     </div>
 
-    <div class="span6">
+    <div class="col-xs-6">
         <h4 class="review-heading">{{ gettext("Important") }}</h4>
         <ul>
             <li>{{ format("As the reviewer, your name **(%(name)s)** will be logged and displayed with the entry", { name: currentUser.firstName })|marked}}</li>

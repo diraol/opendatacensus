@@ -9,7 +9,7 @@
 <h1>{{ gettext('Site Admin Dashboard') }}</h1>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-xs-6">
     <h2>{{ gettext('Current Config') }}</h2>
     <a target="_blank" href="{{ configUrl }}">View Spreadsheet</a><br />
     {% if site %}
@@ -20,7 +20,7 @@
     </ul>
     {% endif %}
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <h2>{{ gettext('Data actions') }}</h2>
     <ul>
       <li><a href="/admin/load/config">{{ gettext('Reload Config') }}</a></li>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="row">
-  <div class="span6">
+  <div class="col-xs-6">
     <h2>{{ gettext('Current Places') }}</h2>
     <a target="_blank" href="{{ site.settings.places }}">View Spreadsheet</a>
     {% if places %}
@@ -45,7 +45,7 @@
     {{ gettext('No places') }}
     {% endif %}
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <h2>{{ gettext('Current Datasets') }}</h2>
     <a target="_blank" href="{{ site.settings.datasets }}">View Spreadsheet</a>
     {% if datasets %}
@@ -58,7 +58,7 @@
     {{ gettext('No datasets') }}
     {% endif %}
   </div>
-  <div class="span6">
+  <div class="col-xs-6">
     <h2>{{ gettext('Current Questions') }}</h2>
     <a target="_blank" href="{{ site.settings.questions }}">View Spreadsheet</a>
     {% if questions %}

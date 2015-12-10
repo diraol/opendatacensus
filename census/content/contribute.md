@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-<div class="span6">
+<div class="col-xs-6">
   <h3>How it works</h3>
   <ol>
     <li><strong>Submission</strong>: Contributors submit information about the availability (or not) of key datasets in their country (for example Budgets in Brasil).</li>
@@ -16,7 +16,7 @@
 
   <p>To get an idea of what we are looking for check out the <a href="/country/submit/">submission form</a>.</p>
 </div>
-<div class="span6">
+<div class="col-xs-6">
   <h3>FAQs, Mailing List and Getting Assistance</h3>
 
   <div class="alert alert-warning">
@@ -31,7 +31,7 @@
 
 <h2>Get Started</h2>
 <div class="row">
-<div class="span6">
+<div class="col-xs-6">
   <div class="well">
   <h3>Submit new information</h3>
   <p>Anyone can submit new information to the Census.</p>
@@ -57,7 +57,7 @@
 
 </div>
 
-<div class="span6">
+<div class="col-xs-6">
   <div class="well">
   <h3>Review submissions</h3>
   <p>Only Census editors can review submissions. If you'd like to become an editor email the <a href="mailto:census@okfn.org">Census team</a>.</p>

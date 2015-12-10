@@ -9,14 +9,14 @@
 </div>
 
 <div class="row" style="margin-top: 30px;">
-<div class="span8">
+<div class="col-xs-8">
 <p>An increasing number of governments have now committed to open up data but how much data is actually being released? What kind of data is this and in what format? Which countries, regions and cities are the most advanced and which are lagging in relation to open data?</p>
 
 <p>The Open Data Census has been developed to help answer these sorts of questions. It collects and presents information on the evolution and current state of open data around the world. The [Open Data Index](http://index.okfn.org/), based on the census results, was released on October 28 2013.</p>
 
 <p>The Census is a community-based effort initiated and coordinated by the Open Knowledge Foundation but with participation from many different groups or individuals. The [Census was launched in April 2012 to coincide with the OGP meeting in Brasilia](http://blog.okfn.org/2012/04/17/launching-the-open-data-census-2012/).</p>
 </div>
-<div class="span4">
+<div class="col-xs-4">
   <div class="toc well">
     <h3>Table of Contents</h3>
     <ul>
