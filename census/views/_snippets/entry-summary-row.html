@@ -33,7 +33,7 @@
 
         <a data-toggle="tooltip" title="{{ qu.description|escape }}">
         <li class="{{ stateClass }}">
-          <i class="icon-{{ qu.icon }}"></i>
+          <i class="fa fa-{{ qu.icon }}"></i>
           <span class="text">{{ stateDisplay }}</span>
         </li>
         </a>
@@ -63,19 +63,19 @@
     <ul class="icons">
       <li>
         {% if entry and entry.answers.dateavailable %}
-          <a class="icon-hover" title="{{gettext("Date available:")}} {{ entry.answers.dateavailable }}" data-toggle="tooltip"><i class="icon-calendar"></i></a>
+          <a class="icon-hover" title="{{gettext("Date available:")}} {{ entry.answers.dateavailable }}" data-toggle="tooltip"><i class="fa fa-calendar"></i></a>
         {% else %}
           <a class="icon-hover" data-toggle="tooltip" data-trigger="hover" title="{{gettext("No date available given")}}">
-            <i class="icon-calendar icons-nodata"></i>
+            <i class="fa fa-calendar icons-nodata"></i>
           </a>
         {% endif %}
       </li>
       <li>
         {% if entry and entry.answers.format %}
-          <a class="icon-hover" title="Data format: {{ entry.answers.format }}" data-toggle="tooltip"><i class="icon-file"></i></a>
+          <a class="icon-hover" title="Data format: {{ entry.answers.format }}" data-toggle="tooltip"><i class="fa fa-file-o"></i></a>
         {% else %}
           <a class="icon-hover" data-toggle="tooltip" data-trigger="hover" title="{{gettext("No data format given")}}">
-            <i class="icon-file icons-nodata"></i>
+            <i class="fa fa-file-o icons-nodata"></i>
           </a>
         {% endif %}
       </li>
@@ -83,11 +83,11 @@
         {% if entry and entry.details and (entry.details | trim | length) > 0 %}
           {% set content = entry.details | urlize | replace('\n', '<br>') | replace ('\"', '\'') | wordwrap(100, '\n', true) %}
           <a href="javascript:;" class="count-0" title="{{gettext("Details")}}" data-toggle="popover" data-content="{{ content }}" data-html="true" data-placement="left">
-            <i class="icon-info-sign"></i>
+            <i class="fa fa-info-circle"></i>
           </a>
         {% else %}
           <a class="icon-hover" data-toggle="tooltip" data-trigger="hover" title="{{gettext("No details")}}">
-            <i class="icon-info-sign icons-nodata"></i>
+            <i class="fa fa-info-circle icons-nodata"></i>
           </a>
         {% endif %}
       </li>

@@ -171,7 +171,7 @@
               {% endif %}
 
               <li class="{{ stateClass }}" data-toggle="tooltip" title="{{ qu.question }}">
-                <i class="icon-{{ qu.icon }}"></i>
+                <i class="fa fa-{{ qu.icon }}"></i>
                 <span class="text">{{ stateDisplay }}</span>
               </li>
               {% endfor %}
@@ -188,11 +188,11 @@
                   {{ submissions|length }}
                 </span>
                 <div class="hover-icon">
-                  <i class="icon-eye-open"></i>
+                  <i class="fa fa-eye"></i>
                 </div>
                 {% else %}
                 <div class="hover-icon">
-                  <i class="icon-plus"></i>
+                  <i class="fa fa-plus"></i>
                 </div>
                 {% endif %}
 
@@ -209,7 +209,7 @@
                   ({{ submissions|length }})
                 </span>
                 {% else %}
-                <i class="icon-plus"></i>
+                <i class="fa fa-plus"></i>
                 {% endif %}
               {{ actionText }}
             </a>

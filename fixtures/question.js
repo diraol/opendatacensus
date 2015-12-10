@@ -10,7 +10,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'file-alt'
+      'icon': 'file-o'
     }
   },
   {
@@ -24,7 +24,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'save'
+      'icon': 'floppy-o'
     }
   },
   {
@@ -38,7 +38,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'eye-open',
+      'icon': 'eye',
       'dependants': ['publisher', 'officialtitle']
     }
   },
@@ -53,7 +53,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 15,
-      'icon': 'dollar'
+      'icon': 'usd'
     }
   },
   {
@@ -67,7 +67,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'download',
+      'icon': 'arrow-circle-o-down',
       'dependants': ['url']
     }
   },
@@ -82,7 +82,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 15,
-      'icon': 'keyboard',
+      'icon': 'keyboard-o',
       'dependants': ['format']
     }
   },
@@ -97,7 +97,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 10,
-      'icon': 'copy'
+      'icon': 'files-o'
     }
   },
   {
@@ -126,7 +126,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 10,
-      'icon': 'time'
+      'icon': 'clock-o'
     }
   },
   {
@@ -267,7 +267,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'file-alt'
+      'icon': 'file-o'
     }
   },
   {
@@ -281,7 +281,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'save'
+      'icon': 'floppy-o'
     }
   },
   {
@@ -295,7 +295,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'eye-open',
+      'icon': 'eye',
       'dependants': ['publisher', 'officialtitle']
     }
   },
@@ -310,7 +310,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 15,
-      'icon': 'dollar'
+      'icon': 'usd'
     }
   },
   {
@@ -324,7 +324,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 5,
-      'icon': 'download',
+      'icon': 'arrow-circle-o-down',
       'dependants': ['url']
     }
   },
@@ -339,7 +339,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 15,
-      'icon': 'keyboard',
+      'icon': 'keyboard-o',
       'dependants': ['format']
     }
   },
@@ -354,7 +354,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 10,
-      'icon': 'copy'
+      'icon': 'files-o'
     }
   },
   {
@@ -383,7 +383,7 @@ var objects = [
       'placeholder': 'the placeholder',
       'type': '',
       'score': 10,
-      'icon': 'time'
+      'icon': 'clock-o'
     }
   },
   {

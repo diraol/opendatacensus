@@ -60,7 +60,7 @@
                   data-toggle="popover"
                   class="count-0"
                   data-content="{{ dataset.description }}"
-                  title="{{ dataset.title }}"><i class="icon-info-sign"></i></a>
+                  title="{{ dataset.title }}"><i class="fa fa-info-circle"></i></a>
               </td>
               {{entrysummary(dataset, place, entry, questions)}}
 
@@ -89,12 +89,12 @@
                 <strong>{{gettext("&#8627; Awaiting review")}}</strong><br />
 
                 <span title="{{ gettext('Submitted by')}} {{ submission.Submitter.firstName}}" class="queued-context">
-                  <i class="icon icon-user"></i>&nbsp;
+                  <i class="fa fa-user"></i>&nbsp;
                   {{ submission.Submitter.firstName }}
                 </span>
                 <br />
                 <span title="{{ gettext('Submitted on')}} {{ submission.createdAt|dateformat }}" class="queued-context">
-                  <i class="icon icon-time"></i>&nbsp;
+                  <i class="fa fa-clock-o"></i>&nbsp;
                   {{ submission.createdAt|simpledelta }}
                 </span>
               </td>
