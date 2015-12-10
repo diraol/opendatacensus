@@ -1758,3 +1758,18 @@ table.table th.place-name {vertical-align: middle !important;}
 #sorting {
   margin-top: 0;
 }
+
+.container {
+  padding: 0;
+}
+
+a i[class*='fa-'] {
+  text-decoration: none;
+}
+
+.availability.icons a:hover {
+  text-decoration: none;
+}
+.availability.icons a li {
+   margin-bottom: 3px;
+}

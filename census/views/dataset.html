@@ -4,9 +4,11 @@
 {% block title %}
 {{dataset.name}} &mdash; {{gettext("Datasets")}}
 {% endblock %}
+{% block headcss %}<link href="/css/sexytables-1.0.css" rel="stylesheet">{% endblock %}
 
 {% block content %}
 
+<div class="page-header">
 <h1>
   <a href="{{urlFor('overview')}}" data-toggle="tooltip" class="count-0"
     title="Return to results overview">{{gettext("Datasets")}}</a> / {{ dataset.name }} {% if not cascade %}/ {{ year }}{% endif %}
@@ -15,6 +17,7 @@
       {% include '_snippets/share_page_buttons.html' %}
     </span>
 </h1>
+</div>
       <div id="spacer"></div>
       <div class="tabbable"> <!-- Only required for left/right tabs -->
 
