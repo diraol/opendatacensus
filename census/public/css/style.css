@@ -1645,10 +1645,13 @@ table.table th.place-name {vertical-align: middle !important;}
 /* screw writing importants and shit, just stick it in max width since these classes are not shared between sizes */
 @media (max-width:767px) {
     #page-content {
-        padding-top: 30px;
+        padding-top: 52px;
     }
     #page-content.slide-active {
          padding-top: 0;
+    }
+    #page-content .page-header {
+      margin-top: 0;
     }
     #slide-nav .container {
         margin: 0!important;
@@ -1729,6 +1732,10 @@ table.table th.place-name {vertical-align: middle !important;}
     div.nav-logo {
         float: left;
     }
+
+    .navbar .navbar-header .navbar-brand.brand {
+      font-size: 18px;
+    }
 }
 @media (min-width:768px) { 
     #page-content {
@@ -1775,5 +1782,14 @@ a i[class*='fa-'] {
 }
 
 .row {
+  margin-right: 0;
   margin-left: 0;
+}
+
+.add-new-wash-data {
+   font-size: 25px;
+}
+#form-new-wash-data {
+  margin-left: auto;
+  margin-right: auto;
 }

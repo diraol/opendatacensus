@@ -96,6 +96,23 @@ var overview = function(req, res) {
     }).catch(console.trace.bind(console));
 };
 
+var home = function(req, res) {
+  /**
+   * Home of the Preparedness Data Dashboard (Landing Page).
+   */
+  modelUtils.getData(modelUtils.getDataOptions(req))
+    .then(function(data) {
+      var settingName = 'intro_block';
+      data.title = req.params.site.settings['title'];
+      data.content = marked(req.params.site.settings[settingName])
+                .replace('{{title}}', req.params.site.settings['title']);
+      data.places = modelUtils.translateSet(req, data.places);
+      res.render('home.html', data);
+    }).catch(console.trace.bind(console));
+
+      //return res.render('home.html', data);
+};
+
 var place = function(req, res) {
   /**
    * An overview of places, optionally by year.
@@ -174,6 +191,7 @@ var entry = function(req, res) {
 };
 
 module.exports = {
+  home: home,
   overview: overview,
   faq: faq,
   about: about,

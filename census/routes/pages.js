@@ -32,7 +32,8 @@ var pageRoutes = function(coreMiddlewares) {
   router.get(utils.scoped('/entry/:place/:dataset/:year?'), byYearMixins,
     pages.entry);
   router.get(utils.scoped('/year/:year'), byYearMixins, pages.overview);
-  router.get(utils.scoped('/'), rootRouteMixins, pages.overview);
+  router.get(utils.scoped('/index'), rootRouteMixins, pages.overview);
+  router.get(utils.scoped('/'), rootRouteMixins, pages.home);
 
   redirectRoutes(router);
 

@@ -16,6 +16,10 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+#: templates/base.html:39
+msgid "Index"
+msgstr ""
+
 #: templates/base.html:40
 msgid "About"
 msgstr ""

@@ -74,6 +74,10 @@ msgstr "Weighting"
 msgid "Home"
 msgstr "Home"
 
+#: templates/base.html:36
+msgid "Index"
+msgstr "Index"
+
 #: templates/base.html:37
 msgid "About"
 msgstr "About"

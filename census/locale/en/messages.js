@@ -67,6 +67,10 @@
          null,
          "About"
       ],
+      "Index": [
+        null,
+        "Index"
+      ],
       "FAQ": [
          null,
          "FAQ"
