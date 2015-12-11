@@ -33,50 +33,56 @@
 {%- endmacro  %}
 
 <fieldset>
-  <div class="row-fluid submission-row head">
-    <div class="col-xs-12">
-      <div class="submission-question">Question</div>
-      <div class="submission-option">{{gettext("Yes")}}</div>
-      <div class="submission-option">{{gettext("No")}}</div>
-      <div class="submission-option">{{gettext("Unsure")}}</div>
-      <div class="submission-current">{{gettext("Current")}}</div>
-      <div class="submission-info">{{gettext("Information")}}</div>
+  <div class="container submission-row head">
+    <div class="row">
+      <div class="col-xs-3 submission-question">Question</div>
+      <div class="col-xs-1 submission-option">{{gettext("Yes")}}</div>
+      <div class="col-xs-1 submission-option">{{gettext("No")}}</div>
+      <div class="col-xs-1 submission-option">{{gettext("Unsure")}}</div>
+      <div class="col-xs-2 submission-current">{{gettext("Current")}}</div>
+      <div class="col-xs-4 submission-info">{{gettext("Information")}}</div>
     </div>
   </div>
 
   <div class="yntable">
     {% for qu in questions %}
     {% if qu.type == '' %}
-    <div class="row-fluid submission-row{% if loop.index0 != 0 %} hide js-dependent{% endif %}">
-      <div class="col-xs-12">
-        <div class="submission-question submission-label">{{ qu.question }}?</div>
-        {% for val in [
-          {"type": true, "string": "true", "display": "Yes"},
-          {"type": false, "string": "false", "display": "No"},
-          {"type": null, "string": "null", "display": "Unsure"}
-        ] %}
-        <div class="submission-option">
-          <input type="radio" name="{{qu.id}}" value="{{ val.string }}" {% if formData %}{% if formData[qu.id] == val.string %}checked="true"{% endif %}{% else %}{% if (current and current.answers[qu.id] == val.type) %}checked="true" {% endif %}{% endif %}class="{{ val.string }}"{% if canReview != true or reviewClosed %} disabled="disabled"{% endif %} required>
+    <div class="submission-row{% if loop.index0 != 0 %} hide js-dependent{% endif %}">
+      <div class="row">
+        <div class="col-xs-3">
+          <div class="submission-question submission-label">{{ qu.question }}?</div>
         </div>
-        {% endfor %}
-        <div class="submission-current">
-          {% for val in [
+        {% for val in [
             {"type": true, "string": "true", "display": "Yes"},
             {"type": false, "string": "false", "display": "No"},
             {"type": null, "string": "null", "display": "Unsure"}
-          ] %}
-          {% if current.answers[qu.id] == val.type %}
-          {% set currentDisplay = val.display %}
-          {% endif %}
-          {% endfor %}
-          {{ currentDisplay or gettext('No entry') }}
+        ] %}
+        <div class="col-xs-1">
+          <div class="submission-option">
+            <input type="radio" name="{{qu.id}}" value="{{ val.string }}" {% if formData %}{% if formData[qu.id] == val.string %}checked="true"{% endif %}{% else %}{% if (current and current.answers[qu.id] == val.type) %}checked="true" {% endif %}{% endif %}class="{{ val.string }}"{% if canReview != true or reviewClosed %} disabled="disabled"{% endif %} required>
+          </div>
         </div>
-        <div class="submission-info">
+        {% endfor %}
+        <div class="submission-current col-xs-2">
+            {% for val in [
+              {"type": true, "string": "true", "display": "Yes"},
+              {"type": false, "string": "false", "display": "No"},
+              {"type": null, "string": "null", "display": "Unsure"}
+            ] %}
+            {% if current.answers[qu.id] == val.type %}
+            {% set currentDisplay = val.display %}
+            {% endif %}
+            {% endfor %}
+            {{ currentDisplay or gettext('No entry') }}
+        </div>
+        <div class="submission-info col-xs-4">
           <span class="help-block readmore">{{qu.description}}</span>
         </div>
+      </div>
+      <div class="row">
         {% if qu.dependants %}
         {% for dependant in qu.dependants %}
-        <div class="row-fluid submission-dependant">
+        <div class="row submission-dependant">
           {{ question(dependant) }}
         </div>
         {% endfor %}

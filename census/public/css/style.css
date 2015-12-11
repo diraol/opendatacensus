@@ -1214,21 +1214,21 @@ td.dependant {width:924px !important;}/*Setting the width of column 3.*/
 }
 
 .submission-row {
-    float: left;
+    /*float: left;*/
 }
 
 .submission-question, .submission-option, .submission-current,
 .submission-info, .submission-dependant {
-    float: left;
-    min-height: 72px;
-    padding-bottom: 2em;
+    /*float: left;*/
+    /*min-height: 72px;*/
+    padding-bottom: 1.5em;
 }
 
 .head .submission-question, .head .submission-option, .head .submission-current,
 .head .submission-info, .head .submission-dependant {
-    float: left;
-    min-height: 58px;
-    padding-top: 0;
+    /*float: left;*/
+    /*min-height: 58px;*/
+    /*padding-top: 0;*/
 }
 
 .submission-row {
@@ -1236,7 +1236,7 @@ td.dependant {width:924px !important;}/*Setting the width of column 3.*/
 }
 
 .submission-question {
-    width: 24%;
+    /*width: 24%;*/
     padding-left: 1%;
 }
 
@@ -1255,10 +1255,10 @@ td.dependant {width:924px !important;}/*Setting the width of column 3.*/
 }
 
 .submission-info {
-    width: 41%;
-    padding-left: 1%;
-    position: relative;
-    float: right;
+    /*width: 41%;*/
+    /*padding-left: 1%;*/
+    /*position: relative;*/
+    /*float: right;*/
 }
 
 .submission-info .help-block {
@@ -1432,7 +1432,7 @@ a.readmore-js-toggle:hover {
     float: right;
     background-color: grey;
     color: white;
-    height: 1.5em;
+    /*height: 1.5em;*/
     line-height: 1.5em;
     font-size: 0.75em;
     cursor: pointer;
@@ -1772,4 +1772,8 @@ a i[class*='fa-'] {
 }
 .availability.icons a li {
    margin-bottom: 3px;
+}
+
+.row {
+  margin-left: 0;
 }

@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
   }
 
   function manageDependants($el, isInit) {
-      var $dependants = $el.parent().siblings('.submission-dependant'),
+      var $dependants = $el.parents('.submission-row').find('.submission-dependant'),
           $dependant_inputs = $dependants.find(':input');
 
       if ($el.hasClass('true') && $el.is(':checked')) {
