@@ -20,6 +20,7 @@ var loadRegistry = function(req, res) {
           message: error
         });
       } else {
+        console.log('registry: loaded');
         res.send({
           status: 'ok',
           message: 'ok'
@@ -34,7 +35,7 @@ var loadAllConfigs = function(req, res) {
       Promise.each(results, function(result) {
         return loaders.loadConfig(result.id, req.app.get('models'))
           .then(function() {
-            console.log('loaded');
+            console.log('configs: loaded');
           })
           .catch(console.trace.bind(console));
       }).then(function() {
@@ -50,6 +51,7 @@ var loadAllPlaces = function(req, res) {
   req.app.get('models').Site.findAll()
     .then(function(results) {
       Promise.each(results, function(result) {
+        console.log(result);
         var options = {
           mapper: utils.placeMapper,
           Model: req.app.get('models').Place,
@@ -58,7 +60,7 @@ var loadAllPlaces = function(req, res) {
         };
         return loaders.loadTranslatedData(options, req.app.get('models'))
           .then(function() {
-            console.log('loaded');
+            console.log('places: loaded');
           })
           .catch(console.trace.bind(console));
       })
@@ -89,7 +91,7 @@ var loadAllDatasets = function(req, res) {
         };
         return loaders.loadTranslatedData(options, req.app.get('models'))
           .then(function() {
-            console.log('loaded');
+            console.log('datasets: loaded');
           })
           .catch(console.trace.bind(console));
       })
@@ -120,7 +122,7 @@ var loadAllQuestions = function(req, res) {
         };
         return loaders.loadTranslatedData(options, req.app.get('models'))
           .then(function() {
-            console.log('loaded');
+            console.log('questions: loaded');
           })
           .catch(console.trace.bind(console));
       })
@@ -139,11 +141,43 @@ var loadAllQuestions = function(req, res) {
     });
 };
 
+var loadAllFaqs = function(req, res) {
+  req.app.get('models').Site.findAll()
+    .then(function(results) {
+      Promise.each(results, function(result) {
+        var options = {
+          mapper: utils.FaqMapper,
+          Model: req.app.get('models').Faq,
+          settings: 'faqs',
+          site: result.id
+        };
+        return loaders.loadData(options, req.app.get('models'))
+        .then(function() {
+          console.log('faqs: loaded');
+        })
+        .catch(console.trace.bind(console));
+    })
+    .then(function() {
+      res.send({
+        status: 'ok',
+        message: 'ok'
+      });
+    })
+    .catch(function(E) {
+      res.send({
+        status: 'error',
+        message: E
+      });
+    });
+  });
+};
+
 module.exports = {
   admin: admin,
   loadRegistry: loadRegistry,
   loadAllConfigs: loadAllConfigs,
   loadAllPlaces: loadAllPlaces,
   loadAllDatasets: loadAllDatasets,
-  loadAllQuestions: loadAllQuestions
+  loadAllQuestions: loadAllQuestions,
+  loadAllFaqs: loadAllFaqs
 };

@@ -61,6 +61,9 @@ var queryData = function(options) {
   var questionParams = _.merge(siteQuery(options.domain), {
     order: 'score DESC'
   });
+  var faqParams = _.merge(siteQuery(options.domain), {
+      order: 'priority ASC'
+  });
   var querysets = {};
 
   if (options.ynQuestions) {
@@ -99,6 +102,10 @@ var queryData = function(options) {
     querysets.questions = options.models.Question.findAll(questionParams);
   }
 
+  if (options.with.Faq) {
+    querysets.faqs = options.models.Faq.findAll(faqParams);
+  }
+
   return loadModels(querysets, options);
 };
 
@@ -132,6 +139,12 @@ var processStats = function(data, options) {
     data.stats.placeCount = data.places.length;
   } else {
     data.stats.placeCount = 0;
+  }
+
+  if (Array.isArray(data.faqs)) {
+       data.stats.faqCount = data.faqs.length;
+  } else {
+      data.stats.faqCount = 0;
   }
 
   return data;
@@ -328,6 +341,14 @@ var processQuestions = function(data, options) {
 };
 
 /**
+ * Process the raw faq query
+ */
+var processFaqs = function(data, options) {
+    data.faqs = translateSet(options.locale, data.faqs);
+    return data;
+}
+
+/**
  * Process the raw query data.
  */
 var processData = function(result) {
@@ -344,6 +365,9 @@ var processData = function(result) {
   }
   if (data.questions) {
     data = processQuestions(data, options);
+  }
+  if (data.faqs) {
+    data = processFaqs(data, options);
   }
   data = processStats(data, options);
   return data;
@@ -408,12 +432,13 @@ var getDataOptions = function(req) {
     models: req.app.get('models'),
     domain: req.params.domain,
     dataset: req.params.dataset,
+    faq: req.params.faq,
     place: req.params.place,
     year: req.params.year,
     cascade: req.params.cascade,
     ynQuestions: true,
     locale: req.params.locale,
-    with: {Entry: true, Dataset: true, Place: true, Question: true}
+    with: {Entry: true, Dataset: true, Place: true, Question: true, Faq: true}
   };
 
   // Add exclude_datasets

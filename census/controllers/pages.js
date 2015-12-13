@@ -5,7 +5,7 @@ var marked = require('marked');
 var modelUtils = require('../models').utils;
 var Promise = require('bluebird');
 
-var faq = function(req, res) {
+var faq_md = function(req, res) {
   var qTmpl = req.app.get('view_env').getTemplate('_snippets/questions.html');
   var dTmpl = req.app.get('view_env').getTemplate('_snippets/datasets.html');
   var dataOptions = _.merge(modelUtils.getDataOptions(req), {
@@ -111,6 +111,20 @@ var home = function(req, res) {
     }).catch(console.trace.bind(console));
 
       //return res.render('home.html', data);
+};
+
+var faq = function(req, res) {
+  /**
+    * FAQ cards
+    */
+
+  modelUtils.getData(modelUtils.getDataOptions(req))
+    .then(function(data) {
+      data.title = 'FAQ - Frequently Asked Questions';
+      console.log("data:");
+      console.log(data);
+      res.render('faq.html', data);
+  }).catch(console.trace.bind(console));
 };
 
 var place = function(req, res) {

@@ -6,6 +6,7 @@ module.exports = {
     queryInterface.addIndex('dataset', ['site']);
     queryInterface.addIndex('place', ['site']);
     queryInterface.addIndex('question', ['site']);
+    queryInterface.addIndex('faq', ['site']);
   },
 
   down: function(queryInterface, Sequelize) {
@@ -13,5 +14,6 @@ module.exports = {
     queryInterface.removeIndex('dataset', ['site']);
     queryInterface.removeIndex('place', ['site']);
     queryInterface.removeIndex('question', ['site']);
+    queryInterface.removeIndex('faq', ['site']);
   }
 };

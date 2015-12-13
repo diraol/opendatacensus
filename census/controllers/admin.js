@@ -56,10 +56,20 @@ var loadQuestions = function(req, res) {
   });
 };
 
+var loadFaqs = function(req, res) {
+  return promisedLoad(req, res, {
+    mapper: utils.faqMapper,
+    Model: req.app.get('models').Faq,
+    setting: 'faqs',
+    site: req.params.domain
+  });
+};
+
 module.exports = {
   dashboard: dashboard,
   loadConfig: loadConfig,
   loadPlaces: loadPlaces,
   loadDatasets: loadDatasets,
-  loadQuestions: loadQuestions
+  loadQuestions: loadQuestions,
+  loadFaqs: loadFaqs
 };

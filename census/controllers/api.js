@@ -244,6 +244,58 @@ var places = function(req, res, next) {
 
 };
 
+var faqs = function(req, res, next) {
+
+  // Get request params
+  var format = req.params.format;
+
+  // Initial data options
+  var dataOptions = _.merge(
+    modelUtils.getDataOptions(req),
+    {
+      cascade: false,
+      with: {Place: false, Entry: false, Dataset: false, Question: false}
+    }
+  );
+
+  // Make request for data, return it
+  modelUtils.getData(dataOptions).then(function(data) {
+
+    var columns = [
+      'priority',
+      'site',
+      'question',
+      'answer',
+      'dataviz'
+    ];
+    var results = data.faqs;
+    var mapper = function(item) {
+      var result = {};
+      _.each(columns, function(name) {
+        result[name] = item[name];
+      });
+      return result;
+    };
+
+    switch (format) {
+      case 'json': {
+        outputItemsAsJson(res, results, mapper);
+        break;
+      }
+      case 'csv': {
+        outputItemsAsCsv(res, results, mapper, columns);
+        break;
+      }
+      default: {
+        res.send(404);
+        break;
+      }
+    }
+
+  }).catch(console.trace.bind(console));
+
+}
+
 var entries = function(req, res, next) {
 
   // Get request params
@@ -366,5 +418,6 @@ module.exports = {
   entries: entries,
   datasets: datasets,
   places: places,
-  questions: questions
+  questions: questions,
+  faqs: faqs
 };

@@ -205,6 +205,15 @@ var questionMapper = function(data) {
   }, data);
 };
 
+var faqMapper = function(data) {
+  return _.defaults({
+    priority: data.priority,
+    question: marked(data.question),
+    answer: marked(data.answer),
+    dataviz: data.dataviz || ''
+  }, data);
+};
+
 var normalizedAnswers = function(answers) {
   var normed = {};
   _.each(answers, function(v, k) {
@@ -315,6 +324,7 @@ module.exports = {
   placeMapper: placeMapper,
   datasetMapper: datasetMapper,
   questionMapper: questionMapper,
+  faqMapper: faqMapper,
   normalizedAnswers: normalizedAnswers,
   ynuAnswers: ynuAnswers,
   getFormQuestions: getFormQuestions,

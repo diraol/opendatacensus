@@ -66,6 +66,17 @@ CREATE TABLE question (
     "updatedAt" timestamp with time zone NOT NULL
 );
 
+CREATE TABLE faq (
+    priority integer NOT NULL,
+    question character varying(255) NOT NULL,
+    answer character varying(255) NOT NULL,
+    dataviz character varying(255) NOT NULL,
+    site character varying(255) NOT NULL,
+    translations jsonb,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
 CREATE TABLE registry (
     id character varying(255) NOT NULL,
     settings jsonb NOT NULL,
@@ -106,6 +117,9 @@ ALTER TABLE ONLY place
 
 ALTER TABLE ONLY question
     ADD CONSTRAINT question_pkey PRIMARY KEY (id, site);
+
+ALTER TABLE ONLY faq
+    ADD CONSTRAINT faq_pkey PRIMARY KEY (question);
 
 ALTER TABLE ONLY registry
     ADD CONSTRAINT registry_pkey PRIMARY KEY (id);
