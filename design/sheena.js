@@ -24,15 +24,15 @@ window.onload = function (){
 	var card_visible = false;
 
 	window.onclick = function(){
-		if(card_visible) {
-			card_visible = false;
-			curtain.style.display = "none";
-			card_modal.style.display = "none";
-		}else{
-			card_visible = true;
-			curtain.style.display = "block";
-			card_modal.style.display = "block";
-		} 
+		// if(card_visible) {
+		// 	card_visible = false;
+		// 	curtain.style.display = "none";
+		// 	card_modal.style.display = "none";
+		// }else{
+		// 	card_visible = true;
+		// 	curtain.style.display = "block";
+		// 	card_modal.style.display = "block";
+		// }
 	}
 
 	//////////////////////////////// MOBILE ////////////////////////////////

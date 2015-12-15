@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <meta name="author" content="Open Knowledge">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <!-- <script src="/vendor/chroma.pack.min.js"></script>
+        <script src="/vendor/readmore.min.js"></script>
+        <script src="/vendor/Markdown.Converter.js"></script>
+        <script src="/vendor/Markdown.Sanitizer.js"></script>
+        <script src="/vendor/Markdown.Editor.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link href="sheena.css" rel="stylesheet">
+    <script src="sheena.js"></script>
+    <style type="text/css">
+        {{site.settings.custom_css}}
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <div id="banner">
+            <div id="sd_logo"></div>
+            <image id="philippines" src="img/philippines.png" />
+            <image id="typhoon" src="img/typhoon.gif" />
+            <div id="title">
+                <div id="title1">PREPAREDNESS</div>
+                <div id="title2">DATA DASHBOARD</div>
+                <div id="search">
+                    <div id="search_qt">is your city or province prepared?</div>
+
+                    <form id="form-new-wash-data">
+                      <div class="col-md-6 col-xs-12 text-center">
+                        <div class="form-group">
+                          <div class="input-group" id="place-select-group">
+                            <div id="search_bt" ></div>
+                            <input id="place-select" type="search" class="form-control" placeholder="Select your city/province" list="places" name="places">
+                            <datalist id="places">
+
+                                <option value="/place/137403">City of Pasig</option>
+                                <option value="/place/137404">Quezon City</option>
+                                <option value="/place/137405">City of San Juan</option>
+
+                            </datalist>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+                </div>
+            </div>
+            <ul id="menu">
+                <li class="menu_bt" id="menu_bt1"><a href="index.html">HOME</a></li>
+                <li class="menu_bt " id="menu_bt2"><a href="understand.html">UNDERSTAND</a></li>
+                <li class="menu_bt selected" id="menu_bt3">INDEX</li>
+                <li class="menu_bt" id="menu_bt4"><a href="about.html">ABOUT</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="index_table">
+        <img src="img/gambiarra.jpg"/>
+    </div>
+
+    <div id="modal">
+        <div id="close_card"></div>
+        <div id="card">
+
+            <!-- LAYOUT LOGIN -->
+            <div id="index_login">
+                <div id="card_title">
+                    <span id="title_light">LOGIN</span>
+                </div>
+                <form>
+                    <input type="text" placeholder="LOGIN" />
+                    <input type="password" placeholder="PASSWORD" />
+                    <div class="button">OK</div>
+                </form>
+            </div>
+
+            <!-- LAYOUT SURVEY -->
+            <div id="index_survey">
+                <div id="card_title">
+                    <span id="title_light">SURVEY</span>
+                </div>
+                <form>
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <input type="text" placeholder="SOMETHING" />
+                    <div class="button">SEND</div>
+                </form>
+            </div>
+            
+            <!-- LAYOUT SUCCESS -->
+            <div id="index_success">
+                <div id="card_title">
+                    <span id="title_light">SUCCESS!</span>
+                </div>
+                <div class="card_msg_tx">
+                Lorem ipsum dolor. Sit amet praesent. In pede morbi pharetra tellus maecenas. Eu gravida nibh at wisi vehicula lectus felis luctus libero bibendum dapibus. Sapien auctor sociosqu. Phasellus lectus lacinia justo eu ligula. Erat fermentum augue. Quam mauris ipsum. Tellus tincidunt velit cras sociosqu velit velit nisi sem. Imperdiet quis eum wisi arcu at laoreet fermentum ante eu mauris arcu. Donec wisi pretium porta molestie ullamcorper fusce iaculis ipsum.</div>
+                <div class="button">OK</div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="curtain"></div>
+
+    <footer>
+        <div id="footer_container" class="container">
+
+            <div id="project">
+                A PROJECT BY:
+                <div><a id="sd_logo_footer" href="http://schoolofdata.org/" title="An School of Data Project" target="_blank">
+                        <img  src="img/sd_logo.png" alt="School of Data logo"></a></div>
+            </div>
+
+            <div id="support">
+                SUPPORT:
+                <div>
+                    <a id="okn_logo" href="http://okfn.org/" title="Open Knowledge" target="_blank">
+                        <img  src="img/okfn_logo.png" alt="Open Da logo"></a>
+                    <a id="od4d_logo" href="http://od4d.net/" title="Open Data" target="_blank">
+                        <img  src="img/od4d_logo.png" alt="Open Data logo"></a>
+                </div>
+            </div>
+
+            <div id="footer_links">
+                <a href="http://opendatacommons.org/licenses/pddl/1.0">Data License (Public Domain)</a> |
+                <a href="https://github.com/okfn/opendatacensus/">Source code</a>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
