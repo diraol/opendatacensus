@@ -1,43 +1,24 @@
 {% extends "base.html" %}
 
 {% block title %}{{title}}{% endblock %}
-{% block headcss %}{% endblock %}
+
 {% block bodyclass %}home {% endblock %}
 
 {% block content %}
+      <p>Lorem ipsum dolor. Sit amet ultricies. A tincidunt dolor litora sodales a. Tempor posuere eget. Proin maecenas euismod corrupti gravida eget eros lectus sem proin rhoncus semper rhoncus leo erat.</p>
+      <p>Ipsum sem imperdiet. Ipsum volutpat posuere scelerisque felis turpis. Vel gravida malesuada. Nec eu eu. Molestie urna non. Massa non purus non vestibulum ipsum vitae congue justo. A amet congue. Rutrum nec ante. Vestibulum at integer curae ultrices
+      libero arcu luctus dapibus. Mauris ipsum urna vel sed eros. Rhoncus orci id tellus curabitur ante wisi tincidunt quis. Neque phasellus in leo fermentum odio a enim mattis. Fugiat elementum bibendum. Parturient viverra et. Laoreet pellentesque
+      velit eu tempor velit. Scelerisque sit tincidunt nullam justo quam ligula aliquet sed at pede porta donec ultrices tortor et nec ornare. Ut nulla elementum tincidunt donec lectus. Vitae posuere ullamcorper erat et augue sem a vivamus. Ullamcorper
+      dictum ut. Ultricies tempus vestibulum faucibus ullamcorper in.</p>
+      <p>Velit con pellentesque posuere aptent dictum. Turpis mauris orci. Sed pellentesque donec. Magna posuere libero. Eleifend quis at. Maecenas morbi sollicitudin mi diam morbi. Ut sed in nulla porttitor donec. Sed diam velit. Suspendisse vestibulum
+      lectus. Mauris mi sem. Nunc ultrices praesent ut con egestas. Ligula vehicula id felis elit a. Arcu in orci. Senectus egestas mus etiam amet risus senectus in sit. Posuere eget id sed sit lorem. Feugiat in faucibus suspendisse porttitor et
+      maecenas suspendisse tempus metus eu velit adipiscing accumsan mauris maecenas vitae metus. A felis justo suscipit id adipiscing sit phasellus at. Fames sit cras. Hac nunc bibendum lacus pellentesque nullam. Quis rhoncus quisque natoque eget
+      pharetra ultrices placerat ad eros vitae nullam ante donec magna nullam tempor donec. Lacus elit sociosqu. Hendrerit aliquam dolor arcu class libero lacus aliquam tellus sodales magna turpis lacinia pellentesque dolor. Bibendum massa integer.
+      Erat hendrerit laoreet. Amet vel pretium.</p>
 
-<div class="page-header">
-  <div class="row">
-    <div class="col-xs-12">{{ content }}</div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <form id='form-new-wash-data'>
-      <div class="col-md-6 col-xs-12 text-center">
-        <div class="form-group">
-          <label for="place-select">Search your city/province:</label>
-          <div class="input-group" id="place-select-group">
-            <input id="place-select" type="search" class="form-control" placeholder="Select your city/province" list="places" name="places">
-            <datalist id="places">
-              {% for place in places %}
-                {% set entry = entries|find({'place': place.id, 'dataset': dataset.id}) %}
-                <option value="/place/{{place.id}}{{ urlContext }}">{{place.name}}</option>
-              {% endfor %}
-            </datalist> <div class="input-group-addon"><i class="fa fa-search"></i></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-xs-12 text-center">
-        <div class="form-group">
-          <label for="add-data">...or submit new data</label><br/>
-          <a href="/new_wash_data"><i class="fa fa-plus-circle add-new-wash-data"></i></a>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
 
-<script src="{{page.root}}/src/common.js?{{currentTime}}"></script>
-<script src="{{page.root}}/src/census.js?{{currentTime}}"></script>
+      <div class="button" id="submit_data">SUBMIT DATA</div>
+
+  {% include '_snippets/card-modal.html' %}
+
 {% endblock %}

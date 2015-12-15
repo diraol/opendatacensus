@@ -34,6 +34,7 @@ var faq_md = function(req, res) {
         .replace('{{questions}}', qContent)
         .replace('{{datasets}}', dContent)
         .replace('{{missing_place}}', mContent);
+      data.url_home = true;
       return res.render('base.html', data);
     }).catch(console.trace.bind(console));
 };
@@ -48,6 +49,7 @@ var changes = function(req, res) {
       data.items = _.sortByOrder(data.entries
         .concat(data.pending)
         .concat(data.rejected), 'updatedAt', 'desc');
+      data.url_home = true;
       res.render('changes.html', data);
     }).catch(console.trace.bind(console));
 };
@@ -62,6 +64,7 @@ var contribute = function(req, res) {
 
 var tutorial = function(req, res) {
   var settingName = 'tutorial_page';
+  data.url_home = true;
   res.render('base.html', {
     content: marked(req.params.site.settings[settingName]),
     title: 'Tutorial'
@@ -70,6 +73,7 @@ var tutorial = function(req, res) {
 
 var about = function(req, res) {
   var settingName = 'about_page';
+  data.url_about = true;
   res.render('base.html', {
     content: marked(req.params.site.settings[settingName]),
     title: 'About'
@@ -92,6 +96,7 @@ var overview = function(req, res) {
       data.extraWidth = data.datasets.length > 15;
       data.customText = req.params.site.settings[settingOverviewPage];
       data.missingPlaceText = req.params.site.settings[settingMissingPlace];
+      data.url_index = true;
       return res.render('overview.html', data);
     }).catch(console.trace.bind(console));
 };
@@ -107,6 +112,7 @@ var home = function(req, res) {
       data.content = marked(req.params.site.settings[settingName])
                 .replace('{{title}}', req.params.site.settings['title']);
       data.places = modelUtils.translateSet(req, data.places);
+      data.url_home = true;
       res.render('home.html', data);
     }).catch(console.trace.bind(console));
 
@@ -121,6 +127,7 @@ var faq = function(req, res) {
   modelUtils.getData(modelUtils.getDataOptions(req))
     .then(function(data) {
       data.title = 'FAQ - Frequently Asked Questions';
+      data.url_faq = true;
       res.render('faq.html', data);
   }).catch(console.trace.bind(console));
 };
@@ -146,6 +153,7 @@ var place = function(req, res) {
       data.year = req.params.year;
       data.submissionsAllowed = (req.params.year === req.app.get('year'));
       data.extraWidth = data.datasets.length > 12;
+      data.url_home = true;
       return res.render('place.html', data);
     }).catch(console.trace.bind(console));
 };
@@ -170,6 +178,7 @@ var dataset = function(req, res) {
       data.loggedin = req.session.loggedin;
       data.year = req.params.year;
       data.submissionsAllowed = req.params.year === req.app.get('year');
+      data.url_home = true;
       return res.render('dataset.html', data);
     }).catch(console.trace.bind(console));
 };
@@ -198,6 +207,7 @@ var entry = function(req, res) {
       }
       data.year = req.params.year;
       data.submissionsAllowed = req.params.year === req.app.get('year');
+      data.url_home = true;
       return res.render('entry.html', data);
     }).catch(console.trace.bind(console));
 };

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% block headcss %}{% endblock %}
+{% block bodyclass %}home {% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <div class="row">
+    <div class="col-xs-12">{{ content }}</div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <form id='form-new-wash-data'>
+      <div class="col-md-6 col-xs-12 text-center">
+        <div class="form-group">
+          <label for="place-select">Search your city/province:</label>
+          <div class="input-group" id="place-select-group">
+            <input id="place-select" type="search" class="form-control" placeholder="Select your city/province" list="places" name="places">
+            <datalist id="places">
+              {% for place in places %}
+                {% set entry = entries|find({'place': place.id, 'dataset': dataset.id}) %}
+                <option value="/place/{{place.id}}{{ urlContext }}">{{place.name}}</option>
+              {% endfor %}
+            </datalist> <div class="input-group-addon"><i class="fa fa-search"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12 text-center">
+        <div class="form-group">
+          <label for="add-data">...or submit new data</label><br/>
+          <a href="/new_wash_data"><i class="fa fa-plus-circle add-new-wash-data"></i></a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="{{page.root}}/src/common.js?{{currentTime}}"></script>
+<script src="{{page.root}}/src/census.js?{{currentTime}}"></script>
+{% endblock %}
