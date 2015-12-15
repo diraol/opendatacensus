@@ -72,7 +72,7 @@
     "zombie": "^4.1.0"
   },
   "engines": {
-    "node": "4.1.x",
+    "node": "4.2.x",
     "npm": "2.14.x"
   },
   "scripts": {
