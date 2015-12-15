@@ -64,19 +64,19 @@ var contribute = function(req, res) {
 
 var tutorial = function(req, res) {
   var settingName = 'tutorial_page';
-  data.url_home = true;
   res.render('base.html', {
     content: marked(req.params.site.settings[settingName]),
-    title: 'Tutorial'
+    title: 'Tutorial',
+    url_home: true
   });
 };
 
 var about = function(req, res) {
   var settingName = 'about_page';
-  data.url_about = true;
   res.render('base.html', {
     content: marked(req.params.site.settings[settingName]),
-    title: 'About'
+    title: 'About',
+    url_about: true
   });
 };
 

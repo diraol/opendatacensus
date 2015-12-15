@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
@@ -10,16 +11,25 @@
   <h1>{{ title }}</h1>
 </div>
 <div class="container">
-  {% for faq in faqs %}
-  <h2><strong>Q:</strong> {{ faq.question | striptags }}</h2>
-  <h3><strong>A:</strong> {{ faq.answer | striptags }}</h3>
-  {% if faq.dataviz %}
-    {{faq.dataviz}}
+  {% if faqs %}
+
+    {% for faq in faqs %}
+    <h2><strong>Q:</strong> {{ faq.question }}</h2>
+    <h3><strong>A:</strong> {{ faq.answer }}</h3>
+    {% if faq.dataviz %}
+      {{faq.dataviz}}
+    {% endif %}
+    {% endfor %}
+
+
+  {% else %}
+  {{ gettext('No FAQs') }}
   {% endif %}
-  {% endfor %}
+
 </div>
 
 <script src="{{page.root}}/src/common.js?{{currentTime}}"></script>
 <script src="{{page.root}}/src/census.js?{{currentTime}}"></script>
-{% endblock %}
 
+
+{% endblock %}
