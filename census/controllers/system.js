@@ -51,7 +51,6 @@ var loadAllPlaces = function(req, res) {
   req.app.get('models').Site.findAll()
     .then(function(results) {
       Promise.each(results, function(result) {
-        console.log(result);
         var options = {
           mapper: utils.placeMapper,
           Model: req.app.get('models').Place,
@@ -146,12 +145,12 @@ var loadAllFaqs = function(req, res) {
     .then(function(results) {
       Promise.each(results, function(result) {
         var options = {
-          mapper: utils.FaqMapper,
+          mapper: utils.faqMapper,
           Model: req.app.get('models').Faq,
-          settings: 'faqs',
+          setting: 'faqs',
           site: result.id
         };
-        return loaders.loadData(options, req.app.get('models'))
+        return loaders.loadTranslatedData(options, req.app.get('models'))
         .then(function() {
           console.log('faqs: loaded');
         })
