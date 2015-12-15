@@ -166,7 +166,7 @@ html{
     width:36px;
     height: 36px;
     position: absolute;
-    bottom: 3px;
+    top: 34px;
     right:3px;
     background: #000;
     color: #fff;
@@ -621,13 +621,16 @@ footer a:hover{ color: #fff; text-decoration: underline; color: #000;}
 footer a:active{ color: #fff; text-decoration: none }
 footer a:visited{ color: #fff; text-decoration: none }
 
-#ui-id-1 {
+.ui-autocomplete {
   width: 365px !important;
-  top: -1282.8px !important;
-  left: 453px !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fff;
   border-radius: 0 0 50px 50px;
   padding-left: 25px;
+  padding-bottom: 5px;
 }
 
 /**/

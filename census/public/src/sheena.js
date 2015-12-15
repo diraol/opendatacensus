@@ -71,5 +71,8 @@ window.onload = function (){
 } // window.onload
 
 $(document).ready(function(){
-  $('#search_str').autocomplete({source: places});
+  $('#search_str').autocomplete({
+    source: places,
+    appendTo: "#city_search"
+  });
 })

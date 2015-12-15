@@ -9,8 +9,9 @@
       <div id="title2">{{ site.settings.subtitle }}</div>
       <div id="search">
         <div id="search_qt">is your city or province prepared?</div>
-        <form>
+        <form id="city_search">
           <input type="search" id="search_str" placeholder="type the city or province name"/>
+          <input type="submit" value="" id="search_bt" />
           <script>
             var places = [
             {% for place in places %}
@@ -25,7 +26,6 @@
               <option value="{{place.name}}">{{place.name}}</option>
             {% endfor %}
           </datalist>
-          <input type="submit" value="" id="search_bt" />
         </form>
       </div>
     </div>
