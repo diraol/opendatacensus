@@ -121,8 +121,6 @@ var faq = function(req, res) {
   modelUtils.getData(modelUtils.getDataOptions(req))
     .then(function(data) {
       data.title = 'FAQ - Frequently Asked Questions';
-      console.log("data:");
-      console.log(data);
       res.render('faq.html', data);
   }).catch(console.trace.bind(console));
 };

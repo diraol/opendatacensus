@@ -119,7 +119,7 @@ ALTER TABLE ONLY question
     ADD CONSTRAINT question_pkey PRIMARY KEY (id, site);
 
 ALTER TABLE ONLY faq
-    ADD CONSTRAINT faq_pkey PRIMARY KEY (question);
+    ADD CONSTRAINT faq_pkey PRIMARY KEY (site, question);
 
 ALTER TABLE ONLY registry
     ADD CONSTRAINT registry_pkey PRIMARY KEY (id);
