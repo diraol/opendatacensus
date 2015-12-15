@@ -107,10 +107,9 @@ var home = function(req, res) {
    */
   modelUtils.getData(modelUtils.getDataOptions(req))
     .then(function(data) {
-      var settingName = 'intro_block';
+      var settingName = 'description';
       data.title = req.params.site.settings['title'];
-      data.content = marked(req.params.site.settings[settingName])
-                .replace('{{title}}', req.params.site.settings['title']);
+      data.content = marked(req.params.site.settings[settingName]);
       data.places = modelUtils.translateSet(req, data.places);
       data.url_home = true;
       res.render('home.html', data);
