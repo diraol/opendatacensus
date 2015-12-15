@@ -14,8 +14,8 @@
   {% if faqs %}
 
     {% for faq in faqs %}
-    <h2><strong>Q:</strong> {{ faq.question }}</h2>
-    <h3><strong>A:</strong> {{ faq.answer }}</h3>
+    <h2><strong>Q:</strong> {{ faq.question | striptags }}</h2>
+    <h3><strong>A:</strong> {{ faq.answer | striptags }}</h3>
     {% if faq.dataviz %}
       {{faq.dataviz}}
     {% endif %}
