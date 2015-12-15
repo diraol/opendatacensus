@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}{{gettext("Overview")}}{% endblock %}
-{% block headcss %}<link href="/css/sexytables-1.0.css" rel="stylesheet">{% endblock %}
-{% block bodyclass %}overview {% if extraWidth %}extrawidth{% endif %}{% endblock %}
+{% block title %}{{title}}{% endblock %}
+{% block headcss %}{% endblock %}
+{% block bodyclass %}home {% endblock %}
 
 {% block content %}
 
@@ -38,9 +38,6 @@
   </div>
 </div>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-<script src="{{page.root}}/vendor/jquery.kinetic.min.js"></script>
-<script src="{{page.root}}/vendor/sexytables-1.0.min.js"></script>
 <script src="{{page.root}}/src/common.js?{{currentTime}}"></script>
 <script src="{{page.root}}/src/census.js?{{currentTime}}"></script>
 {% endblock %}
