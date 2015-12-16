@@ -4,9 +4,11 @@
 {{ gettext("Submit Data") }}
 {% endblock %}
 
+{% block headcss %}
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-
-
 
 <div class="page-header">
   <h1>{{format("Make a Submission &ndash; %(sitename)s", { sitename: site.settings.title }) }}</h1>
@@ -33,10 +35,6 @@
 
 <form action="" method="POST" class="form submission-create" autocomplete="on">
 
-
-
-
-
   <!--
       Name of the city province - text
 
@@ -56,8 +54,6 @@
 
   -->
 
-
-
   <fieldset>
 
       <div class="form-group">
@@ -76,11 +72,13 @@
 
 
 
+
+
   <div class="form-group">
     <label for="inputSevereAcuteMalnutrition" class="col-sm-8 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-4">
       <div class="input-group">
-        <input id="inputSevereAcuteMalnutrition" type="text" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)">
+        <input id="inputSevereAcuteMalnutrition" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0", max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
@@ -90,30 +88,30 @@
     <label for="inputXXX" class="col-sm-8 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-4">
       <div class="input-group">
-        <input id="inputXXX" type="text" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)">
+        <input id="inputXXX" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0", max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputXXX" class="col-sm-8 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
-    <div class="col-sm-4">
-      <input id="inputXXX" type="text" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)">
+    <label for="inputXXX" class="col-sm-7 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
+    <div class="col-sm-5">
+      <input id="inputXXX" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0", max="100">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputXXX" class="col-sm-8 control-label">Households without access to toilet</label>
-    <div class="col-sm-4">
-      <input id="inputXXX" type="text" class="form-control decimal" aria-label="Households without access to toilet">
+    <label for="inputXXX" class="col-sm-7 control-label">Households without access to toilet</label>
+    <div class="col-sm-5">
+      <input id="inputXXX" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputXXX" class="col-sm-8 control-label">Households without access to water</label>
-    <div class="col-sm-4">
-      <input id="inputXXX" type="text" class="form-control decimal" aria-label="Households without access to water">
+    <label for="inputXXX" class="col-sm-7 control-label">Households without access to water</label>
+    <div class="col-sm-5">
+      <input id="inputXXX" type="number" class="form-control decimal" aria-label="Households without access to water" min="0">
     </div>
   </div>
 
@@ -121,7 +119,7 @@
     <label for="inputXXX" class="col-sm-8 control-label">% of water sources positive with e.coli and other contaminants</label>
     <div class="col-sm-4">
       <div class="input-group">
-        <input id="inputXXX" type="text" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants">
+        <input id="inputXXX" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0", max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
@@ -172,9 +170,6 @@
     </div>
   </div>
 
-
-
-
 <!--
     <div class="row">
       <div class="col-xs-4">
@@ -205,8 +200,6 @@
     </div>
   </fieldset>
 
-
-
   <div class="row"><p>&nbsp;</p></div>
 
   <div class="row">
@@ -221,14 +214,9 @@
 
   -->
 
-
 </fieldset>
 
-
-
 <div class="row"><p>&nbsp;</p></div>
-
-
   <div class="controls" style="margin-top: 30px;">
     <button type="submit" class="btn btn-lg btn-success" data-loading-text="Saving ..." style="float: left; margin-right: 30px;">{{gettext("Submit")}}</button>
     <p class="help-block">{{gettext("By submitting material to the index you agreeing to <a href=\"http://okfn.org/terms-of-use/\">terms of use</a> and also to license your contribution (to the extent there are any rights in it!) under the <a href=\"http://opendatacommons.org/licenses/pddl/1.0/\">Open Data Commons Public Domain Dedication and License</a>.")}}</p>
@@ -236,14 +224,10 @@
 
 </form>
 
-
 {% endblock %}
+
 {% block end_js %}
-
-
-<script src="/src/common.js?{{currentTime}}"></script>
-<script src="/src/submitdata.js?{{currentTime}}"></script>
-
-
-
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="/src/common.js?{{currentTime}}"></script>
+  <script src="/src/submitdata.js?{{currentTime}}"></script>
 {% endblock %}
