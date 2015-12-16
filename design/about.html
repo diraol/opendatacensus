@@ -21,11 +21,17 @@
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link href="sheena.css" rel="stylesheet">
     <script src="sheena.js"></script>
-    <link href="sheena.css" rel="stylesheet">
-    <script src="sheena.js"></script>
+
     <style type="text/css">
         {{site.settings.custom_css}}
     </style>
+
+    <!-- Read HTML5 shim and respond JS, for IE6-8 support of HTML and CSS elements -->
+    <!--[if lt IE 9]>
+     <script src="/vendor/respond.min.js"</script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+     <![endif]-->
+
 </head>
 
 <body>
@@ -62,64 +68,40 @@
             </div>
             <ul id="menu">
                 <li class="menu_bt" id="menu_bt1"><a href="index.html">HOME</a></li>
-                <li class="menu_bt selected" id="menu_bt2">UNDERSTAND</a></li>
+                <li class="menu_bt" id="menu_bt2"><a href="understand.html">UNDERSTAND</a></li>
                 <li class="menu_bt" id="menu_bt3"><a href="resilience_index.html">INDEX</a></li>
-                <li class="menu_bt" id="menu_bt4"><a href="about.html">ABOUT</a></li>
+                <li class="menu_bt selected" id="menu_bt4">ABOUT</li>
             </ul>
         </div>
     </div>
 
     <div class="container" id="content">
 
-        <ul id="faq" >
+        <p>The goal of this website is to produce a public local information resource centered around Water, Sanitation and Hygiene (WASH) needs, to help with emergency preparedness and action-taking. It doubles as a comparison tool ranking the WASH data quality and availability of the 225 cities and provinces of the Philippines. The website will be updated regularly thanks to both the efforts of the local governments and the work of the members of the Information Management Working Group (IMWG) of the Philippines.</p>
 
-            <li class="faq_item">
-                <div class="faq_border"></div>
-                <div class="qst">Lorem ipsum dolor sit amet sem?</div>
-                <div class="asw">Quis nibh eu. Ac sit quis feugiat nec erat. Leo sodales erat consequatur vestibulum tincidunt. In tellus metus mi rutrum odio lobortis nunc justo. Pellentesque iaculis mauris. Dictumst eget cursus. Dui tincidunt saepe. Lacus turpis turpis. </div>
-            </li>
+        <p>The motivation behind this project is to help inform the work of local governments and WASH NGOs in the Philippines, and by doing so, improve the life of the people affected by the natural disasters thanks to a better preparedness work from the authorities.</p>
 
-            <li class="faq_item">
-                <div class="faq_border"></div>
-                <div class="qst">Scelerisque mi diam sapien vivamus dignissim?</div>
-                <div class="asw">Nisl consectetuer donec cupidatat aliquam suspendisse amet eget ipsum. Sit nam vestibulum turpis sed magna nulla hac a blandit semper vitae in condimentum tincidunt. Mauris laboriosam et. Enim vestibulum dolor sed a et curabitur velit vestibulum.</div>
-            </li>
+        <p>This project was conceived and coordinated by Sheena Carmel Opulencia-Calub, as part of her School of Data Fellowship. The core team behind the project includes:</p>
 
-            <li class="faq_item">
-                <div class="faq_border"></div>
-                <div class="qst">Sagittis sodales metus nunc ullamcorper eget?</div>
-                <div class="asw">Congue duis id. Non a ac massa elementum ligula. Viverra fringilla in ultrices diam consequat malesuada auctor quis. Accumsan sit varius. Imperdiet est erat. Ac integer etiam. Lorem nostra quam semper nibh nibh nibh ut pulvinar. Commodo turpis egestas. At cursus eget. Odio augue blanditiis dui diam praesent. Rutrum faucibus auctor lectus pulvinar interdum a morbi donec libero neque vitae convallis neque nunc. Lorem sagittis vel ipsum pellentesque non lectus tellus porta nonummy metus semper augue sodales at volutpat dui turpis maecenas occaecat arcu metus gravida posuere dictum eget amet. </div>
-            </li>
-
-            <li class="faq_item">
-                <div class="faq_border"></div>
-                <div class="qst">Velit eu ut sem sociis sem sociis suspendisse suspendisse nunc proin tempor?</div>
-                <div class="asw">Felis fusce lectus. Dolor hendrerit nec. Morbi vehicula et mauris est purus imperdiet sit venenatis massa hendrerit amet ut luctus ante facilis magna at urna amet scelerisque. Wisi pellentesque consequat blandit etiam eget. Nulla nulla turpis. Varius vel quisque ut sapien ultrices.</div>
-            </li>
-
+        <ul class="about_list">
+            <li>&bull;&nbsp; <span class="contrast">Sheena Carmel Opulencia Calub</span>, WASH Information manager and 2015 School of Data fellow;</li>
+            <li>&bull;&nbsp; <span class="contrast">Cédric Lombion</span>, School of Data Fellowship coordinator;</li>
+            <li>&bull;&nbsp; <span class="contrast">Diego Rabatone</span>, Developer;</li>
+            <li>&bull;&nbsp; <span class="contrast">Thomaz Rezende</span>, Designer</li>
         </ul>
 
-    <div class="clear"></div>
+        <p>This project would not have been possible with the support of:</p>
+
+        <ul class="about_list">
+            <li> &bull;&nbsp; <span class="contrast">Marco Tulio Pires</span>, School of Data Programme Manager;</li>
+            <li> &bull;&nbsp; <span class="contrast">Katelyn Rogers</span>, Open Knowledge Project Manager;</li>
+            <li> &bull;&nbsp; <span class="contrast">Meg Foulkes</span>, School of Data Project Coordinator;</li>
+            <li> &bull;&nbsp; <span class="contrast">Paul Walsh</span>, Open Data Index Project Lead</li>
+        </ul>
+
+        <p>Sheena's fellowship was made possible thanks the funding of<br><a href="http://od4d.net/" target="_blank">Open Data For Development (OD4D)</a>.</p>
 
     </div>
-
-        <div id="modal">
-            <div id="close_card"></div>
-            <div id="card">
-
-                <!-- LAYOUT FAQ -->
-                <div id="card_faq">
-
-                    <div id="card_title">
-                        <span id="title_bold">Sagittis sodales metus nunc ullamcorper eget?</span>
-                    </div>
-                    <div class="asw">Congue duis id. Non a ac massa elementum ligula. Viverra fringilla in ultrices diam consequat malesuada auctor quis. Accumsan sit varius. Imperdiet est erat. Ac integer etiam. Lorem nostra quam semper nibh nibh nibh ut pulvinar. Commodo turpis egestas. At cursus eget. Odio augue blanditiis dui diam praesent. Rutrum faucibus auctor lectus pulvinar interdum a morbi donec libero neque vitae convallis neque nunc. Lorem sagittis vel ipsum pellentesque non lectus tellus porta nonummy metus semper augue sodales at volutpat dui turpis maecenas occaecat arcu metus gravida posuere dictum eget amet. </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div id="curtain"></div>
 
         <footer>
             <div id="footer_container" class="container">
