@@ -33,6 +33,31 @@
 
 <form action="" method="POST" class="form submission-create" autocomplete="on">
 
+
+
+
+
+  <!--
+      Name of the city province - text
+
+      Severe Acute Malnutrition (Under 5 Rate) -> 0-100
+      Global Acute Malnutrition (Under 5 Rate) -> 0-100
+      Acute Diarrhoeal Disease (Prevalence) - 0-100
+      Households without access to toilet - (int >= 0)
+      Households without access to water - (int >= 0)
+      % of water sources positive with e.coli and other contaminants -> 0-100
+      Exposure to natural disasters -> 0-100
+
+      Last update of this indicator -> date
+      Your name - text
+      Your organisation - text
+      Your role	- text
+      Your email - email
+
+  -->
+
+
+
   <fieldset>
     <div class="row">
 
@@ -49,92 +74,124 @@
       </div>
 
     </div>
-    <div class="row">
-
-      <div class="col-xs-4">
-        Severe Acute Malnutrition (Under 5 Rate)<br/>
-        <input type="text" name="name" value="" />
-      </div>
-      <div class="col-xs-4">
-        Last update of this indicator
-      </div>
-      <div class="col-xs-4">
-      </div>
-
-    </div>
 
 
 
+  <h2 style="margin: 20px 0;">Indicators</h2>
 
 
-
-        <div class="row">
-          <div class="col-xs-4">Global Acute Malnutrition (Under 5 Rate)
-          </div>
-          <div class="col-xs-4">Last update of this indicator
-          </div>
-          <div class="col-xs-4">
-          </div>
-        </div>
-
-
-
-        <div class="row">
-          <div class="col-xs-4">Acute Diarrhoeal Disease (Prevalence)
-          </div>
-          <div class="col-xs-4">Last update of this indicator
-          </div>
-          <div class="col-xs-4">
-          </div>
-        </div>
-
-
-
-
-    <div class="row">
-      <div class="col-xs-4">Households without access to toilet
-      </div>
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-4">
+  <div class="form-group">
+    <label for="inputSevereAcuteMalnutrition" class="col-sm-7 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input id="inputSevereAcuteMalnutrition" type="text" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)">
+        <span class="input-group-addon">%</span>
       </div>
     </div>
+  </div>
 
 
-    <div class="row">
-      <div class="col-xs-4">Households without access to water
-      </div>
-      <div class="col-xs-4">Last update of this indicator
-      </div>
-      <div class="col-xs-4">
+
+  <div class="form-group">
+    <label for="inputXXX" class="col-sm-7 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input id="inputXXX" type="text" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)">
+        <span class="input-group-addon">%</span>
       </div>
     </div>
+  </div>
 
+  <div class="form-group">
+    <label for="inputXXX" class="col-sm-7 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
+    <div class="col-sm-5">
+      <input id="inputXXX" type="text" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)">
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col-xs-4">% of water sources positive with e.coli and other contaminants
-      </div>
-      <div class="col-xs-4">Last update of this indicator
-      </div>
-      <div class="col-xs-4">
+  <div class="form-group">
+    <label for="inputXXX" class="col-sm-7 control-label">Households without access to toilet</label>
+    <div class="col-sm-5">
+      <input id="inputXXX" type="text" class="form-control decimal" aria-label="Households without access to toilet">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputXXX" class="col-sm-7 control-label">Households without access to water</label>
+    <div class="col-sm-5">
+      <input id="inputXXX" type="text" class="form-control decimal" aria-label="Households without access to water">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputXXX" class="col-sm-7 control-label">% of water sources positive with e.coli and other contaminants</label>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input id="inputXXX" type="text" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants">
+        <span class="input-group-addon">%</span>
       </div>
     </div>
+  </div>
 
 
-    <div class="row">
-      <div class="col-xs-4">Exposure to natural disasters
-      </div>
-      <div class="col-xs-4">Last update of this indicator
-      </div>
-      <div class="col-xs-4">
+
+  <div class="form-group">
+    <label for="inputExposureNaturalDisasters" class="col-sm-7 control-label">Exposure to natural disasters</label>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <input id="inputExposureNaturalDisasters" type="text" class="form-control decimal" aria-label="Exposure to natural disasters">
+        <span class="input-group-addon">%</span>
       </div>
     </div>
+  </div>
 
 
-    Your name
-    Your organisation
-    Your role
-    Your email
+
+
+
+
+
+  <div class="form-group">
+    <label for="inputLastUpdate" class="col-sm-5 control-label">Last update of this indicator</label>
+    <div class="col-sm-7">
+      <input type="date" class="form-control" id="inputLastUpdate" placeholder="Last update of this indicator">
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="inputName" class="col-sm-5 control-label">Your Name</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="inputName" placeholder="Your Name">
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="inputOrganization" class="col-sm-5 control-label">Your Organization</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="inputOrganization" placeholder="Your Organization">
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="inputRole" class="col-sm-5 control-label">Your role</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="inputRole" placeholder="Your Role">
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="inputEmail" class="col-sm-5 control-label">Your E-mail</label>
+    <div class="col-sm-7">
+      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+    </div>
+  </div>
+
+
 
 
 <!--
@@ -167,8 +224,6 @@
     </div>
   </fieldset>
 
--->
-
 
 
   <div class="row"><p>&nbsp;</p></div>
@@ -183,6 +238,16 @@
     </div>
   </div>
 
+  -->
+
+
+</fieldset>
+
+
+
+<div class="row"><p>&nbsp;</p></div>
+
+
   <div class="controls" style="margin-top: 30px;">
     <button type="submit" class="btn btn-lg btn-success" data-loading-text="Saving ..." style="float: left; margin-right: 30px;">{{gettext("Submit")}}</button>
     <p class="help-block">{{gettext("By submitting material to the index you agreeing to <a href=\"http://okfn.org/terms-of-use/\">terms of use</a> and also to license your contribution (to the extent there are any rights in it!) under the <a href=\"http://opendatacommons.org/licenses/pddl/1.0/\">Open Data Commons Public Domain Dedication and License</a>.")}}</p>
@@ -190,6 +255,14 @@
 
 </form>
 
+
+{% endblock %}
+{% block end_js %}
+
+
 <script src="/src/common.js?{{currentTime}}"></script>
-<script src="/src/submit.js?{{currentTime}}"></script>
+<script src="/src/submitdata.js?{{currentTime}}"></script>
+
+
+
 {% endblock %}

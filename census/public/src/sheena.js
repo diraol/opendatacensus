@@ -75,4 +75,4 @@ $(document).ready(function(){
     source: places,
     appendTo: "#city_search"
   });
-})
+});

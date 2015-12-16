@@ -574,6 +574,12 @@ footer p{
     margin-top: 10px;
 }
 
+.form-group{
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
 #support{
     position: absolute;
     bottom:10px;
