@@ -69,7 +69,7 @@ CREATE TABLE question (
 CREATE TABLE faq (
     priority integer NOT NULL,
     question character varying(255) NOT NULL,
-    answer character varying(255) NOT NULL,
+    answer text NOT NULL,
     dataviz character varying(255) NOT NULL,
     site character varying(255) NOT NULL,
     translations jsonb,

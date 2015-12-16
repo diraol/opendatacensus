@@ -1,42 +1,39 @@
 <header id="header">
-  <div id="banner">
-    <div id="sd_logo"></div>
-    <image id="philippines" src="/img/philippines.png" />
-    <image id="typhoon" src="/img/typhoon.gif" />
-    <div id="title">
-      <a class="navbar-brand brand" href="/" title="{{ gettext('Home')}}"></a>
-      <h1 id="title1">{{ site.settings.title }}</h1>
-      <div id="title2">{{ site.settings.subtitle }}</div>
-      <div id="search">
-        <div id="search_qt">is your city or province prepared?</div>
-        <form id="city_search">
-          <input type="search" id="search_str" placeholder="type the city or province name"/>
-          <input type="submit" value="" id="search_bt" />
-          <script>
-            var places = [
-            {% for place in places %}
-              {% set entry = entries|find({'place': place.id}) %}
-                "{{place.name}}",
-            {% endfor %}
-            ];
-          </script>
-          <datalist id="places">
-            {% for place in places %}
-              {% set entry = entries|find({'place': place.id}) %}
-              <option value="{{place.name}}">{{place.name}}</option>
-            {% endfor %}
-          </datalist>
-        </form>
-      </div>
+<div id="banner">
+  <div id="sd_logo"></div>
+  <image id="philippines" src="/img/philippines.png" />
+  <image id="typhoon" src="/img/typhoon.gif" />
+  <div id="title">
+    <h1 id="title1">{{ site.settings.title }}</h1>
+    <h2 id="title2">{{ site.settings.subtitle }}</h2>
+    <div id="search">
+      <div id="search_qt">is your city or province prepared?</div>
+
+      <form id="form-new-wash-data">
+        <div class="form-group">
+          <div class="input-group" id="place-select-group">
+            <input id="search_bt" type="submit" value="" />
+            <input id="place-select" type="search" class="form-control" placeholder="type the city or province name"/>
+            <script>
+              var places = [
+                {% for place in places %}
+                  {% set entry = entries|find({'place': place.id}) %}
+                  "{{place.name}}",
+                {% endfor %}
+              ];
+            </script>
+          </div>
+        </div>
+      </form>
     </div>
-    <nav>
-      <ul id="menu">
-        <li class="menu_bt {% if url_home %} selected {% endif %}" id="menu_bt3"><a href="/">{{ gettext("Home") | upper}}</a></li>
-        <li class="menu_bt {% if url_faq %} selected {% endif %}" id="menu_bt4"><a href="/faq/">{{ gettext("Understand") | upper}}</a></li>
-        <li class="menu_bt {% if url_index %} selected {% endif %}" id="menu_bt2"><a href="/index/">{{ gettext("Index") | upper}}</a></li>
-        <li class="menu_bt {% if url_about %} selected {% endif %}" id="menu_bt1"><a href="/about/">{{ gettext("About") | upper}}</a></li>
-      </ul>
-    </nav>
-    <div id="fake_menu"></div>
   </div>
+  <nav>
+    <ul id="menu">
+      <li class="menu_bt {% if url_home %} selected {% endif %}" id="menu_bt3"><a href="/">{{ gettext("Home") | upper}}</a></li>
+      <li class="menu_bt {% if url_faq %} selected {% endif %}" id="menu_bt4"><a href="/faq/">{{ gettext("Understand") | upper}}</a></li>
+      <li class="menu_bt {% if url_index %} selected {% endif %}" id="menu_bt2"><a href="/index/">{{ gettext("Index") | upper}}</a></li>
+      <li class="menu_bt {% if url_about %} selected {% endif %}" id="menu_bt1"><a href="/about/">{{ gettext("About") | upper}}</a></li>
+    </ul>
+  </nav>
+</div>
 </header>

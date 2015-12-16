@@ -1,21 +1,48 @@
-<div id="card_modal">
+<div id="modal">
+<div id="close_card"></div>
 
-  <div id="close_card"></div>
+<div id="card">
 
+  <!-- LAYOUT SUBMIT DATA-->
+  <div id="submit_data">
+    <div id="card_title">
+      <span id="title_light">SUBMIT DATA</span>
+    </div>
+    <form>
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <input type="text" placeholder="SOMETHING" />
+      <div class="button">SEND</div>
+    </form>
+  </div>
+
+  <!-- LAYOUT SUCCESS-->
+  <div id="mode_success">
+    <div id="card_title">
+      <span id="title_light">SUCCESS!</span>
+    </div>
+    <div class="card_msg_tx">
+      Lorem ipsum dolor. Sit amet praesent. In pede morbi pharetra tellus maecenas. Eu gravida nibh at wisi vehicula lectus felis luctus libero bibendum dapibus. Sapien auctor sociosqu. Phasellus lectus lacinia justo eu ligula. Erat fermentum augue. Quam mauris ipsum. Tellus tincidunt velit cras sociosqu velit velit nisi sem. Imperdiet quis eum wisi arcu at laoreet fermentum ante eu mauris arcu. Donec wisi pretium porta molestie ullamcorper fusce iaculis ipsum.</div>
+    <div class="button">OK</div>
+  </div>
+
+  <!-- LAYOUT INFO CARD -->
   <div id="info_card">
 
     <div id="card_title">
-      <span id="type">CITIY OF</span>
-      <span id="name">MALINA</span>
+      <span id="title_light">CITIY OF</span>
+      <span id="title_bold">MALINA</span>
     </div>
 
-    <div id="card_msg1" class="card_msg">Congratulations!</div>
-    <div id="card_msg1_tx" class="card_msg_tx">
-      With a WASH resilience score of
-      <span class="contrast" id="wash_score">89%</span>
-      You are
-      <span class="contrast" id="wash_result">well prepared</span>
-      to face Water, Sanitation and Hygiene risks in future natural disasters.
+    <div class="card_msg">
+      <div id="card_msg1_title" class="card_msg_title">Congratulations!</div>
+      <div id="card_msg1_tx" class="card_msg_tx"> With a WASH resilience score of <span class="contrast" id="wash_score">89%</span> You are <span class="contrast" id="wash_result">well prepared</span> to face Water, Sanitation and Hygiene risks in future natural disasters.</div>
     </div>
 
     <hr/>
@@ -30,9 +57,7 @@
         <li >5. Name of City 5</li>
       </ul>
       <div class="ranking_result">
-        You are ranked
-        <span class="bold" id="country_ranking_result">1st</span>
-        among the cities of the country
+        You are ranked <span class="bold" id="country_ranking_result">1st</span> among the cities of the country
       </div>
     </div>
 
@@ -46,9 +71,7 @@
         <li >5. Name of City 5</li>
       </ul>
       <div class="ranking_result">
-        You are ranked
-        <span class="bold" id="loaal_ranking_result">2nd</span>
-        among the cities of the country
+        You are ranked <span class="bold" id="loaal_ranking_result">2nd</span> among the cities of the country
       </div>
     </div>
 
@@ -56,56 +79,52 @@
 
     <hr/>
 
-    <div id="card_msg2" class="card_msg">
-      But you can still improve!
-    </div>
-    <div class="card_msg_tx">
-      Review your key indicators below
+    <div  class="card_msg">
+      <div class="card_msg_title">But you can still improve!</div>
+      <div class="card_msg_tx">Review your key indicators below</div>
     </div>
 
     <div id="indicators">
       <div class="indicator">
-        <div class="indicator_label" >Severe Acute Malnutrition (Under 5 Rate)</div>
+        <div class="indicator_label" >Severe Acute Malnutrition (Under 5 Rate) </div>
         <div id="score1" class="indicator_score">100% GOOD</div>
       </div>
       <div class="indicator">
-        <div class="indicator_label" >Global Acute Malnutrition (Under 5 Rate)</div>
+        <div class="indicator_label" >Global Acute Malnutrition (Under 5 Rate) </div>
         <div id="score2" class="indicator_score">100% GOOD</div>
       </div>
       <div class="indicator">
-        <div class="indicator_label" >Acute Diarrhoeal Disease (Prevalence)</div>
+        <div class="indicator_label" >Acute Diarrhoeal Disease (Prevalence) </div>
         <div id="score3" class="indicator_score">100% GOOD</div>
       </div>
       <div class="indicator">
-        <div class="indicator_label" >Households without access to toilet</div>
+        <div class="indicator_label" >Households without access to toilet </div>
         <div id="score4" class="indicator_score">100% GOOD</div>
       </div>
       <div class="indicator">
-        <div class="indicator_label" >Households without access to water</div>
+        <div class="indicator_label" >Households without access to water </div>
         <div id="score2" class="indicator_score">100% GOOD</div>
       </div>
       <div class="indicator">
-        <div class="indicator_label" >water sources positive with e.coli and other contaminants</div>
+        <div class="indicator_label" >water sources positive with e.coli and other contaminants </div>
         <div id="score3" class="indicator_score">100% GOOD</div>
       </div>
       <div class="indicator">
-        <div class="indicator_label" >Exposure to natural disasters</div>
+        <div class="indicator_label" >Exposure to natural disasters </div>
         <div id="score4" class="indicator_score">100% GOOD</div>
       </div>
     </div>
 
-    <div id="note3">
-      <div id="card_ms3" class="card_msg">Positive Note</div>
-      <div class="card_msg_tx">
-        The number of <span class="contrast" id="wash_score">number of contaminated water sources</span> has decreased since the last update of the data!
-      </div>
+    <hr>
+
+    <div  class="card_msg">
+      <div class="card_msg_title">Warning</div>
+      <div class="card_msg_tx">The number of <span class="contrast" id="wash_score">households with access to sanitation</span> has decreased since the last update of the data!</div>
     </div>
 
-    <div id="note4">
-      <div id="card_ms4" class="card_msg">Warning</div>
-      <div class="card_msg_tx">
-        The number of <span class="contrast" id="wash_score">households with access to sanitation</span> has decreased since the last update of the data!
-      </div>
+    <div  class="card_msg">
+      <div class="card_msg_title">Positive Note</div>
+      <div class="card_msg_tx">The number of <span class="contrast" id="wash_score">number of contaminated water sources</span> has decreased since the last update of the data!</div>
     </div>
 
     <div id="chart">
@@ -130,7 +149,17 @@
       </div>
     </div>
 
+    <div class="clear"></div>
+
+    <ul id="card_share">
+      <div class="share_title">SHARE THIS CARD!</div>
+      <li class="share_bt" id="share_fb"></li>
+      <li class="share_bt" id="share_tw"></li>
+      <li class="share_bt" id="share_gp"></li>
+    </ul>
   </div>
+
+</div>
 
 </div>
 

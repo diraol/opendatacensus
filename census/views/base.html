@@ -12,21 +12,38 @@
       - {{ site.settings.title }}
     </title>
 
+      <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
+      <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">-->
+      {% block headcss %}{% endblock %}
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+      <link rel="stylesheet" type="text/css" href="/css/reset.css?{{currentTime}}">
+      <link rel="stylesheet" type="text/css" href="/css/sheena.css?{{currentTime}}">
+
+      <style type="text/css">
+        .custom-combobox {
+          position: relative;
+          display: inline-block;
+        }
+        .custom-combobox-toggle {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin-left: -1px;
+          padding: 0;
+        }
+        .custom-combobox-input {
+          margin: 0;
+          padding: 5px 10px;
+        }
+        {{ site.settings.custom_css }}
+      </style>
+
     <!-- Read HTML5 shim and respond JS, for IE6-8 support of HTML and CSS elements -->
     <!--[if lt IE 9]>
       <script src="/vendor/respond.min.js"</script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
       <![endif]-->
 
-      <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-      <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="/css/reset.css?{{currentTime}}">
-      {% block headcss %}{% endblock %}
-      <link rel="stylesheet" type="text/css" href="/css/sheena.css?{{currentTime}}">
-
-      <style type="text/css">
-        {{ site.settings.custom_css }}
-      </style>
   </head>
 
   <body class="{% block bodyclass %}{% endblock %}">
@@ -34,7 +51,6 @@
     {% include 'header.html' %}
 
     <div id="content" class="container">
-      <div class="page">
 
         {% if error_messages.length > 0 %}
         <div class="flash alert alert-error">
@@ -52,9 +68,10 @@
         {% endif %}
 
         {% block content %}{{content}}{% endblock %}
-      </div>
 
     </div> <!-- page-content -->
+
+    {% block extra_content %}{% endblock %}
 
     {% include 'footer.html' %}
 

@@ -134,7 +134,9 @@ var faq = function(req, res) {
 
   modelUtils.getData(modelUtils.getDataOptions(req))
     .then(function(data) {
+      var settingName = 'faq_page';
       data.title = 'FAQ - Frequently Asked Questions';
+      data.desc = marked(req.params.site.settings[settingName]);
       data.url_faq = true;
       res.render('faq.html', data);
   }).catch(console.trace.bind(console));
