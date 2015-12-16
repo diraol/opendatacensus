@@ -54,6 +54,15 @@ var changes = function(req, res) {
     }).catch(console.trace.bind(console));
 };
 
+
+var submitdata = function(req, res) {
+  var settingName = 'submitdata_page';
+  res.render('submitdata.html', {
+    //content: marked(req.params.site.settings[settingName]),
+    title: 'Submit Data'
+  });
+};
+
 var contribute = function(req, res) {
   var settingName = 'contribute_page';
   res.render('base.html', {
@@ -216,6 +225,7 @@ module.exports = {
   overview: overview,
   faq: faq,
   about: about,
+  submitdata: submitdata,
   contribute: contribute,
   tutorial: tutorial,
   changes: changes,

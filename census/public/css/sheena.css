@@ -275,6 +275,11 @@ html{
 .mt10{ margin-top: 10px;}
 .mt20{ margin-top: 20px;}
 
+.button a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .button:hover{
     background-color: #e95353;
 }

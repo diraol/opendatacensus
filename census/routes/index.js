@@ -2,6 +2,7 @@
 
 var pages = require('./pages');
 var census = require('./census');
+var submitdata = require('./submitdata');
 var api = require('./api');
 var admin = require('./admin');
 var auth = require('./auth');
@@ -11,6 +12,7 @@ var utils = require('./utils');
 
 module.exports = {
   pages: pages,
+  submitdata: submitdata,
   census: census,
   api: api,
   admin: admin,

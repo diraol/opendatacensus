@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ gettext("Submit Data") }}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+
+<div class="page-header">
+  <h1>{{format("Make a Submission &ndash; %(sitename)s", { sitename: site.settings.title }) }}</h1>
+</div>
+
+{% if errors %}
+<div class="flash alert alert-error">
+    <p>
+        {{ gettext("The form has missing or incorrect data")}}:
+    </p>
+    {% for error in errors %}
+    <ul>
+        <li>{{ error.param }}: {{ error.msg }} {% if error.value %}(Current is '{{ error.value }}'){% endif %}</li>
+    </ul>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if submitInstructions %}
+<div class="alert alert-warning">
+  {{ submitInstructions }}
+</div>
+{% endif %}
+
+<h3>{{gettext("Place and Dataset")}}</h3>
+<form action="" method="POST" class="form submission-create" autocomplete="on">
+
+
+
+
+  <fieldset>
+
+
+    <div class="row">
+
+      <div class="col-xs-4">
+      Name of the city province
+
+      </div>
+
+    </div>
+    <div class="row">
+
+      <div class="col-xs-4">
+        Severe Acute Malnutrition (Under 5 Rate)
+      </div>
+      <div class="col-xs-4">
+        Last update of this indicator
+      </div>
+      <div class="col-xs-4">
+      </div>
+
+    </div>
+
+
+
+    Global Acute Malnutrition (Under 5 Rate)		Last update of this indicator
+
+
+    Acute Diarrhoeal Disease (Prevalence)		Last update of this indicator
+    Households without access to toilet		Last update of this indicator
+    Households without access to water		Last update of this indicator
+    % of water sources positive with e.coli and other contaminants		Last update of this indicator
+    Exposure to natural disasters		Last update of this indicator
+
+
+    Your name
+    Your organisation
+    Your role
+    Your email
+
+
+
+    <div class="row">
+      <div class="col-xs-4">
+        <label>{{gettext("Place")}}<br/>
+          <select name="place" required autocomplete="off">
+            <option value="">{{gettext("Please select")}}</option>
+            {% for place in places %}
+            <option value="{{place.id}}" {% if (formData and place.id == formData.place) or (current and place.id == current.place) %}selected="true"{% endif %}>{{place.name}}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </div>
+      <div class="col-xs-4">
+        <label>{{gettext("Dataset")}}<br/>
+          <select name="dataset" id="dataset-select" required>
+            <option value="">{{gettext("Please select")}}</option>
+            {% for dataset in datasets %}
+            <option value="{{dataset.id}}" {% if (formData and dataset.id == formData.dataset) or (current and dataset.id == current.dataset) %}selected="true"{% endif %}>{{dataset.name}}</option>
+            {% endfor %}
+          </select>
+
+          {% for dataset in datasets %}
+          <div class="dataset-description js-dataset-{{dataset.id}}" style="display: none;">
+            <span class="help-block">
+              {{dataset.description}}
+            </span>
+          </div>
+          {% endfor %}
+        </label>
+      </div>
+      <div class="col-xs-4">
+        <label>{{ format("%(sitename)s Year", { sitename: site.settings.title_short }) }}<br/>
+          <strong>{{ year }}</strong>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+
+
+
+
+  <div class="row"><p>&nbsp;</p></div>
+
+  <div class="row">
+    <div class="col-xs-12 alert alert-warning">
+    <h4>{{ currentUser.firstName }}, {{ gettext('would you prefer your submission to remain anonymous?') }}</h4>
+    <span class="help-block">{{gettext('By default, submissions to the census are credited to the submitter. If you would prefer to remain anonymous, please indicate so by checking the box.')}}</span>
+    <input type="radio" title="{{ gettext ('Anonymous submission')}}" name="anonymous" value="false" checked /> {{ gettext('Identify me as the submitter') }}
+    <br />
+    <input type="radio" title="{{ gettext ('Anonymous submission')}}" name="anonymous" value="true" /> {{ gettext('Keep my submission anonymous') }}
+    </div>
+  </div>
+
+  <div class="controls" style="margin-top: 30px;">
+    <button type="submit" class="btn btn-lg btn-success" data-loading-text="Saving ..." style="float: left; margin-right: 30px;">{{gettext("Submit")}}</button>
+    <p class="help-block">{{gettext("By submitting material to the index you agreeing to <a href=\"http://okfn.org/terms-of-use/\">terms of use</a> and also to license your contribution (to the extent there are any rights in it!) under the <a href=\"http://opendatacommons.org/licenses/pddl/1.0/\">Open Data Commons Public Domain Dedication and License</a>.")}}</p>
+  </div>
+
+</form>
+
+<script src="/src/common.js?{{currentTime}}"></script>
+<script src="/src/submit.js?{{currentTime}}"></script>
+{% endblock %}
