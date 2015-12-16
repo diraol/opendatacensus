@@ -23,17 +23,17 @@ window.onload = function (){
 
   var card_visible = false;
 
-  //window.onclick = function(){
-    //if(card_visible) {
-      //card_visible = false;
-      //curtain.style.display = "none";
-      //card_modal.style.display = "none";
-    //}else{
-      //card_visible = true;
-      //curtain.style.display = "block";
-      //card_modal.style.display = "block";
-    //}
-  //}
+  window.onclick = function(){
+    // if(card_visible) {
+    //   card_visible = false;
+    //   curtain.style.display = "none";
+    //   card_modal.style.display = "none";
+    // }else{
+    //   card_visible = true;
+    //   curtain.style.display = "block";
+    //   card_modal.style.display = "block";
+    // }
+  }
 
   //////////////////////////////// MOBILE ////////////////////////////////
 
@@ -71,8 +71,8 @@ window.onload = function (){
 } // window.onload
 
 $(document).ready(function(){
-  $('#search_str').autocomplete({
+  $('#place-select').autocomplete({
     source: places,
-    appendTo: "#city_search"
+    appendTo: "#place-select-group"
   });
 })
