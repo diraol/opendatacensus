@@ -1,41 +1,7 @@
 window.onload = function (){
-
-  function $_GET() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      vars[key] = value;
-    });
-    return vars;
-
-  }
-
-  var location = window.location.href.split("?")[0];
-  var dbody = document.body;
-
-  var i;
-  var a;
-  var b;
-  var c;
-  var mobile;
-
-  var curtain = document.getElementById('curtain');
-  var card_modal = document.getElementById('card_modal');
-
-  var card_visible = false;
-
-  window.onclick = function(){
-    // if(card_visible) {
-    //   card_visible = false;
-    //   curtain.style.display = "none";
-    //   card_modal.style.display = "none";
-    // }else{
-    //   card_visible = true;
-    //   curtain.style.display = "block";
-    //   card_modal.style.display = "block";
-    // }
-  }
-
   //////////////////////////////// MOBILE ////////////////////////////////
+  var dbody = document.body;
+  var mobile;
 
   var isMobile = {
     Android: function() {
@@ -62,17 +28,50 @@ window.onload = function (){
     mobile = true;
     dbody.className = 'mobile';
   }else{
-      mobile = false;
+    mobile = false;
   }
 
   console.log( "MOBILE: " + mobile );
 
-
 } // window.onload
 
 $(document).ready(function(){
+  function $_GET() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+
+  }
+
+  var location = window.location.href.split("?")[0];
+
+  var i;
+  var a;
+  var b;
+  var c;
+
+  var curtain = document.getElementById('curtain');
+  var card_modal = document.getElementById('card_modal');
+
+  var card_visible = false;
+
+  //window.onclick = function(){
+    // if(card_visible) {
+    //   card_visible = false;
+    //   curtain.style.display = "none";
+    //   card_modal.style.display = "none";
+    // }else{
+    //   card_visible = true;
+    //   curtain.style.display = "block";
+    //   card_modal.style.display = "block";
+    // }
+  //}
+
+  // HEADER PLACE SEARCH AUTOCOMPLETE
   $('#place-select').autocomplete({
     source: places,
     appendTo: "#place-select-group"
   });
-})
+});

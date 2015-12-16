@@ -1,64 +1,25 @@
 <footer>
-  <div id="footer_container" class="container">
-    <div class="row">
-      {{ site.settings.custom_footer }}
-    </div>
-    <div class="row">
-      Visit <a href="http://au-city.census.okfn.org/">Local Open Data Census</a> 
-      or see our <a href="http://global.census.okfn.org/place/au">National entry</a>
-      in the <a href="http://index.okfn.org/">Global Open Data Index</a>.
-    </div>
-    <div class="row">
-      <p>
-        <a href="http://opendefinition.org/ossd/" title="{{gettext("Open Online Software Service")}}" style="border:none;" class="logo">
-          <img src="//assets.okfn.org/images/ok_buttons/os_80x15_orange_grey.png" alt="" border="" />
-        </a>
-        <a href="http://opendefinition.org/okd/" title="{{gettext("Open Definition")}}" style="border:none;" class="logo">
-          <img src="//assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" alt="" border="" />
-        </a>
-        <a href="http://opendefinition.org/okd/" title="{{gettext("Open Definition")}}" style="border:none;" class="logo">
-          <img src="//assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="" border="" />
-        </a>
-        |
-        <a href="http://opendatacommons.org/licenses/pddl/1.0">{{gettext("Data License (Public Domain)")}}</a>
-        |
-        <a href="https://github.com/okfn/opendatacensus/">{{gettext("Source code")}}</a>
-      </p>
-      <p>
-        <strong>{{ gettext("Download") }}</strong> <a href="/api/entries.cascade.csv">{{gettext("Current (CSV)")}}</a> |
-        <a href="/api/entries.csv">{{gettext("All (CSV)")}}</a> |
-        <a href="/api/entries.cascade.json">{{gettext("Current (JSON)")}}</a> |
-        <a href="/api/entries.json">{{gettext("All (JSON)")}}</a>
-      </p>
-      <p>
-        {{gettext("Part of the <a href=\"http://census.okfn.org/\">Open Data Census project</a> run by Open Knowledge.")}}
-      </p>
+<div id="footer_container" class="container">
+  <div id="project">
+    A PROJECT BY:
+    <div><a id="sd_logo_footer" href="http://schoolofdata.org/" title="An School of Data Project" target="_blank">
+        <img src="/img/sd_logo.png" alt="School of Data logo"></a></div>
+  </div>
 
-      <div id="support">
-        <p>SUPPORT:</p>
-        <p>
-          <a class="okn_logo logo" href="http://okfn.org/" title="{{gettext("Open Knowledge")}}" target="_blank">
-            <img src="//assets.okfn.org/p/okfn/img/okfn-logo-landscape-black-s.png" alt="Open Knowledge logo" />
-          </a>
-          <a id="od4d_logo" class="logo" href="http://od4d.net/" title="{{gettext("Open Data")}}" target="_blank">
-            <img src="/img/od4d_logo.png" alt="Open Data logo">
-          </a>
-        </p>
-      </div>
-      <div id="project">
-        <p>PROJECT:</p>
-        <p>
-        <a id="sd_logo_footer" href="http://schoolofdata.org/" title="An School of Data Project" target="_blank">
-          <img  src="/img/sd_logo.png" alt="School of Data logo"></a>
-        </p>
-      </div>
-      <ul id="site_nav">
-        <li><a href="/">{{ gettext("Home") | upper}}</a></li>
-        <li><a href="/faq/">{{ gettext("Understand") | upper}}</a></li>
-        <li><a href="/index/">{{ gettext("Index") | upper}}</a></li>
-        <li><a href="/about/">{{ gettext("About") | upper}}</a></li>
-      </ul>
-
+  <div id="support">
+    SUPPORT:
+    <div>
+      <a id="okn_logo" href="http://okfn.org/" title="Open Knowledge" target="_blank">
+        <img  src="/img/okfn_logo.png" alt="Open Da logo"></a>
+      <a id="od4d_logo" href="http://od4d.net/" title="Open Data" target="_blank">
+        <img  src="/img/od4d_logo.png" alt="Open Data logo"></a>
     </div>
   </div>
+
+  <div id="footer_links">
+    <a href="http://opendatacommons.org/licenses/pddl/1.0">Data License (Public Domain)</a> |
+    <a href="https://github.com/okfn/opendatacensus/">Source code</a>
+  </div>
+
+</div>
 </footer>

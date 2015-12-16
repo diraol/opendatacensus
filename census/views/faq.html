@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block title %}{{ title }}{% endblock %}
@@ -7,29 +6,32 @@
 
 {% block content %}
 
-<div class="page-header">
-  <h1>{{ title }}</h1>
-</div>
-<div class="container">
+  <div>{{ desc }}</div>
+
   {% if faqs %}
-
-    {% for faq in faqs %}
-    <h2><strong>Q:</strong> {{ faq.question | striptags }}</h2>
-    <h3><strong>A:</strong> {{ faq.answer | striptags }}</h3>
-    {% if faq.dataviz %}
-      {{faq.dataviz}}
-    {% endif %}
-    {% endfor %}
-
-
+    <ul id="faq" >
+      {% for faq in faqs %}
+      <li class="faq_item">
+        <div class="faq_border"></div>
+        <div class="qst">{{ faq.question | capitalize | striptags }}</div>
+        <div class="asw">{{ faq.answer | capitalize | striptags }}</div>
+        <div class="dtvz">{{faq.dataviz}}</div>
+      </li>
+      {% endfor %}
+    </ul>
   {% else %}
-  {{ gettext('No FAQs') }}
+    {{ gettext('No FAQs') }}
   {% endif %}
 
-</div>
+   <div class="clear"></div>
+{% endblock %}
 
-<script src="{{page.root}}/src/common.js?{{currentTime}}"></script>
-<script src="{{page.root}}/src/census.js?{{currentTime}}"></script>
+{% block extra_content %}
 
+  {% include '_snippets/faq-modal.html' %}
 
+{% endblock %}
+
+{% block end_js %}
+  <script src="/src/faq-modal.js"></script>
 {% endblock %}
