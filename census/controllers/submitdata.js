@@ -15,16 +15,14 @@ var submitGetHandler = function(req, res, data) {
 
   var settingName = 'submit_page';
   var submitInstructions = req.params.site.settings[settingName];
-  console.log("submit_page", submitInstructions);
   res.render('submitdata.html', {
-    canReview: true, // flag always on for submission
-    submitInstructions: submitInstructions ? marked(submitInstructions) : '',
+    // submitInstructions: submitInstructions ? marked(submitInstructions) : '',
     places: modelUtils.translateSet(req, data.places),
     //current: current,
-    datasets: modelUtils.translateSet(req, data.datasets),
-    questions: data.questions,
+    datasets: modelUtils.translateSet(req, data.datasets)
+    //questions: data.questions,
     //addDetails: addDetails,
-    year: req.app.get('year')
+    //year: req.app.get('year')
   });
 };
 
@@ -36,28 +34,13 @@ var submitPostHandler = function(req, res, data) {
   var anonymous = true;
   var submitterId = utils.ANONYMOUS_USER_ID;
   var query;
-  var approveFirstSubmission;
   var current = data.currentState.match;
-  var pending = data.currentState.pending;
 
-  var settingName = 'approve_first_submission';
-  if (req.params.site.settings[settingName]) {
-    approveFirstSubmission = req.params.site.settings[settingName];
-  }
+
 
   errors = utils.validateData(req);
 
-  if (pending) {
-    if (!Array.isArray(errors)) {
-      errors = [];
-    }
-    errors.push({
-      param: 'conflict',
-      msg: 'There is already a queued submission for this data. ' +
-        '<a href="/place/PL/YR">See the queued submission</a>'
-        .replace('PL', current.place).replace('YR', current.year)
-    });
-  }
+
 
   if (errors) {
     var addDetails = _.find(data.questions, function(q) {
@@ -66,15 +49,14 @@ var submitPostHandler = function(req, res, data) {
 
     res.statusCode = 400;
     var settingName = 'submit_page';
-    res.render('create.html', {
-      canReview: true, // flag always on for submission
-      submitInstructions: req.params.site.settings[settingName],
+    res.render('submitdata.html', {
+      //submitInstructions: req.params.site.settings[settingName],
       places: modelUtils.translateSet(req, data.places),
       datasets: modelUtils.translateSet(req, data.datasets),
       questions: data.questions,
-      addDetails: addDetails,
-      year: req.app.get('year'),
-      current: current,
+      //addDetails: addDetails,
+      //year: req.app.get('year'),
+      //current: current,
       errors: errors,
       formData: req.body
     });
@@ -94,15 +76,6 @@ var submitPostHandler = function(req, res, data) {
       objToSave.details = req.body.details;
       objToSave.year = req.app.get('year');
       objToSave.submitterId = submitterId;
-
-      if (approveFirstSubmission) {
-        objToSave.isCurrent = true;
-        objToSave.reviewed = true;
-        objToSave.reviewResult = true;
-        objToSave.reviewerId = submitterId;
-      } else {
-        objToSave.isCurrent = false;
-      }
 
       saveStrategy = 'create';
     } else if (current.isCurrent) {
