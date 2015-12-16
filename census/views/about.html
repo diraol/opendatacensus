@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block headcss %}{% endblock %}
+{% block bodyclass %}faq {% endblock %}
+
+{% block content %}
+
+  {{content}}
+
+  <h1>CONTACT US!</h1>
+
+  <form>
+    <input type="text" name="name" value="" placeholder="Name"/>
+    <input type="text" name="email" value="" placeholder="E-mail"/>
+    <input type="text" name="organization" value="" placeholder="Organization"/>
+    <textarea name="msg" placeholder="Message"></textarea>
+  </form>
+  <div class="button">SEND</div>
+
+  <div class="button2" style="margin-right:2%">DOWNLOAD DATA</div>
+  <div class="button2">EXTERNAL LINK</div>
+
+  <div class="clear"></div>
+
+{% endblock %}
+
+{% block extra_content %}
+{% endblock %}
+
+{% block end_js %}
+{% endblock %}

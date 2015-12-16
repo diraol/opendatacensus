@@ -61,7 +61,7 @@ html{
     top: 20px;
     width: 100%;
     height: 30px;
-    background-image: url("../img/sd_logo.png");
+    background-image: url("/img/sd_logo.png");
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1;
@@ -94,7 +94,6 @@ html{
     left: 50%;
     top: -15%;
 }
-
 
 #title{
     width: 100%;
@@ -156,7 +155,7 @@ html{
     outline: none;
     height: 42px;
     font-weight: 400;
-    background-image: url("/img/bg_search.jpg");
+    background-image: url("img/bg_search.jpg");
     background-repeat: no-repeat;
     background-position: right;
 }
@@ -275,10 +274,25 @@ html{
     margin-top: 40px;
 }
 
+.button2{
+    width: 49%;
+    float: left;
+    margin: auto;
+    text-align: center;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
 .mt10{ margin-top: 10px;}
 .mt20{ margin-top: 20px;}
 
-.button:hover{
+.button:hover, .button2:hover{
     background-color: #e95353;
 }
 
@@ -314,6 +328,13 @@ html{
     display: none;
 }
 
+
+#card a:link{ color: #fff; text-decoration: none }
+#card a:hover{ color: #fff; text-decoration: none; }
+#card a:active{ color: #fff; text-decoration: none }
+#card a:visited{ color: #fff; text-decoration: none }
+
+
 #card{
     width: 94%;
     max-height: 94%;
@@ -333,18 +354,72 @@ html{
     overflow: auto;
 }
 
+.mobile #card{
+    padding: 30px;
+}
 
-#card input{
+#print_card{
+    font-size: 12px;
+    line-height: 18px;
+    padding: 50px;
+}
+#print_card #card_title{
+    font-size: 26px;
+    line-height: 30px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+#print_card .card_msg_title{
+    font-size: 18px;
+    line-height: 24px;
+}
+#print_card .indicator_label{
+    padding: 10px;
+}
+#print_card .indicator_score{
+    padding: 10px;
+}
+#print_card .card_msg{
+    margin-bottom: 10px;
+}
+#print_card .card_msg_title{
+    margin-bottom: 0px;
+}
+#print_card .card_msg_tx{
+    font-size: 14px;
+    line-height: 18px;
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 10px;
+}
+#print_card .resilience{
+    margin-bottom: 60px;
+}
+#print_card .ranking{
+    margin-bottom: 40px;
+}
+#print_card #chart{
+    margin-bottom: 20px;
+}
+#print_card hr {
+    margin-bottom: 40px;
+}
+
+input, textarea{
     width: 100%;
     margin-bottom: 5px;
     padding: 15px;
     outline: 0;
     font-size: 14px;
     font-weight: 400;
+    border: #ddd 1px solid;
 }
 
+ textarea{
+     height: 200px;
+ }
+
 .mobile #info_card{
-    padding: 20px;
     font-size: 14px;
     line-height: 18px;
 }
@@ -405,6 +480,12 @@ html{
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 5px;
+    line-height: 30px;
+}
+
+.mobile .card_msg_title{
+    font-size: 20px;
+    line-height: 24px;
 }
 
 .card_msg_tx{
@@ -506,7 +587,7 @@ hr{
 
 #chart{
     width: 100%;
-    height: 200px;
+    height: 150px;
     background-color: #eee;
     margin-bottom: 40px;
     text-align: center;
@@ -524,6 +605,10 @@ hr{
     margin-bottom: 40px;
     text-align: center;
     height: 100px;
+}
+
+.mobile #issues{
+    height: 200px;
 }
 
 .issue{
@@ -553,6 +638,10 @@ hr{
     float: right;
 }
 
+.mobile #issue_left, .mobile #issue_right{
+    float: none;
+}
+
 #card_share{
     width: 100%;
     text-align: center;
@@ -573,11 +662,13 @@ hr{
 #share_fb{ background-image: url('img/share_fb.png'); }
 #share_tw{ background-image: url('img/share_tw.png'); }
 #share_gp{ background-image: url('img/share_gp.png'); }
+#share_em{ background-image: url('img/share_em.png'); }
 
 .share_title{
     font-size: 24px;
     font-weight: 300;
     margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 
@@ -639,6 +730,8 @@ hr{
     height: 600px;
     padding-top: 30px;
     text-align: center;
+    position: relative;
+
 }
 
 /* about */
@@ -647,6 +740,13 @@ hr{
     margin-bottom: 20px;
 }
 
+h1{
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+    margin: 60px 0;
+}
 
 /* footer */
 

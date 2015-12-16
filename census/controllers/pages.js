@@ -82,7 +82,7 @@ var tutorial = function(req, res) {
 
 var about = function(req, res) {
   var settingName = 'about_page';
-  res.render('base.html', {
+  res.render('about.html', {
     content: marked(req.params.site.settings[settingName]),
     title: 'About',
     url_about: true
