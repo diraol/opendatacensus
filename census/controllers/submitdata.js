@@ -16,7 +16,7 @@ var submitGetHandler = function(req, res, data) {
   var settingName = 'submit_page';
   var submitInstructions = req.params.site.settings[settingName];
   console.log("submit_page", submitInstructions);
-  res.render('create.html', {
+  res.render('submitdata.html', {
     canReview: true, // flag always on for submission
     submitInstructions: submitInstructions ? marked(submitInstructions) : '',
     places: modelUtils.translateSet(req, data.places),

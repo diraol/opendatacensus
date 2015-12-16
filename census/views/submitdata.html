@@ -8,9 +8,6 @@
 
 
 
-
-
-
 <div class="page-header">
   <h1>{{format("Make a Submission &ndash; %(sitename)s", { sitename: site.settings.title }) }}</h1>
 </div>
@@ -34,19 +31,20 @@
 </div>
 {% endif %}
 
-<h3>{{gettext("Place and Dataset")}}</h3>
 <form action="" method="POST" class="form submission-create" autocomplete="on">
 
-
-
-
   <fieldset>
-
-
     <div class="row">
 
-      <div class="col-xs-4">
-      Name of the city province
+      <div class="col-xs-8">
+      <label>{{gettext("Name of the city province")}}<br/>
+        <select name="place" required autocomplete="off">
+          <option value="">{{gettext("Please select")}}</option>
+          {% for place in places %}
+          <option value="{{place.id}}" {% if (formData and place.id == formData.place) or (current and place.id == current.place) %}selected="true"{% endif %}>{{place.name}}</option>
+          {% endfor %}
+        </select>
+      </label>
 
       </div>
 
@@ -54,7 +52,8 @@
     <div class="row">
 
       <div class="col-xs-4">
-        Severe Acute Malnutrition (Under 5 Rate)
+        Severe Acute Malnutrition (Under 5 Rate)<br/>
+        <input type="text" name="name" value="" />
       </div>
       <div class="col-xs-4">
         Last update of this indicator
@@ -66,14 +65,70 @@
 
 
 
-    Global Acute Malnutrition (Under 5 Rate)		Last update of this indicator
 
 
-    Acute Diarrhoeal Disease (Prevalence)		Last update of this indicator
-    Households without access to toilet		Last update of this indicator
-    Households without access to water		Last update of this indicator
-    % of water sources positive with e.coli and other contaminants		Last update of this indicator
-    Exposure to natural disasters		Last update of this indicator
+
+        <div class="row">
+          <div class="col-xs-4">Global Acute Malnutrition (Under 5 Rate)
+          </div>
+          <div class="col-xs-4">Last update of this indicator
+          </div>
+          <div class="col-xs-4">
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-xs-4">Acute Diarrhoeal Disease (Prevalence)
+          </div>
+          <div class="col-xs-4">Last update of this indicator
+          </div>
+          <div class="col-xs-4">
+          </div>
+        </div>
+
+
+
+
+    <div class="row">
+      <div class="col-xs-4">Households without access to toilet
+      </div>
+      <div class="col-xs-4">
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-4">Households without access to water
+      </div>
+      <div class="col-xs-4">Last update of this indicator
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-4">% of water sources positive with e.coli and other contaminants
+      </div>
+      <div class="col-xs-4">Last update of this indicator
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-4">Exposure to natural disasters
+      </div>
+      <div class="col-xs-4">Last update of this indicator
+      </div>
+      <div class="col-xs-4">
+      </div>
+    </div>
 
 
     Your name
@@ -82,17 +137,9 @@
     Your email
 
 
-
+<!--
     <div class="row">
       <div class="col-xs-4">
-        <label>{{gettext("Place")}}<br/>
-          <select name="place" required autocomplete="off">
-            <option value="">{{gettext("Please select")}}</option>
-            {% for place in places %}
-            <option value="{{place.id}}" {% if (formData and place.id == formData.place) or (current and place.id == current.place) %}selected="true"{% endif %}>{{place.name}}</option>
-            {% endfor %}
-          </select>
-        </label>
       </div>
       <div class="col-xs-4">
         <label>{{gettext("Dataset")}}<br/>
@@ -120,7 +167,7 @@
     </div>
   </fieldset>
 
-
+-->
 
 
 
