@@ -192,9 +192,9 @@ var washPlaceLast = function(req, res, next) {
   modelUtils.getData(dataOptions).then(function(data) {
 
     var columns = [
-      'id',
       'site',
       'place',
+      'placeId',
       'SAM',
       'lastUpdateSAM',
       'GAN',
@@ -220,7 +220,10 @@ var washPlaceLast = function(req, res, next) {
 
     if (data.wash) {
       results = [data.wash.dataValues];
+      results[0]['placeId'] = results[0].place;
+      results[0]['place'] = data.place.dataValues.name;
     }
+    console.log(results);
 
     var mapper = function(item) {
       var result = {};
