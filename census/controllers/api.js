@@ -167,6 +167,88 @@ var datasets = function(req, res, next) {
 
 };
 
+var washPlaceLast = function(req, res, next) {
+
+  // Get request params
+  var format = req.params.format;
+
+  // Initial data options
+  var dataOptions = _.merge(
+    modelUtils.getDataOptions(req),
+    {
+      cascade: false,
+      ynQuestions: false,
+      with: {
+          Entry: false,
+          Dataset: false,
+          Question: false,
+          Faq: false,
+          Wash: true
+      }
+    }
+  );
+
+  // Make request for data, return it
+  modelUtils.getData(dataOptions).then(function(data) {
+
+    var columns = [
+      'id',
+      'site',
+      'place',
+      'SAM',
+      'lastUpdateSAM',
+      'GAN',
+      'lasUpdateGAN',
+      'ADD',
+      'lastUpdateADD',
+      'HWAT',
+      'lastUpdateHWAT',
+      'HWAW',
+      'lastUpdateHWAW',
+      'WSC',
+      'lastUpdateWSC',
+      'EXND',
+      'lastUpdateEXND',
+      'name',
+      'organisation',
+      'role',
+      'email',
+      'createdAt'
+    ];
+
+    var results = {};
+
+    if (data.wash) {
+      results = [data.wash.dataValues];
+    }
+
+    var mapper = function(item) {
+      var result = {};
+      _.each(columns, function(name) {
+        result[name] = item[name];
+      });
+      return result;
+    };
+
+    switch (format) {
+      case 'json': {
+        outputItemsAsJson(res, results, mapper);
+        break;
+      }
+      case 'csv': {
+        outputItemsAsCsv(res, results, mapper, columns);
+        break;
+      }
+      default: {
+        res.send(404);
+        break;
+      }
+    }
+
+  }).catch(console.trace.bind(console));
+
+}
+
 var places = function(req, res, next) {
 
   // Get request params
@@ -419,5 +501,6 @@ module.exports = {
   datasets: datasets,
   places: places,
   questions: questions,
-  faqs: faqs
+  faqs: faqs,
+  washPlaceLast: washPlaceLast
 };

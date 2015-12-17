@@ -7,7 +7,7 @@ var loadModels = function(querysets, options) {
     return new Promise(function(RS, RJ) {
       V.then(function(D) {
         RS([K, D]);
-      });
+      }).catch(function(e){console.log(e);})
     });
   })).then(function(V) {
     return {
@@ -64,6 +64,12 @@ var queryData = function(options) {
   var faqParams = _.merge(siteQuery(options.domain), {
       order: 'priority ASC'
   });
+  var washParams = _.merge(siteQuery(options.domain), {
+      where: {
+        place: options.place,
+      },
+      order: '"createdAt" DESC'
+  });
   var querysets = {};
 
   if (options.ynQuestions) {
@@ -72,11 +78,11 @@ var queryData = function(options) {
 
   // prep the querysets object
   if (options.place) {
-    placeParams = _.merge(placeParams, {where: {id: options.place}});
-    entryParams = _.merge(entryParams, {where: {place: options.place}});
-    if (options.with.Place) {
-      querysets.place = options.models.Place.findOne(placeParams);
-    }
+      placeParams = _.merge(placeParams, {where: {id: options.place}});
+      entryParams = _.merge(entryParams, {where: {place: options.place}});
+      if (options.with.Place) {
+        querysets.place = options.models.Place.findOne(placeParams);
+      }
   } else {
     if (options.with.Place) {
       querysets.places = options.models.Place.findAll(placeParams);
@@ -104,6 +110,10 @@ var queryData = function(options) {
 
   if (options.with.Faq) {
     querysets.faqs = options.models.Faq.findAll(faqParams);
+  }
+
+  if (options.with.Wash) {
+    querysets.wash = options.models.Wash.findOne(washParams);
   }
 
   return loadModels(querysets, options);
@@ -145,6 +155,12 @@ var processStats = function(data, options) {
        data.stats.faqCount = data.faqs.length;
   } else {
       data.stats.faqCount = 0;
+  }
+
+  if (Array.isArray(data.washs)) {
+       data.stats.washCount = data.washs.length;
+  } else {
+      data.stats.washCount = 0;
   }
 
   return data;
@@ -349,11 +365,20 @@ var processFaqs = function(data, options) {
 }
 
 /**
+ * Process the raw Wash query.
+ */
+var processWashs = function(data, options) {
+    data.washs = translateSet(options.locale, data.washs);
+    return data;
+}
+
+/**
  * Process the raw query data.
  */
 var processData = function(result) {
   var data = result.data;
   var options = result.options;
+
   if (data.entries) {
     data = processEntries(data, options);
   }
@@ -369,7 +394,12 @@ var processData = function(result) {
   if (data.faqs) {
     data = processFaqs(data, options);
   }
+  if (data.wash) {
+      data = processWashs(data, options);
+  }
+
   data = processStats(data, options);
+
   return data;
 };
 
@@ -438,7 +468,8 @@ var getDataOptions = function(req) {
     cascade: req.params.cascade,
     ynQuestions: true,
     locale: req.params.locale,
-    with: {Entry: true, Dataset: true, Place: true, Question: true, Faq: true}
+    wash: req.params.wash,
+    with: {Entry: true, Dataset: true, Place: true, Question: true, Faq: true, Wash: false}
   };
 
   // Add exclude_datasets
@@ -459,11 +490,17 @@ var getDataOptions = function(req) {
 
 };
 
+
+var getWashData = function(req, options) {
+  return req.app.get('models').Wash.findAll(options);
+}
+
 module.exports = {
   loadModels: loadModels,
   siteQuery: siteQuery,
   translateSet: translateSet,
   cascadeEntries: cascadeEntries,
   getDataOptions: getDataOptions,
-  getData: getData
+  getData: getData,
+  getWashData: getWashData
 };

@@ -24,8 +24,9 @@ var apiRoutes = function(coreMiddlewares) {
   router.get(utils.scoped('/places/:report/:year.:format'), coreMixins, api.places);
   router.get(utils.scoped('/places.:format'), coreMixins, api.places);
   router.get(utils.scoped('/questions.:format'), coreMixins, api.questions);
-  router.get(utils.scoped('/questions.:format'), coreMixins, api.questions);
   router.get(utils.scoped('/faqs.:format'), coreMixins, api.faqs);
+  //router.get(utils.scoped('/washs.:format'), coreMixins, api.washPlace);
+  router.get(utils.scoped('/wash/:place.:format'), coreMixins, api.washPlaceLast);
 
   return router;
 };

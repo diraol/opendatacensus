@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var mixins = require('./mixins');
 
 module.exports = function(sequelize, DataTypes) {
   var Wash = sequelize.define('Wash', {
@@ -100,7 +99,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: ''
     },
-    organisation: {
+    organization: {
       type: DataTypes.STRING,
       allowNull: false,
       comment: ''
@@ -122,12 +121,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: 'Record insert datetime'
     },
-    isCurrent: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-      comment: 'A flag to indicate if this is the current entry for ' +
-        'this year/place/dataset.'
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Record update datetime'
     }
   },
   {
@@ -138,7 +135,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     ],
     instanceMethods: {
-      translated: mixins.translated
+      //translated: mixins.translated
     },
     classMethods: {},
   });

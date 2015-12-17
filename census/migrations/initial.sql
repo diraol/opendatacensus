@@ -129,7 +129,8 @@ CREATE TABLE wash (
   "organization" character varying(255) NOT NULL,
   "role" character varying(255) NOT NULL,
   "email" character varying(255)[] NOT NULL,
-  "createdAt" timestamp with time zone NOT NULL
+  "createdAt" timestamp with time zone NOT NULL,
+  "updatedAt" timestamp with time zone NOT NULL
 );
 
 ALTER TABLE ONLY dataset
