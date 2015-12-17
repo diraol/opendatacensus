@@ -298,7 +298,8 @@ html{
 
 /* CARD */
 
-.contrast{
+.contrast,
+body.about #content ul li strong{
     font-weight: 700;
     color: #000;
 }
@@ -735,7 +736,7 @@ hr{
 }
 
 /* about */
-.about_list{
+body.about #content ul{
     font-size: 14px;
     margin-bottom: 20px;
 }
