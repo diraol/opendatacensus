@@ -22,14 +22,4 @@ $(document).ready(function (){
         $('#curtain').fadeIn(180);
 
     });
-
-    $('#curtain').on('click', function() {
-        $('#modal').fadeOut(180);
-        $('#curtain').fadeOut(200);
-    });
-
-    $('#close_card').on('click', function() {
-        $('#modal').fadeOut(180);
-        $('#curtain').fadeOut(200);
-    });
 });

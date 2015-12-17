@@ -36,26 +36,34 @@ window.onload = function (){
 } // window.onload
 
 $(document).ready(function(){
+
   function $_GET() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
       vars[key] = value;
     });
     return vars;
-
   }
 
   var location = window.location.href.split("?")[0];
 
-  var i;
-  var a;
-  var b;
-  var c;
+  // HEADER PLACE SEARCH AUTOCOMPLETE
+    $('#place-select').autocomplete({
+      source: places,
+      appendTo: "#place-select-group"
+    });
 
-  var curtain = document.getElementById('curtain');
-  var card_modal = document.getElementById('card_modal');
+  // Control of modal/curtain hide
+    var curtain = $('#curtain'),
+      card_modal = $('#modal'),
+      close_card = $('#close_card');
 
-  var card_visible = false;
+    var hideCard = function(){
+      card_modal.fadeOut(180);
+      curtain.fadeOut(200);
+    }
+    curtain.on('click', hideCard());
+    close_card.on('click', hideCard());
 
   //window.onclick = function(){
     // if(card_visible) {
@@ -69,9 +77,4 @@ $(document).ready(function(){
     // }
   //}
 
-  // HEADER PLACE SEARCH AUTOCOMPLETE
-  $('#place-select').autocomplete({
-    source: places,
-    appendTo: "#place-select-group"
-  });
 });
