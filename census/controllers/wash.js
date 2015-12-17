@@ -13,13 +13,13 @@ var submitGetHandler = function(req, res, data) {
   // });
   //var current = data.currentState.match;
 
-  var settingName = 'submit_page';
+  var settingName = 'wash_submit_page';
   var submitInstructions = req.params.site.settings[settingName];
-  res.render('submitdata.html', {
+  res.render('wash.html', {
     // submitInstructions: submitInstructions ? marked(submitInstructions) : '',
     places: modelUtils.translateSet(req, data.places),
     //current: current,
-    datasets: modelUtils.translateSet(req, data.datasets)
+    //datasets: modelUtils.translateSet(req, data.datasets)
     //questions: data.questions,
     //addDetails: addDetails,
     //year: req.app.get('year')
@@ -48,12 +48,12 @@ var submitPostHandler = function(req, res, data) {
     });
 
     res.statusCode = 400;
-    var settingName = 'submit_page';
-    res.render('submitdata.html', {
+    var settingName = 'wash_submit_page';
+    res.render('wash.html', {
       //submitInstructions: req.params.site.settings[settingName],
       places: modelUtils.translateSet(req, data.places),
-      datasets: modelUtils.translateSet(req, data.datasets),
-      questions: data.questions,
+      //datasets: modelUtils.translateSet(req, data.datasets),
+      //questions: data.questions,
       //addDetails: addDetails,
       //year: req.app.get('year'),
       //current: current,
@@ -72,9 +72,9 @@ var submitPostHandler = function(req, res, data) {
       objToSave.id = uuid.v4();
       objToSave.site = req.params.site.id;
       objToSave.place = req.body.place;
-      objToSave.dataset = req.body.dataset;
-      objToSave.details = req.body.details;
-      objToSave.year = req.app.get('year');
+      //objToSave.dataset = req.body.dataset;
+      //objToSave.details = req.body.details;
+      //objToSave.year = req.app.get('year');
       objToSave.submitterId = submitterId;
 
       saveStrategy = 'create';

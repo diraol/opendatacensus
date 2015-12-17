@@ -55,11 +55,11 @@ var changes = function(req, res) {
 };
 
 
-var submitdata = function(req, res) {
-  var settingName = 'submitdata_page';
-  res.render('submitdata.html', {
+var wash = function(req, res) {
+  var settingName = 'wash_submitdata_page';
+  res.render('wash.html', {
     //content: marked(req.params.site.settings[settingName]),
-    title: 'Submit Data'
+    title: 'Submit WASH Data'
   });
 };
 
@@ -227,7 +227,7 @@ module.exports = {
   overview: overview,
   faq: faq,
   about: about,
-  submitdata: submitdata,
+  wash: wash,
   contribute: contribute,
   tutorial: tutorial,
   changes: changes,

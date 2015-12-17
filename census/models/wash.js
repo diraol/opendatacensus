@@ -4,8 +4,7 @@ var _ = require('lodash');
 var mixins = require('./mixins');
 
 module.exports = function(sequelize, DataTypes) {
-  var SubmitData = sequelize.define('SubmitData', {
-
+  var Wash = sequelize.define('Wash', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -13,53 +12,74 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: 'Unique identifier for this entry.'
     },
-
     site: {
       type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false,
       comment: 'Site this dataset belongs to. Composite key with id.'
     },
-
     place: {
       type: DataTypes.STRING,
       allowNull: false,
       comment: 'Place this entry belongs to.'
     },
-
     severeacutemalnutrition: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
+    severeacutemalnutritionUpdate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: ''
+    },
     globalacutemalnutrition: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
+    globalacutemalnutritionUpdate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: ''
+    },
     acutediarrhoealdisease: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-
+    acutediarrhoealdiseaseUpdate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: ''
+    },
     householdswithouttoilet: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
+    householdswithouttoiletUpdate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: ''
+    },
     householdswithoutwater: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
+    householdswithoutwaterUpdate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      comment: ''
+    },
     watterecoli: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+      comment: ''
+    },
+    watterecoliUpdate: {
+      type: DataTypes.DATE,
       allowNull: false,
       comment: ''
     },
@@ -68,14 +88,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: ''
     },
-
-
-    lastUpdate: {
+    eposuredisastersUpdate: {
       type: DataTypes.DATE,
-      allowNull: true,
-      comment: 'Datetime last update'
+      allowNull: false,
+      comment: ''
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -97,12 +114,17 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       },
       allowNull: false
+    },
+    isCurrent: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+      comment: 'A flag to indicate if this is the current entry for ' +
+        'this year/place/dataset.'
     }
-
-
   },
   {
-    tableName: 'submitdata',
+    tableName: 'wash',
     indexes: [
       {
         fields: ['site']
@@ -114,5 +136,5 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {},
   });
 
-  return SubmitData;
+  return Wash;
 };
