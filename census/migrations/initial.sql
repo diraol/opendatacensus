@@ -107,7 +107,7 @@ CREATE TABLE "user" (
 );
 
 
-CREATE TABLE "wash" {
+CREATE TABLE wash (
   "id" uuid NOT NULL,
   "site" character varying(255),
   "place" character varying(255) NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE "wash" {
   "role" character varying(255) NOT NULL,
   "email" character varying(255)[] NOT NULL,
   "createdAt" timestamp with time zone NOT NULL
-}
+);
 
 ALTER TABLE ONLY dataset
     ADD CONSTRAINT dataset_pkey PRIMARY KEY (id, site);
@@ -162,11 +162,11 @@ ALTER TABLE ONLY entry
 ALTER TABLE ONLY entry
     ADD CONSTRAINT "entry_submitterId_fkey" FOREIGN KEY ("submitterId") REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
-ALTER TABLE ONLY "wash"
+ALTER TABLE ONLY wash
     ADD CONSTRAINT wash_pkey PRIMARY KEY (id);
 
-ALTER TABLE ONLY "wash"
-    ADD CONSTRAINT "wash_siteId_fkey" FOREIGN KEY ("site") REFERENCES "site"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+-- ALTER TABLE ONLY wash
+    -- ADD CONSTRAINT "wash_siteId_fkey" FOREIGN KEY ("site") REFERENCES "site"(id) ON UPDATE CASCADE ON DELETE SET NULL;
 
-ALTER TABLE ONLY "wash"
-    ADD CONSTRAINT "wash_placeId_fkey" FOREIGN KEY ("place") REFERENCES "place"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+-- ALTER TABLE ONLY wash
+    -- ADD CONSTRAINT "wash_placeId_fkey" FOREIGN KEY ("place") REFERENCES "place"(id) ON UPDATE CASCADE ON DELETE SET NULL;
