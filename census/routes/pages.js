@@ -8,7 +8,7 @@ var authRoutes = require('./auth');
 var systemRoutes = require('./system');
 var censusRoutes = require('./census');
 var redirectRoutes = require('./redirects');
-var submitdataRoutes = require('./submitdata');
+var washRoutes = require('./wash');
 
 var pageRoutes = function(coreMiddlewares) {
   var router = express.Router();
@@ -21,7 +21,7 @@ var pageRoutes = function(coreMiddlewares) {
   authRoutes(router);
   systemRoutes(router);
   censusRoutes(router);
-  submitdataRoutes(router);
+  washRoutes(router);
 
   router.get(utils.scoped('/about'), coreMixins, pages.about);
   router.get(utils.scoped('/faq'), coreMixins, pages.faq);
