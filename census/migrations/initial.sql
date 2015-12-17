@@ -106,6 +106,32 @@ CREATE TABLE "user" (
     "updatedAt" timestamp with time zone NOT NULL
 );
 
+
+CREATE TABLE "wash" {
+  id uuid NOT NULL,
+  site character varying(255),
+  place character varying(255) NOT NULL,
+  SAM decimal NOT NULL,
+  lastUpdateSAM date NOT NULL,
+  GAN decimal NOT NULL,
+  lastUpdateGAN date NOT NULL,
+  ADD decimal NOT NULL,
+  lastUpdateADD date NOT NULL,
+  HWAT decimal NOT NULL,
+  lastUpdateHWAT date NOT NULL,
+  HWAW decimal NOT NULL,
+  lastUpdateHWAW date NOT NULL,
+  WSC decimal NOT NULL,
+  lastUpdateWSC date NOT NULL,
+  EXND decimal NOT NULL,
+  lastUpdateEXND date NOT NULL,
+  name character varying(255) NOT NULL,
+  organization character varying(255) NOT NULL,
+  role character varying(255) NOT NULL,
+  emails character varying(255)[] NOT NULL,
+  "createdAt" timestamp with time zone NOT NULL
+}
+
 ALTER TABLE ONLY dataset
     ADD CONSTRAINT dataset_pkey PRIMARY KEY (id, site);
 
@@ -135,3 +161,12 @@ ALTER TABLE ONLY entry
 
 ALTER TABLE ONLY entry
     ADD CONSTRAINT "entry_submitterId_fkey" FOREIGN KEY ("submitterId") REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+ALTER TABLE ONLY "wash"
+    ADD CONSTRAINT wash_pkey PRIMARY KEY (id);
+
+ALTER TABLE ONLY "wash"
+    ADD CONSTRAINT "wash_siteId_fkey" FOREIGN KEY ("site") REFERENCES "site"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+ALTER TABLE ONLY "wash"
+    ADD CONSTRAINT "wash_placeId_fkey" FOREIGN KEY ("place") REFERENCES "place"(id) ON UPDATE CASCADE ON DELETE SET NULL;

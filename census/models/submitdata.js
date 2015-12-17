@@ -27,55 +27,83 @@ module.exports = function(sequelize, DataTypes) {
       comment: 'Place this entry belongs to.'
     },
 
-    severeacutemalnutrition: {
+    SAM: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-    globalacutemalnutrition: {
+    lastUpdateSAM: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    GAN: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-    acutediarrhoealdisease: {
+    lastUpdateGAN: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    ADD: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-
-    householdswithouttoilet: {
+    lastUpdateADD: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    HWAT: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-    householdswithoutwater: {
+    lastUpdateHWAT: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    HWAW: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-    watterecoli: {
+    lastUpdateHWAW: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    WSC: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-    eposuredisasters: {
+    lastUpdateWSC: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    EXND: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-
-
-    lastUpdate: {
+    lastUpdateEXND: {
       type: DataTypes.DATE,
       allowNull: true,
       comment: 'Datetime last update'
     },
 
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      comment: 'Datetime last update'
+    },
+    
     name: {
       type: DataTypes.STRING,
       allowNull: false,
