@@ -155,7 +155,7 @@ html{
     outline: none;
     height: 42px;
     font-weight: 400;
-    background-image: url("img/bg_search.jpg");
+    background-image: url("/img/bg_search.jpg");
     background-repeat: no-repeat;
     background-position: right;
 }
@@ -660,10 +660,10 @@ hr{
      background-color:#e95353;
 }
 
-#share_fb{ background-image: url('img/share_fb.png'); }
-#share_tw{ background-image: url('img/share_tw.png'); }
-#share_gp{ background-image: url('img/share_gp.png'); }
-#share_em{ background-image: url('img/share_em.png'); }
+#share_fb{ background-image: url('/img/share_fb.png'); }
+#share_tw{ background-image: url('/img/share_tw.png'); }
+#share_gp{ background-image: url('/img/share_gp.png'); }
+#share_em{ background-image: url('/img/share_em.png'); }
 
 .share_title{
     font-size: 24px;
