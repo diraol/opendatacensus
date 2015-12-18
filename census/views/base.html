@@ -78,13 +78,15 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/src/sheena.js?{{currentTime}}"></script>
+    <script src="/src/wash.js?{{currentTime}}"></script>
+    <script src="//code.highcharts.com/highcharts.js"></script>
     <script src="/vendor/chroma.pack.min.js"></script>
     <script src="/vendor/readmore.min.js"></script>
     <script src="/vendor/Markdown.Converter.js"></script>
     <script src="/vendor/Markdown.Sanitizer.js"></script>
     <script src="/vendor/Markdown.Editor.js"></script>
-    <script src="/src/sheena.js?{{currentTime}}"></script>
-    <script src="/src/wash.js?{{currentTime}}"></script>
+
     {% block end_js %}{% endblock %}
 
     {% include 'analytics.html' %}

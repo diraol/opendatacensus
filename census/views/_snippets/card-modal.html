@@ -26,7 +26,7 @@
       <div id="card_msg1_tx" class="card_msg_tx"> With a WASH resilience score of <span class="contrast" id="wash_score">89%</span> You are <span class="contrast" id="wash_result">well prepared</span> to face Water, Sanitation and Hygiene risks in future natural disasters.</div>
     </div>
 
-    <hr/>
+    <!--hr/>
 
     <div class="ranking" id="country_ranking">
       <div class="ranking_type">COUNTRY RANKING</div>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="clear"></div>
+    <div class="clear"></div-->
 
     <hr/>
 
@@ -68,69 +68,67 @@
     <div id="indicators">
       <div class="indicator">
         <div class="indicator_label" >Severe Acute Malnutrition (Under 5 Rate) </div>
-        <div id="SAM" class="indicator_score">
+        <div id="SAM" class="indicator_score"@
           <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Global Acute Malnutrition (Under 5 Rate) </div>
         <div id="GAN" class="indicator_score">
           <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Acute Diarrhoeal Disease (Prevalence) </div>
         <div id="ADD" class="indicator_score">
           <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Households without access to toilet </div>
         <div id="HWAT" class="indicator_score">
-          <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="value">100</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Households without access to water </div>
         <div id="HWAW" class="indicator_score">
-          <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="value">100</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >water sources positive with e.coli and other contaminants </div>
         <div id="WSC" class="indicator_score">
           <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Exposure to natural disasters </div>
         <div id="EXND" class="indicator_score">
           <span class="value">100</span>%
-          <span class="evaluation">GOOD</span>
+          <span class="label">GOOD</span>
         </div>
       </div>
     </div>
 
     <hr>
 
-    <div  class="card_msg">
-      <div class="card_msg_title">Warning</div>
-      <div class="card_msg_tx">The number of <span class="contrast" id="wash_score">households with access to sanitation</span> has decreased since the last update of the data!</div>
-    </div>
-
-    <div  class="card_msg">
-      <div class="card_msg_title">Positive Note</div>
-      <div class="card_msg_tx">The number of <span class="contrast" id="wash_score">number of contaminated water sources</span> has decreased since the last update of the data!</div>
+    <div id="relationship_messages">
+      <div class="card_msg">
+        <div class="card_msg_title">Warning</div>
+        <div class="card_msg_tx">The number of <span class="contrast" id="wash_score">households with access to sanitation</span> has decreased since the last update of the data!</div>
+      </div>
     </div>
 
     <div id="chart">
-      chart
+      <div id="chart1"></div>
+      <div id="chart2"></div>
     </div>
 
     <div id="last_update">
