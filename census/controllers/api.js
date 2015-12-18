@@ -210,7 +210,7 @@ var washPlaceLast = function(req, res, next) {
       'EXND',
       'lastUpdateEXND',
       'name',
-      'organisation',
+      'organization',
       'role',
       'email',
       'createdAt'
