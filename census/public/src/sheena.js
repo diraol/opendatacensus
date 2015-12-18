@@ -37,15 +37,15 @@ window.onload = function (){
 
 $(document).ready(function(){
 
-  function $_GET() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      vars[key] = value;
-    });
-    return vars;
-  }
+  //function $_GET() {
+    //var vars = {};
+    //var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      //vars[key] = value;
+    //});
+    //return vars;
+  //}
 
-  var location = window.location.href.split("?")[0];
+  //var location = window.location.href.split("?")[0];
 
   // HEADER PLACE SEARCH AUTOCOMPLETE
     $('#place-select').autocomplete({
@@ -58,12 +58,14 @@ $(document).ready(function(){
       card_modal = $('#modal'),
       close_card = $('#close_card');
 
-    var hideCard = function(){
+    var hideCard = function() {
       card_modal.fadeOut(180);
       curtain.fadeOut(200);
+      window.location.hash = '';
     }
-    curtain.on('click', hideCard());
-    close_card.on('click', hideCard());
+
+    curtain.on('click', hideCard);
+    close_card.on('click', hideCard);
 
   //window.onclick = function(){
     // if(card_visible) {

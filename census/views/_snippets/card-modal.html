@@ -3,41 +3,22 @@
 
 <div id="card">
 
-  <!-- LAYOUT SUBMIT DATA-->
-  <div id="submit_data">
-    <div id="card_title">
-      <span id="title_light">SUBMIT DATA</span>
-    </div>
-    <form>
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <input type="text" placeholder="SOMETHING" />
-      <div class="button">SEND</div>
-    </form>
-  </div>
-
   <!-- LAYOUT SUCCESS-->
-  <div id="mode_success">
+  <!--div id="mode_success">
     <div id="card_title">
       <span id="title_light">SUCCESS!</span>
     </div>
     <div class="card_msg_tx">
       Lorem ipsum dolor. Sit amet praesent. In pede morbi pharetra tellus maecenas. Eu gravida nibh at wisi vehicula lectus felis luctus libero bibendum dapibus. Sapien auctor sociosqu. Phasellus lectus lacinia justo eu ligula. Erat fermentum augue. Quam mauris ipsum. Tellus tincidunt velit cras sociosqu velit velit nisi sem. Imperdiet quis eum wisi arcu at laoreet fermentum ante eu mauris arcu. Donec wisi pretium porta molestie ullamcorper fusce iaculis ipsum.</div>
     <div class="button">OK</div>
-  </div>
+  </div-->
 
   <!-- LAYOUT INFO CARD -->
   <div id="info_card">
 
     <div id="card_title">
       <span id="title_light">CITIY OF</span>
-      <span id="title_bold">MALINA</span>
+      <span id="title_bold" class="placeName">{{place}}</span>
     </div>
 
     <div class="card_msg">
@@ -87,31 +68,52 @@
     <div id="indicators">
       <div class="indicator">
         <div class="indicator_label" >Severe Acute Malnutrition (Under 5 Rate) </div>
-        <div id="score1" class="indicator_score">100% GOOD</div>
+        <div id="SAM" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Global Acute Malnutrition (Under 5 Rate) </div>
-        <div id="score2" class="indicator_score">100% GOOD</div>
+        <div id="GAN" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Acute Diarrhoeal Disease (Prevalence) </div>
-        <div id="score3" class="indicator_score">100% GOOD</div>
+        <div id="ADD" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Households without access to toilet </div>
-        <div id="score4" class="indicator_score">100% GOOD</div>
+        <div id="HWAT" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Households without access to water </div>
-        <div id="score2" class="indicator_score">100% GOOD</div>
+        <div id="HWAW" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >water sources positive with e.coli and other contaminants </div>
-        <div id="score3" class="indicator_score">100% GOOD</div>
+        <div id="WSC" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
       <div class="indicator">
         <div class="indicator_label" >Exposure to natural disasters </div>
-        <div id="score4" class="indicator_score">100% GOOD</div>
+        <div id="EXND" class="indicator_score">
+          <span class="value">100</span>%
+          <span class="evaluation">GOOD</span>
+        </div>
       </div>
     </div>
 
@@ -132,8 +134,12 @@
     </div>
 
     <div id="last_update">
-      The data behind this information Card was last updated on the xx-xx-xxx by
-      <div class="contrast" id"last_update_user">[Name], [Role] in [Organisation].</div>
+      The data behind this information Card was last updated on the <span class="date"></span> by
+      <div class="contrast" id="last_update_user">
+        <span class='name'>[Name]</span>, 
+        <span class='role'>[Role]</span> in 
+        <span class='org'>[Org]</span>.
+      </div>
     </div>
 
     <hr/>
