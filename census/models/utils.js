@@ -490,11 +490,6 @@ var getDataOptions = function(req) {
 
 };
 
-
-var getWashData = function(req, options) {
-  return req.app.get('models').Wash.findAll(options);
-}
-
 module.exports = {
   loadModels: loadModels,
   siteQuery: siteQuery,
@@ -502,5 +497,4 @@ module.exports = {
   cascadeEntries: cascadeEntries,
   getDataOptions: getDataOptions,
   getData: getData,
-  getWashData: getWashData
 };
