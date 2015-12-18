@@ -99,17 +99,19 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
 ];
 
 var loadPlaceWashData = function(placeId) {
-    var warningMessage = function(message){
+    var warningMessage = function(message, firstMessage){
 
         var card_msg = $('<div/>', {
             class: 'card_msg'
         }).appendTo('#relationship_messages');
 
-        // card_msg_title
-        $('<div/>', {
-            class: 'card_msg_title',
-            text: 'Warning'
-        }).appendTo(card_msg);
+        if (firstMessage) {
+            // card_msg_title
+            $('<div/>', {
+                class: 'card_msg_title',
+                text: 'Warning'
+            }).appendTo(card_msg);
+        }
 
         $('<div/>', {
             class: 'card_msg_tx',
@@ -119,7 +121,8 @@ var loadPlaceWashData = function(placeId) {
     }
 
     var buildWarnMessages = function(data){
-        poors = checkPoorIndicators(data);
+        var poors = checkPoorIndicators(data);
+        var firstMessage = true;
 
         // Relationship (3)
         if (poors['GAN'] &&
@@ -127,7 +130,8 @@ var loadPlaceWashData = function(placeId) {
             poors['HWAT'] &&
             poors['HWAW'] &&
             poors['WSC']) {
-                warningMessage('Households with malnourished children and have low levels of water and sanitation access and contaminated water sources are at a high health-related risks.');
+                warningMessage('Households with malnourished children and have low levels of water and sanitation access and contaminated water sources are at a high health-related risks.', firstMessage);
+                firstMessage = false;
         }
 
         // Relationship (4)
@@ -135,31 +139,35 @@ var loadPlaceWashData = function(placeId) {
             poors['HWAT'] &&
             poors['WSC'] &&
             poors['EXND']) {
-                warningMessage('If households have poor water and sanitation services, and are highly exposed to natural disasters, then they are at a high risk during emergencies.');
+                warningMessage('If households have poor water and sanitation services, and are highly exposed to natural disasters, then they are at a high risk during emergencies.', firstMessage);
+                firstMessage = false;
         }
 
         // Relationship (1)
         if (poors['HWAW']) {
-            warningMessage('If households have low access to water, then they will most likely have low access to sanitary toilets.');
+            warningMessage('If households have low access to water, then they will most likely have low access to sanitary toilets.', firstMessage);
+            firstMessage = false;
         }
 
         // Relationship (2)
         if (poors['HWAT']) {
-            warningMessage('If households have low access to toilets, then they are at a high risk to have acute diarrheal disease.');
+            warningMessage('If households have low access to toilets, then they are at a high risk to have acute diarrheal disease.', firstMessage);
+            firstMessage = false;
         }
 
         // Relationship (5)
         if (poors['SAM'] &&
             poors['GAN'] &&
             poors['ADD']) {
-                warningMessage('If households have high cases of SAM and GAM, and have had cases of diarrhea, then they are a high risk area during emergencies for WASH-related outbreaks.');
+                warningMessage('If households have high cases of SAM and GAM, and have had cases of diarrhea, then they are a high risk area during emergencies for WASH-related outbreaks.', firstMessage);
+                firstMessage = false;
         }
 
         // Relationship (6)
         if (poors['ADD']) {
-            warningMessage('If households have high cases of diarrhea, it is likely that their water sources are contaminated.');
+            warningMessage('If households have high cases of diarrhea, it is likely that their water sources are contaminated.', firstMessage);
+            firstMessage = false;
         }
-
     };
 
     var checkPoorIndicators = function(data){
