@@ -157,12 +157,18 @@
 
     <div class="clear"></div>
 
-    <ul id="card_share">
+    <div id="card_share">
       <div class="share_title">SHARE THIS CARD!</div>
-      <li class="share_bt" id="share_fb"></li>
-      <li class="share_bt" id="share_tw"></li>
-      <li class="share_bt" id="share_gp"></li>
-    </ul>
+      <a href="http://twitter.com/share?url={{ current_url }}&text={{ share_page_template }}" title="{{ gettext('Share on Twitter') }}" class="tw">
+          <span class="share_bt" id="share_tw"></span>
+      </a>
+      <a href="http://www.facebook.com/sharer/sharer.php?u={{ current_url }}" title="{{ gettext('Share on Facebook') }}" class="fb">
+          <span class="share_bt" id="share_fb"></span>
+      </a>
+      <a href="https://plus.google.com/share?url={{ current_url }}" title="{{ gettext('Share on Google+') }}" class="gp">
+          <span class="share_bt" id="share_gp"></span>
+      </a>
+    </div>
   </div>
 
 </div>

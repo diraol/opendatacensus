@@ -27,9 +27,19 @@ var loadPlaceWashData = function(placeId) {
                         createdAt.getFullYear();
             $("#last_update .date").html(createdAt);
 
+            // Updating hash on the URL
+            window.location.hash = data.place.replace(/ /g,"_");
+
+            // Updating social media share on the card
+            $("#card_share a.tw").attr('href',
+                        "http://twitter.com/share?url=" + encodeURIComponent(window.location.href) + "&text=");
+            $("#card_share a.fb").attr('href',
+                        "http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href));
+            $("#card_share a.gp").attr('href',
+                        "https://plus.google.com/share?url=" + encodeURIComponent(window.location.href));
+
             $('#modal').fadeIn(200);
             $('#curtain').fadeIn(180);
-            window.location.hash = data.place.replace(/ /g,"_");
             window.lastPlaceId = placeId;
         } else {
             //If there is no data, show a message about it
