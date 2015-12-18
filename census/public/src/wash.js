@@ -244,7 +244,7 @@ var loadPlaceWashData = function(placeId) {
         //First check if there is any data for the city
         if (data) {
             //If there is data, show the card with it
-            $(".placeName").html(data.place.replace("City of",""));
+            $(".placeName").html(data.place);
 
             //TODO: Change the 'Congratulations message'
             //$("#card_msg1_title").html();
@@ -314,7 +314,8 @@ var loadPlaceWashData = function(placeId) {
     if (window.lastPlaceId && window.lastPlaceId==placeId){
         $('#modal').fadeIn(200);
         $('#curtain').fadeIn(180);
-        window.location.hash = data.place.replace(/ /g,"_");
+        var hash = $('.placeName').text().trim();
+        window.location.hash = hash.replace(/ /g,"_");
     } else {
       // Loading data from API
         $.getJSON("/api/wash/" + placeId + ".json")
