@@ -113,7 +113,7 @@ var queryData = function(options) {
   }
 
   if (options.with.Wash) {
-    querysets.wash = options.models.Wash.findOne(washParams);
+    querysets.washs = options.models.Wash.findAll(washParams);
   }
 
   return loadModels(querysets, options);
@@ -368,7 +368,8 @@ var processFaqs = function(data, options) {
  * Process the raw Wash query.
  */
 var processWashs = function(data, options) {
-    data.washs = translateSet(options.locale, data.washs);
+    //TODO: implement somethig for this to work.....
+    //data.washs = translateSet(options.locale, data.washs);
     return data;
 }
 
@@ -394,7 +395,7 @@ var processData = function(result) {
   if (data.faqs) {
     data = processFaqs(data, options);
   }
-  if (data.wash) {
+  if (data.washs) {
       data = processWashs(data, options);
   }
 

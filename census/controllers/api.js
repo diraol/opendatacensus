@@ -216,14 +216,20 @@ var washPlaceLast = function(req, res, next) {
       'createdAt'
     ];
 
-    var results = {};
+    var results = [];
 
     if (data.wash) {
       results = [data.wash.dataValues];
       results[0]['placeId'] = results[0].place;
       results[0]['place'] = data.place.dataValues.name;
+    } else if (data.washs) {
+        for (var item in data.washs) {
+            var insert = data.washs[item].dataValues;
+            insert['placeId'] = insert.place;
+            insert['place'] = data.place.dataValues.name;
+            results.push(insert);
+        }
     }
-    console.log(results);
 
     var mapper = function(item) {
       var result = {};
