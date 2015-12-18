@@ -484,7 +484,6 @@ input, textarea{
 .card_msg_title{
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 5px;
     line-height: 30px;
 }
 
@@ -494,6 +493,7 @@ input, textarea{
 }
 
 .card_msg_tx{
+    margin-top: 10px;
     font-size: 18px;
     text-align: center;
 }
