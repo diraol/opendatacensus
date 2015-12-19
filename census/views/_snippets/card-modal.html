@@ -1,6 +1,5 @@
 <div id="modal">
 <div id="close_card"></div>
-
 <div id="card">
 
   <!-- LAYOUT SUCCESS-->
@@ -22,8 +21,14 @@
     </div>
 
     <div class="card_msg">
-      <div id="card_msg1_title" class="card_msg_title">Congratulations!</div>
-      <div id="card_msg1_tx" class="card_msg_tx"> With a WASH resilience score of <span class="contrast" id="wash_score">89%</span> You are <span class="contrast" id="wash_result">well prepared</span> to face Water, Sanitation and Hygiene risks in future natural disasters.</div>
+      <div id="card_msg1_title" class="card_msg_title">
+        Congratulations!
+      </div>
+      <div id="card_msg1_tx" class="card_msg_tx">
+        With a WASH resilience score of <span class="contrast" id="wash_score">89%</span> 
+        you are <span class="contrast" id="wash_result">well prepared</span> 
+        to face Water, Sanitation and Hygiene risks in future natural disasters.
+      </div>
     </div>
 
     <!--hr/>
@@ -119,14 +124,27 @@
 
     <hr>
 
-    <div id="relationship_messages">
-      <div class="card_msg">
-        <div class="card_msg_title">Warning</div>
-        <div class="card_msg_tx">
-          The number of 
-          <span class="contrast" id="wash_score">households with access to sanitation</span>
-          has decreased since the last update of the data!
-        </div>
+    <div id="warn_messages" class="card_msg">
+      <div class="card_msg_title">Warning</div>
+      <div class="card_msg_tx">
+        The number of 
+        <span class="contrast" id="wash_score">households with access to sanitation</span>
+        has decreased since the last update of the data!
+      </div>
+    </div>
+
+    <div id="chart">
+      <div id="chart1"></div>
+      <div id="chart2"></div>
+    </div>
+    <hr/>
+
+    <div id="positive_messages" class="card_msg">
+      <div class="card_msg_title">Positive Note</div>
+      <div class="card_msg_tx">
+        The number of 
+        <span class="contrast" id="wash_score">households with access to sanitation</span>
+        has decreased since the last update of the data!
       </div>
     </div>
 
@@ -158,6 +176,11 @@
     </div>
 
     <div class="clear"></div>
+
+    <a href="print.html" target="_blank">
+      <div class="button">PRINT CARD</div>
+    </a>
+
 
     <div id="card_share">
       <div class="share_title">SHARE THIS CARD!</div>
