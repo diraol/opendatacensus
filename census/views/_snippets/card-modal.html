@@ -167,32 +167,26 @@
     <div id="issues">
       <div class="issue" id="issue_left">
         Is the data outdated?
-        <div class="button mt10">UPDATE THE DATA</div>
+        <a class="button mt10">UPDATE THE DATA</a>
       </div>
       <div class="issue" id="issue_right">
         Is there a problem with the data or the person who submitted it?
-        <div class="button mt10"><a href="/about/#contactForm">FLAG AN ISSUE</div>
+        <a class="button mt10" href="/about/#contactForm">FLAG AN ISSUE</a>
       </div>
     </div>
 
     <div class="clear"></div>
 
     <a href="print.html" target="_blank">
-      <div class="button">PRINT CARD</div>
+      <a class="button">PRINT CARD</a>
     </a>
 
 
     <div id="card_share">
       <div class="share_title">SHARE THIS CARD!</div>
-      <a href="http://twitter.com/share?url={{ current_url }}&text={{ share_page_template }}" title="{{ gettext('Share on Twitter') }}" class="tw">
-          <span class="share_bt" id="share_tw"></span>
-      </a>
-      <a href="http://www.facebook.com/sharer/sharer.php?u={{ current_url }}" title="{{ gettext('Share on Facebook') }}" class="fb">
-          <span class="share_bt" id="share_fb"></span>
-      </a>
-      <a href="https://plus.google.com/share?url={{ current_url }}" title="{{ gettext('Share on Google+') }}" class="gp">
-          <span class="share_bt" id="share_gp"></span>
-      </a>
+      <a href="http://twitter.com/share?url={{ current_url }}&text={{ share_page_template }}" title="{{ gettext('Share on Twitter') }}" class="share_bt" id="share_tw"></a>
+      <a href="http://www.facebook.com/sharer/sharer.php?u={{ current_url }}" title="{{ gettext('Share on Facebook') }}" class="share_bt" id="share_fb"></a>
+      <a href="https://plus.google.com/share?url={{ current_url }}" title="{{ gettext('Share on Google+') }}" class="share_bt" id="share_gp"></a>
     </div>
   </div>
 

@@ -32,12 +32,12 @@
     </div>
   </div>
   <nav>
-    <ul id="menu">
-      <li class="menu_bt {% if url_home %} selected {% endif %}" id="menu_bt3"><a href="/">{{ gettext("Home") | upper}}</a></li>
-      <li class="menu_bt {% if url_faq %} selected {% endif %}" id="menu_bt4"><a href="/faq/">{{ gettext("Understand") | upper}}</a></li>
-      <li class="menu_bt {% if url_index %} selected {% endif %}" id="menu_bt2"><a href="/index/">{{ gettext("Index") | upper}}</a></li>
-      <li class="menu_bt {% if url_about %} selected {% endif %}" id="menu_bt1"><a href="/about/">{{ gettext("About") | upper}}</a></li>
-    </ul>
+    <div id="menu">
+      <a class="menu_bt {% if url_home %} selected {% endif %}" id="menu_bt3" href="/">{{ gettext("Home") | upper}}</a>
+      <a class="menu_bt {% if url_faq %} selected {% endif %}" id="menu_bt4" href="/faq/">{{ gettext("Understand") | upper}}</a>
+      <a class="menu_bt {% if url_index %} selected {% endif %}" id="menu_bt2" href="/index/">{{ gettext("Index") | upper}}</a>
+      <a class="menu_bt {% if url_about %} selected {% endif %}" id="menu_bt1" href="/about/">{{ gettext("About") | upper}}</a>
+    </div>
   </nav>
 </div>
 </header>
