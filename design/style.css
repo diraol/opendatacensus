@@ -968,7 +968,7 @@ table.response-summary td.placescore span {
     bottom: 0;
     left: 0;
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   table.response-summary th.placescore span,
   table.response-summary td.placescore span {
     top: 0;

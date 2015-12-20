@@ -97,19 +97,15 @@ html{
 
 #title{
     width: 100%;
-    height: 40%;
+    height: 33%;
     text-align: center;
     position: absolute;
-    top: 30%;
+    top: 33%;
 }
 
-.mobile #title{
-    height: 30%;
-    top: 35%;
-}
 
 #title1{
-    font-size: 60px;
+    font-size: 55px;
     font-weight: 900;
 }
 
@@ -129,7 +125,7 @@ html{
 #search{
     width: 400px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 25px;
     position: relative;
     text-align: left;
 }
