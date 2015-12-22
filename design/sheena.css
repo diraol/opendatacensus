@@ -47,7 +47,7 @@ html{
 }
 
 .mobile #header{
-    height: 95%;
+    height: 100%;
 }
 
 #banner{
@@ -200,6 +200,11 @@ html{
     font-size: 0;
 }
 
+.mobile #menu{
+    position: fixed;
+    z-index: 10;
+}
+
 #menu a:link{ color: #fff; text-decoration: none; color: #fff; font-weight: 700 }
 #menu a:hover{ color: #fff; text-decoration: none; color: #000; font-weight: 700 }
 #menu a:active{ color: #fff; text-decoration: none; color: #000; font-weight: 700 }
@@ -215,12 +220,13 @@ html{
     cursor: pointer;
 }
 
-
 .mobile .menu_bt{
     font-size: 12px;
-    padding: 13px 15px;
+    padding: 15px 12px;
+    background-color: #e95353;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
-
 
 .menu_bt:hover{
     color: #000;
@@ -228,11 +234,8 @@ html{
 
 .menu_bt.selected {
     background: #fff;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
     color: #e95353;
 }
-
 
 /* content */
 
@@ -758,7 +761,8 @@ footer{
     background-color:#e95353;
     height: 200px;
     color: #fff;
-    padding-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
