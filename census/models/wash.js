@@ -22,7 +22,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       comment: 'Place this entry belongs to.'
     },
-
     SAM: {
       type: DataTypes.INTEGER,
       allowNull: false,

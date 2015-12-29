@@ -75,7 +75,7 @@ var loadPlaceWashData = function(placeId) {
         //First check if there is any data for the city
         if (data) {
             //If there is data, show the card with it
-            $(".placeName").html(data.placeName);
+            $(".placeName").html(data.placeType + " of " + data.placeName);
 
             // Change the 'Congratulations message'
             $("#card_msg1").html(data.preparedness.messages[0]);
@@ -83,7 +83,7 @@ var loadPlaceWashData = function(placeId) {
             $("#card_msg3").html(data.preparedness.messages[2]);
 
             // Calculates and fill the field of resilience index
-            $("#wash_score").html(data.preparedness.value);
+            $("#wash_score").html(parseFloat(data.preparedness.value).toFixed(2));
             $("#wash_result").html(data.preparedness.label);
 
             // Fill in the basic data (scores and labels)
@@ -143,15 +143,16 @@ var loadPlaceWashData = function(placeId) {
             $("#last_update .date").html(data.lastUpdate.date);
 
             // Updating hash on the URL
-            window.location.hash = data.placeName.replace(/ /g,"_");
+            var hash = ( data.placeType + " of " + data.placeName ).replace(/ /g,"_")
+            window.location.hash = hash;
 
             // Updating social media share on the card
             $("#card_share a.tw").attr('href',
-                        "http://twitter.com/share?url=" + encodeURIComponent(window.location.href) + "&text=");
+                        "http://twitter.com/share?url=" + encodeURI(window.location.host + "/#"  + hash) + "&text=");
             $("#card_share a.fb").attr('href',
-                        "http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href));
+                        "http://www.facebook.com/sharer/sharer.php?u=" + encodeURI(window.location.host + "/#" + hash ));
             $("#card_share a.gp").attr('href',
-                        "https://plus.google.com/share?url=" + encodeURIComponent(window.location.href));
+                        "https://plus.google.com/share?url=" + encodeURI(window.location.host + "/#"  + hash));
 
             $('#modal').fadeIn(200);
             $('#curtain').fadeIn(180);
@@ -208,13 +209,17 @@ $(document).ready(function(){
   // Adds the click listener to the search_bt
   $("#search_bt").on('click', function() {
     currentPlace = $("#place-select").val();
+    //placesId is built on the header.html file by node
     loadPlaceWashData(placesId[currentPlace]);
   });
 
   //Load the card based on the url hash (#)
   if (window.location.hash) {
-     var hashPlace = window.location.hash.substring(1).replace(/_/g," ");
-     loadPlaceWashData(placesId[hashPlace]);
+    var hashPlace = window.location.hash.substring(1).replace(/_/g," ");
+    console.log(hashPlace);
+    console.log(placesId[hashPlace]);
+    //placesId is built on the header.html file by node
+    loadPlaceWashData(placesId[hashPlace]);
   }
 
 });

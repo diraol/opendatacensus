@@ -191,12 +191,15 @@ var washPlaceLast = function(req, res, next) {
   // Make request for data, return it
   modelUtils.getData(dataOptions).then(function(data) {
 
+    // This is for CSV and 'default' output, not for json
     var results = [];
 
     var columns = [
       'site',
-      'place',
       'placeId',
+      'placeName',
+      'placeType',
+      'region',
       'SAM',
       'lastUpdateSAM',
       'GAN',
@@ -221,55 +224,61 @@ var washPlaceLast = function(req, res, next) {
     if (data.wash) {
       results = [data.wash.dataValues];
       results[0]['placeId'] = results[0].place;
-      results[0]['place'] = data.place.dataValues.name;
-      //delete results[0]['id'];
-    } else if (data.washs) {
-        for (var item in data.washs) {
-            var insert = data.washs[item].dataValues;
-            insert['placeId'] = insert.place;
-            insert['place'] = data.place.dataValues.name;
-            //delete insert.id;
-            results.push(insert);
-        }
+      results[0]['placeName'] = data.place.dataValues.name;
+    } else if (!_.isEmpty( data.washs )) {
+      _.forEach(data.washs, function(washData, washKey) {
+        var insert = washData.dataValues;
+        insert['placeId'] = insert.place;
+        insert['placeName'] = data.place.dataValues.name;
+        results.push(insert);
+      });
     }
+
+    var mapper = function(item) {
+      var result = {};
+      _.each(columns, function(name) {
+        result[name] = item[name];
+      });
+      return result;
+    };
+
+    // Now we go for JSON output
+    // TODO: Read this hardcoded data from spreadsheet
     var indicators_references = {
-        'SAM': {
-            'POOR': { 'min_value': 15, 'max_value': 100, 'score': 1 },
-            'AVERAGE': { 'min_value': 5, 'max_value': 15, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 5, 'score': 3 }
+        SAM: {
+            POOR: { min_value: 15, max_value: 100, score: 1 },
+            AVERAGE: { min_value: 5, max_value: 15, score: 2 },
+            GOOD: { min_value: 0, max_value: 5, score: 3 }
         },
-        'GAN': {
-            'POOR': { 'min_value': 15, 'max_value': 100, 'score': 1 },
-            'AVERAGE': { 'min_value': 5, 'max_value': 15, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 5, 'score': 3 }
+        GAN: {
+            POOR: { min_value: 15, max_value: 100, score: 1 },
+            AVERAGE: { min_value: 5, max_value: 15, score: 2 },
+            GOOD: { min_value: 0, max_value: 5, score: 3 }
         },
-        'ADD': {
-            'POOR': { 'min_value': 15, 'max_value': 100, 'score': 1 },
-            'AVERAGE': { 'min_value': 5, 'max_value': 15, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 5, 'score': 3 }
+        ADD: {
+            POOR: { min_value: 15, max_value: 100, score: 1 },
+            AVERAGE: { min_value: 5, max_value: 15, score: 2 },
+            GOOD: { min_value: 0, max_value: 5, score: 3 }
         },
-        'HWAT': {
-            'POOR': { 'min_value': 50, 'max_value': 100000000, 'score': 1 },
-            'AVERAGE': { 'min_value': 20, 'max_value': 50, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 20, 'score': 3 }
+        HWAT: {
+            POOR: { min_value: 50, max_value: 100000000, score: 1 },
+            AVERAGE: { min_value: 20, max_value: 50, score: 2 },
+            GOOD: { min_value: 0, max_value: 20, score: 3 }
         },
-        'HWAW': {
-            'POOR': { 'min_value': 50, 'max_value': 100000000, 'score': 1 },
-            'AVERAGE': { 'min_value': 20, 'max_value': 50, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 20, 'score': 3 }
+        HWAW: {
+            POOR: { min_value: 50, max_value: 100000000, score: 1 },
+            AVERAGE: { min_value: 20, max_value: 50, score: 2 },
+            GOOD: { min_value: 0, max_value: 20, score: 3 }
         },
-        'WSC': {
-            'POOR': { 'min_value': 15, 'max_value': 100, 'score': 1 },
-            'AVERAGE': { 'min_value': 5, 'max_value': 15, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 5, 'score': 3 }
+        WSC: {
+            POOR: { min_value: 15, max_value: 100, score: 1 },
+            AVERAGE: { min_value: 5, max_value: 15, score: 2 },
+            GOOD: { min_value: 0, max_value: 5, score: 3 }
         },
-        'EXND': {
-            'POOR': { 'min_value': 15, 'max_value': 100, 'score': 1 },
-            'AVERAGE': { 'min_value': 5, 'max_value': 15, 'score': 2 },
-            'GOOD': { 'min_value': 0, 'max_value': 5, 'score': 3 }
-            //'HIGH': { 'lablel': 'POOR', 'score': 1 },
-            //'MODERATE': { 'label': 'AVERAGE', 'score': 2 },
-            //'LOW': { 'label': 'GOOD', 'score': 3 }
+        EXND: {
+            POOR: { min_value: 15, max_value: 100, score: 1 },
+            AVERAGE: { min_value: 5, max_value: 15, score: 2 },
+            GOOD: { min_value: 0, max_value: 5, score: 3 }
         }
     }
 
@@ -277,6 +286,11 @@ var washPlaceLast = function(req, res, next) {
         "July", "August", "September", "October", "November", "December"
     ];
 
+    /*
+     * Evaluates each indicator based on the previous defined references
+     * as input we have the indicator 'name' and it's value
+     * as output we will have and object with a score and a label
+     */
     var evaluate_indicator = function(indicator, value) {
         var output = {}
         if (value > indicators_references[indicator]['POOR'].min_value) {
@@ -289,6 +303,14 @@ var washPlaceLast = function(req, res, next) {
         return output
     }
 
+    /*
+     * Evaluate all indicators
+     * as input we have and indicators object, a list (washsData) with all washData objects,
+     *          the currentData and previousData (first and second element from washsData).
+     * as output we return and object (dict/array) with two items, the modified indicators
+     * object and a list called allDates, with all dates (month/year) that has any data
+     * from any of the indicators
+     */
     var evaluate_indicators = function(indicators, washsData, currentData, previousData) {
         var allDates = [];
         var dateFields = ['lastUpdateSAM',
@@ -371,43 +393,50 @@ var washPlaceLast = function(req, res, next) {
         return {indicators:indicators, allDates:allDates};
     }
 
+    /*
+     * This functions calculate the preparedness of the place based on the indicators
+     * as input we have the indicators
+     * and as output we have and object with the preparedness score (percentage)
+     * and also a label and a list with three messages to be inserted on the card.
+     */
+    // TODO: Read the reference values from the config spreadsheet
     var calculate_preparedness = function(indicators) {
         var index_sum = 0;
-        var output = {};
-        for (var indicator in indicators) {
-            index_sum = index_sum + indicators[indicator].current.score;
-        }
-        var index= 50*(index_sum -7)/7;
-        output.value = index;
-        if (index <= 50) {
-            output = {
-                'label': 'Poorly resiliente',
-                'messages': ['Ouch!', 'have a lot of work to do', 'could improve so much more']
-            };
-        } else if (index <= 71.728571429) {
-            output = {
-                'label': 'Moderately resilient',
-                'messages': ['Not Bad!', 'are not completely unprepared', 'could improve so much more']
-            };
+        var output = {value: undefined, label: undefined, messages: []};
+        _.forEach(indicators, function(indicatorData, indicatorKey){
+            index_sum = index_sum + indicatorData.current.score;
+        });
+        output.value = 50 * (index_sum -7)/7;
+        if (index_sum < 14) {
+            output.label = 'Poorly resiliente';
+            output.messages = ['Ouch!', 'have a lot of work to do', 'could improve so much more'];
+        } else if (index_sum <= 17) {
+            output.label = 'Moderately resilient';
+            output.messages = ['Not Bad!', 'are not completely unprepared', 'could improve so much more'];
         } else {
-            output = {
-                'label': 'Highly resilient',
-                'messages': ['Congratulations!', 'are well prepared', 'can still improve your score']
-            }
+            output.label = 'Highly resilient'
+            output.messages = ['Congratulations!', 'are well prepared', 'can still improve your score'];
         }
         return output;
     }
 
+    /*
+     * Function to create a bool indicating the existance of at least one
+     * indicator that is Good
+     */
     var washCheckNoneGood = function(indicators) {
         var noneGood = true;
-        for (var indicator in indicators) {
-            if (indicators[indicator].current.score == 3) {
+        _.forEach(indicators, function(indicator, key){
+            if (indicator.current.score == 3) {
                 noneGood = false;
             }
-        }
+        })
         return noneGood;
     }
 
+    /*
+     * function to generate a general ImproveMessage
+     */
     var washImproveMessage = function(allGood, noneGood, indicators) {
         var message = "";
         if (allGood) {
@@ -426,6 +455,10 @@ var washPlaceLast = function(req, res, next) {
         return message;
     }
 
+    /*
+     * Function that generates the "goodToKnow" section messages,
+     * checking the interaction between indicators
+     */
     var washGoodToKnow = function(indicators) {
         var messages = [];
 
@@ -463,10 +496,12 @@ var washPlaceLast = function(req, res, next) {
         return messages;
     }
 
+    /*
+     * Generate warning Messages, if any is needed
+     */
     var washGetWarnings = function(indicators) {
         var messages = [];
         for (var indicator in indicators) {
-            //console.log(indicators);
             var current = indicators[indicator].current,
                 previous = indicators[indicator].previous;
             if (current.value > previous.value) {
@@ -482,6 +517,9 @@ var washPlaceLast = function(req, res, next) {
         return messages;
     }
 
+    /*
+     * Generate positive messages, if there is any
+     */
     var washGetPositives = function(indicators) {
         var messages = [];
         for (var indicator in indicators) {
@@ -500,6 +538,10 @@ var washPlaceLast = function(req, res, next) {
         return messages;
     }
 
+    /*
+     * Generates the data for the bar chart, that is shown when
+     * we have just one value per indicator
+     */
     var washBarChartData = function(indicators) {
         var data = {
             categories: [],
@@ -515,6 +557,10 @@ var washPlaceLast = function(req, res, next) {
         return data;
     }
 
+    /*
+     * Generates the data for the Series Chart, when we have more
+     * than one data per indicator.
+     */
     var washSeriesChartData = function(indicators, allDates) {
         var data = {
             categories: [],
@@ -535,13 +581,18 @@ var washPlaceLast = function(req, res, next) {
         // Wed Jul 01 2015 00:00:00 GMT-0400 (EDT)
         // and returns it in 'month/Year', month a one or
         // two digits number and year a 4 digits number.
-        var monthYear = new Date(date);
+        var monthYear = new Date(date),
+            month = monthYear.getMonth() + 1,
+            year = monthYear.getFullYear();
+            month = month < 10 ? "0" + month.toString() : month.toString();
+            year = year.toString();
+
         if (format == "str"){
-            monthYear = monthYear.getMonth() + "/" + monthYear.getFullYear();
+            monthYear = month + "/" + year;
         } else if (format == 'allDates'){
-            monthYear = monthYear.getFullYear() + "-" + monthYear.getMonth();
+            monthYear = year + "-" + month;
         } else {
-            monthYear = {year: monthYear.getFullYear(), month: monthYear.getMonth()};
+            monthYear = {year: year, month: month};
         }
         return monthYear;
     }
@@ -550,6 +601,8 @@ var washPlaceLast = function(req, res, next) {
     var washOutput = {
         placeID: undefined,
         placeName: undefined,
+        placeType: undefined,
+        region: undefined,
         indicators: {
             SAM:  { name: undefined,
                     current: { value: undefined, score: undefined, label: undefined },
@@ -605,43 +658,41 @@ var washPlaceLast = function(req, res, next) {
         }
     }
 
-    var place = data.place.dataValues,
-        currentData = data.washs[0].dataValues,
-        previousData = data.washs[1].dataValues;
+    if (!_.isEmpty( data.washs )){
 
-    washOutput.placeID = place.id;
-    washOutput.placeName = place.name;
-    var processIndicators = evaluate_indicators(washOutput.indicators, data.washs, currentData, previousData);
-    washOutput.indicators = processIndicators.indicators;
-    washOutput.allDates = processIndicators.allDates;
-    washOutput.preparedness = calculate_preparedness(washOutput.indicators);
-    washOutput.lastUpdate.name = currentData.name;
-    washOutput.lastUpdate.role = currentData.role;
-    washOutput.lastUpdate.org = currentData.organization;
-    washOutput.lastUpdate.email = currentData.email[0];
-    washOutput.lastUpdate.date = dateToMonthYear(data.createdAt, "str");
-    washOutput.allGood = washOutput.preparedness.value == 21 ? true : false;
-    washOutput.noneGood = washCheckNoneGood(washOutput.indicators);
-    washOutput.improveScoreMessage = washImproveMessage(washOutput.allGood, washOutput.noneGood, washOutput.indicators);
-    washOutput.goodToKnowMessages = washGoodToKnow(washOutput.indicators);
-    washOutput.warningMessages = washGetWarnings(washOutput.indicators);
-    washOutput.positiveMessages = washGetPositives(washOutput.indicators);
+        var place = data.place.dataValues,
+            currentData = data.washs[0].dataValues,
+            previousData = data.washs[1].dataValues;
 
-    if(data.washs.length > 1) {
-        washOutput.seriesChart = washSeriesChartData(washOutput.indicators, washOutput.allDates);
-        washOutput.barChart = false;
-    } else {
-        washOutput.barChart = washBarChartData(washOutput.indicators);
-        washOutput.seriesChart = false;
+        washOutput.placeID = place.id;
+        washOutput.placeName = place.name;
+        washOutput.placeType = place.type;
+        washOutput.region = place.region;
+        var processIndicators = evaluate_indicators(washOutput.indicators, data.washs, currentData, previousData);
+        washOutput.indicators = processIndicators.indicators;
+        washOutput.allDates = processIndicators.allDates;
+        washOutput.preparedness = calculate_preparedness(washOutput.indicators);
+        washOutput.lastUpdate.name = currentData.name;
+        washOutput.lastUpdate.role = currentData.role;
+        washOutput.lastUpdate.org = currentData.organization;
+        washOutput.lastUpdate.email = currentData.email[0];
+        washOutput.lastUpdate.date = dateToMonthYear(data.createdAt, "str");
+        washOutput.allGood = washOutput.preparedness.value == 21 ? true : false;
+        washOutput.noneGood = washCheckNoneGood(washOutput.indicators);
+        washOutput.improveScoreMessage = washImproveMessage(washOutput.allGood, washOutput.noneGood, washOutput.indicators);
+        washOutput.goodToKnowMessages = washGoodToKnow(washOutput.indicators);
+        washOutput.warningMessages = washGetWarnings(washOutput.indicators);
+        washOutput.positiveMessages = washGetPositives(washOutput.indicators);
+
+        if(data.washs.length > 1) {
+            washOutput.seriesChart = washSeriesChartData(washOutput.indicators, washOutput.allDates);
+            washOutput.barChart = false;
+        } else {
+            washOutput.barChart = washBarChartData(washOutput.indicators);
+            washOutput.seriesChart = false;
+        }
+
     }
-
-    var mapper = function(item) {
-      var result = {};
-      _.each(columns, function(name) {
-        result[name] = item[name];
-      });
-      return result;
-    };
 
     switch (format) {
       case 'json': {
@@ -698,6 +749,7 @@ var places = function(req, res, next) {
       'id',
       'site',
       'name',
+      'type',
       'slug',
       'region',
       'continent',

@@ -32,6 +32,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: 'The region in which this place is located.'
     },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        comment: 'The type of the place (City, Province, etc)'
+    },
     continent: {
       type: DataTypes.STRING,
       allowNull: true,

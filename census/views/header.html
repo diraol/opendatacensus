@@ -17,12 +17,12 @@
             <script>
               var places = [
                 {% for place in places %}
-                  "{{place.name}}",
+                "{{place.type}} of {{place.name}}",
                 {% endfor %}
               ];
               var placesId = {
                 {% for place in places %}
-                  "{{place.name}}" : {{place.id}},
+                "{{place.type}} of {{place.name}}" : {{place.id}},
                 {% endfor %}
               }
             </script>

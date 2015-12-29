@@ -42,6 +42,7 @@ CREATE TABLE place (
     site character varying(255) NOT NULL,
     name character varying(255) NOT NULL,
     slug character varying(255),
+    type character varying(255) NOT NULL,
     region character varying(255),
     continent character varying(255),
     reviewers character varying(255)[],
