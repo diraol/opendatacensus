@@ -13,7 +13,7 @@
 {% block content %}
 
 <div class="page-header">
-  <h1>{{format("Make a Submission &ndash; %(sitename)s", { sitename: site.settings.title }) }}</h1>
+  <h1>{{format("Make a Submission &ndash; %(sitename)s %(sitesubtitle)s", { sitename: site.settings.title, sitesubtitle: site.settings.subtitle }) }}</h1>
 </div>
 
 {% if errors %}
@@ -63,9 +63,15 @@
       <div class="col-sm-4">
         <div class="input-group">
           <select name="place" required autocomplete="off">
-            <option value="">{{gettext("Please select")}}</option>
-            {% for place in places %}
-            <option value="{{place.id}}" {% if (formData and place.id == formData.place) or (current and place.id == current.place) %}selected="true"{% endif %}>{{place.name}}</option>
+            <option disabled>{{gettext("Please select")}}</option>
+            {% for region, regionPlaces in places|groupby('region') %}
+              <optgroup label="{{ region }}">
+                {% for place in regionPlaces %}
+                  <option value="{{place.id}}" {% if (formData and place.id == formData.place) or (current and place.id == current.place) %}selected="true"{% endif %}>
+                    {{place.type}} of {{place.name}}
+                  </option>
+                {% endfor %}
+              </optgroup>
             {% endfor %}
           </select>
         </div>
@@ -80,7 +86,7 @@
     <label for="inputSAM" class="col-sm-5 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0", max="100">
+        <input id="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
@@ -93,7 +99,7 @@
     <label for="inputGAM" class="col-sm-5 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputGAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0", max="100">
+        <input id="inputGAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
@@ -105,7 +111,10 @@
   <div class="form-group">
     <label for="inputADD" class="col-sm-5 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
     <div class="col-sm-3">
-      <input id="inputADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0", max="100">
+      <div class="input-group">
+        <input id="inputADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0" max="100">
+        <span class="input-group-addon">%</span>
+      </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" id="ADDLastUpdate" placeholder="Last update of this indicator">
@@ -115,7 +124,10 @@
   <div class="form-group">
     <label for="inputHWAT" class="col-sm-5 control-label">Households without access to toilet</label>
     <div class="col-sm-3">
-      <input id="inputHWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0">
+      <div class="input-group">
+        <input id="inputHWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0" max="100">
+        <span class="input-group-addon">%</span>
+      </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" id="HWATLastUpdate" placeholder="Last update of this indicator">
@@ -125,7 +137,10 @@
   <div class="form-group">
     <label for="inputHWAW" class="col-sm-5 control-label">Households without access to water</label>
     <div class="col-sm-3">
-      <input id="inputHWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0">
+      <div class="input-group">
+        <input id="inputHWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0" max="100">
+        <span class="input-group-addon">%</span>
+      </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" id="HWAWLastUpdate" placeholder="Last update of this indicator">
@@ -136,7 +151,7 @@
     <label for="inputWSC" class="col-sm-5 control-label">% of water sources positive with e.coli and other contaminants</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputWSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0", max="100">
+        <input id="inputWSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
@@ -149,7 +164,7 @@
     <label for="inputEXND" class="col-sm-5 control-label">Exposure to natural disasters</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputEXND" type="text" class="form-control decimal" aria-label="Exposure to natural disasters">
+        <input id="inputEXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
