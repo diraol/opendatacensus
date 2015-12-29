@@ -242,10 +242,12 @@ html{
 }
 
 
-#content a:link{ color: #fff; text-decoration: none; font-weight: 700 }
-#content a:hover{ color: #fff; text-decoration: underline; font-weight: 700 }
+#content a:link{ color: #fff; text-decoration: none; color: #e95353; font-weight: 700 }
+#content a:hover{ color: #fff; text-decoration: underline; color: #e95353; font-weight: 700 }
 #content a:active{ color: #fff; text-decoration: none; color: #e95353; font-weight: 700 }
 #content a:visited{ color: #fff; text-decoration: none; color: #e95353; font-weight: 700 }
+#content a#submit_data:link{ color: #e95353; text-decoration: none; font-weight: 700 }
+#content a#submit_data:hover{ color: #fff; text-decoration: underline; font-weight: 700 }
 
 .container{
     width: 100%;
