@@ -4,6 +4,7 @@ var _ = require('lodash');
 var marked = require('marked');
 var modelUtils = require('../models').utils;
 var Promise = require('bluebird');
+var utils = require('./utils');
 
 var changes = function(req, res) {
   var dataOptions = _.merge(modelUtils.getDataOptions(req), {cascade: false});
@@ -108,6 +109,41 @@ var faq = function(req, res) {
   }).catch(console.trace.bind(console));
 };
 
+var printWashCard = function(req, res) {
+  /**
+    * Page to print cards
+    */
+
+  //TODO: GET IT FROM API
+  // Initial data options
+  var dataOptions = _.merge(
+    modelUtils.getDataOptions(req),
+    {
+      cascade: false,
+      ynQuestions: false,
+      with: {
+          Entry: false,
+          Dataset: false,
+          Question: false,
+          Faq: false,
+          Wash: true
+      }
+    }
+  );
+
+  // Make request for data, return it
+  modelUtils.getData(dataOptions).then(function(data) {
+
+    var washOutput = utils.washForCard(data);
+    if (!_.isEmpty(washOutput.seriesChart)) {
+      washOutput.seriesChart = JSON.stringify(washOutput.seriesChart);
+    }
+    res.render('print.html', washOutput);
+
+  }).catch(console.trace.bind(console));
+
+}
+
 var place = function(req, res) {
   /**
    * An overview of places, optionally by year.
@@ -194,6 +230,7 @@ module.exports = {
   faq: faq,
   about: about,
   wash: wash,
+  printWashCard: printWashCard,
   contribute: contribute,
   tutorial: tutorial,
   changes: changes,

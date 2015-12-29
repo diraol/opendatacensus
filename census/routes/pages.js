@@ -35,6 +35,7 @@ var pageRoutes = function(coreMiddlewares) {
     pages.entry);
   router.get(utils.scoped('/year/:year'), byYearMixins, pages.overview);
   router.get(utils.scoped('/index'), rootRouteMixins, pages.overview);
+  router.get(utils.scoped('/print/wash/:place'), rootRouteMixins, pages.printWashCard);
   router.get(utils.scoped('/'), rootRouteMixins, pages.home);
 
   redirectRoutes(router);

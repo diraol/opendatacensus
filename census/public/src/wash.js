@@ -73,7 +73,7 @@ var loadPlaceWashData = function(placeId) {
 
     var populateCard = function(data) {
         //First check if there is any data for the city
-        if (data) {
+        if (!$.isEmptyObject(data)) {
             //If there is data, show the card with it
             $(".placeName").html(data.placeType + " of " + data.placeName);
 
@@ -154,6 +154,11 @@ var loadPlaceWashData = function(placeId) {
             $("#card_share a.gp").attr('href',
                         "https://plus.google.com/share?url=" + encodeURI(window.location.host + "/#"  + hash));
 
+            // Updating the print CARD url
+            $("#print_card").on('click', function(){
+                printPop(placeId);
+            });
+
             $('#modal').fadeIn(200);
             $('#curtain').fadeIn(180);
             window.lastPlaceId = placeId;
@@ -179,6 +184,14 @@ var loadPlaceWashData = function(placeId) {
             });
     }
 } //loadPlaceWashData
+
+var printPop = function(placeID) {
+    var printWindow = null;
+    var strWindowFeatures = "menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,personalbar=no";
+    printWindow = window.open('/print/wash/' + placeID ,'',strWindowFeatures);
+    printWindow.focus();
+    printWindow.print();
+}
 
 $(document).ready(function(){
 

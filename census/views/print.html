@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="site-{{ site.id }}" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="School of Data, OD4D">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css?{{currentTime}}">
+    <link rel="stylesheet" type="text/css" href="/css/sheena.css?{{currentTime}}">
+    <!-- Read HTML5 shim and respond JS, for IE6-8 support of HTML and CSS elements -->
+    <!--[if lt IE 9]>
+      <script src="/vendor/respond.min.js"</script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <![endif]-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="/src/wash_print.js?{{currentTime}}"></script>
+    <script src="//code.highcharts.com/highcharts.js"></script>
+
+</head>
+
+<body>
+
+<!-- LAYOUT INFO CARD -->
+<div id="print_card">
+<div id="info_card">
+
+    <div id="card_title">
+      <!--span id="title_light" class="placeType">CITIY OF</span-->
+      <span id="title_bold" class="placeName">{{ placeType}} of {{ placeName }}</span>
+    </div>
+
+    <div class="card_msg">
+      <div id="card_msg1" class="card_msg_title">
+        {{ preparedness.messages[0] }}
+      </div>
+      <div id="card_msg1_tx" class="card_msg_tx">
+        With a WASH resilience score of <span class="contrast" id="wash_score">{{ preparedness.value | round(2) }}</span>% 
+        you <span class="contrast" id="card_msg2">{{ preparedness.messages[1] }}</span> 
+        to face Water, Sanitation and Hygiene risks in future natural disasters.
+      </div>
+    </div>
+
+    <!--hr/>
+
+    <div class="ranking" id="country_ranking">
+      <div class="ranking_type">COUNTRY RANKING</div>
+      <ul>
+        <li class="selected">1. Name of City 1</li>
+        <li >2. Name of City 2</li>
+        <li >3. Name of City Nonono 3</li>
+        <li >4. Name of City Nonon onon ono 4</li>
+        <li >5. Name of City 5</li>
+      </ul>
+      <div class="ranking_result">
+        You are ranked <span class="bold" id="country_ranking_result">1st</span> among the cities of the country
+      </div>
+    </div>
+
+    <div class="ranking" id="local_ranking">
+      <div class="ranking_type">LOCAL RANKING</div>
+      <ul>
+        <li>1. Name of City 1</li>
+        <li  class="selected" >2. Name of City 2</li>
+        <li >3. Name of City Nonono 3</li>
+        <li >4. Name of City Nonon onon ono 4</li>
+        <li >5. Name of City 5</li>
+      </ul>
+      <div class="ranking_result">
+        You are ranked <span class="bold" id="loaal_ranking_result">2nd</span> among the cities of the country
+      </div>
+    </div>
+
+    <div class="clear"></div-->
+
+    <hr/>
+
+    <div  class="card_msg">
+      <div class="card_msg_title">But you <span id="card_msg3">{{ preparedness.messages[2] }}</span>!</div>
+      <div class="card_msg_tx">Review your key indicators below</div>
+    </div>
+
+    <div id="indicators">
+      <div class="indicator">
+        <div class="indicator_label" >Severe Acute Malnutrition (Under 5 Rate) </div>
+        <div id="SAM" class="indicator_score"@
+          <span class="value">{{ indicators.SAM.current.value }}</span>%
+          <span class="label">{{ indicators.SAM.current.label }}</span>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator_label" >Global Acute Malnutrition (Under 5 Rate) </div>
+        <div id="GAN" class="indicator_score">
+          <span class="value">{{ indicators.GAN.current.value }}</span>%
+          <span class="label">{{ indicators.GAN.current.label }}</span>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator_label" >Acute Diarrhoeal Disease (Prevalence) </div>
+        <div id="ADD" class="indicator_score">
+          <span class="value">{{ indicators.ADD.current.value }}</span>%
+          <span class="label">{{ indicators.ADD.current.label }}</span>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator_label" >Households without access to toilet </div>
+        <div id="HWAT" class="indicator_score">
+          <span class="value">{{ indicators.HWAT.current.value }}</span>%
+          <span class="label">{{ indicators.HWAT.current.label }}</span>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator_label" >Households without access to water </div>
+        <div id="HWAW" class="indicator_score">
+          <span class="value">{{ indicators.HWAW.current.value }}</span>%
+          <span class="label">{{ indicators.HWAW.current.label }}</span>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator_label" >water sources positive with e.coli and other contaminants </div>
+        <div id="WSC" class="indicator_score">
+          <span class="value">{{ indicators.WSC.current.value }}</span>%
+          <span class="label">{{ indicators.WSC.current.label }}</span>
+        </div>
+      </div>
+      <div class="indicator">
+        <div class="indicator_label" >Exposure to natural disasters </div>
+        <div id="EXND" class="indicator_score">
+          <span class="value">{{ indicators.EXND.current.value }}</span>%
+          <span class="label">{{ indicators.EXND.current.label }}</span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    {% if warningMessages %}
+      <div id="warn_messages" class="card_msg">
+        <div class="card_msg_title">Warning</div>
+        {% for msg in warningMessages %}
+          <div class="card_msg_tx">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if seriesChart %}
+      <div id="chart">
+        <div id="chart1"></div>
+      </div>
+    {% endif %}
+    <hr/>
+
+    {% if positiveMessages %}
+      <div id="positive_messages" class="card_msg">
+        <div class="card_msg_title">Positive Note</div>
+        {% for msg in positiveMessages %}
+          <div class="card_msg_tx">
+            {{ msg }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div id="last_update">
+      The data behind this information Card was last updated on the
+      <span class="date">{{ lastUpdate.date }}</span>
+      by
+      <div class="contrast" id="last_update_user">
+        <span class='name'>{{ lastUpdate.name }}</span>, 
+        <span class='role'>{{ lastUpdate.role }}</span> in 
+        <span class='org'>{{ lastUpdate.org }}</span>.
+      </div>
+    </div>
+
+</div>
+</div>
+
+{% if seriesChart %}
+  <script>
+    $(document).ready(function(){
+      var chartData = JSON.parse('[{{seriesChart}}]');
+      buildSeriesChart(chartData[0]);
+    });
+  </script>
+{% endif %}
+</body>
+
+</html>
