@@ -5,40 +5,6 @@ var marked = require('marked');
 var modelUtils = require('../models').utils;
 var Promise = require('bluebird');
 
-var faq_md = function(req, res) {
-  var qTmpl = req.app.get('view_env').getTemplate('_snippets/questions.html');
-  var dTmpl = req.app.get('view_env').getTemplate('_snippets/datasets.html');
-  var dataOptions = _.merge(modelUtils.getDataOptions(req), {
-    with: {
-      Entry: false,
-      Place: false
-    }
-  });
-  var gettext = res.locals.gettext;
-
-  modelUtils.getData(dataOptions)
-    .then(function(data) {
-      var qContent = qTmpl.render({
-        gettext: gettext,
-        questions: data.questions
-      });
-      var dContent = dTmpl.render({
-        gettext: gettext,
-        datasets: data.datasets
-      });
-      var settingName = 'missing_place_html';
-      var mContent = req.params.site.settings[settingName];
-      data.title = 'FAQ - Frequently Asked Questions';
-      settingName = 'faq_page';
-      data.content = marked(req.params.site.settings[settingName])
-        .replace('{{questions}}', qContent)
-        .replace('{{datasets}}', dContent)
-        .replace('{{missing_place}}', mContent);
-      data.url_home = true;
-      return res.render('base.html', data);
-    }).catch(console.trace.bind(console));
-};
-
 var changes = function(req, res) {
   var dataOptions = _.merge(modelUtils.getDataOptions(req), {cascade: false});
 
