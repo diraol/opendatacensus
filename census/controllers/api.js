@@ -289,29 +289,110 @@ var washPlaceLast = function(req, res, next) {
         return output
     }
 
+    var evaluate_indicators = function(indicators, washsData, currentData, previousData) {
+        var allDates = [];
+        var dateFields = ['lastUpdateSAM',
+                          'lastUpdateGAN',
+                          'lastUpdateADD',
+                          'lastUpdateHWAT',
+                          'lastUpdateHWAW',
+                          'lastUpdateWSC',
+                          'lastUpdateEXND'];
+        // Collecting all possible dates
+        _.forEach(washsData, function(wash){
+            var data = wash.dataValues;
+            for (var field in dateFields) {
+                var date = dateToMonthYear(data[dateFields[field]], 'allDates');
+                if (allDates.indexOf(date) == -1) allDates.push(date);
+            }
+        });
+
+        allDates = allDates.sort();
+        // Building a ref list to "allValues" to have all possible dates,
+        // initializing it with the size of the allDates vector;
+        var baseAllValues = new Array(allDates.length);
+        baseAllValues.fill(null);
+
+        indicators.SAM.name = 'Malnutrition Rate (Stunting)';
+        indicators.SAM.current = _.assign({ value: currentData.SAM}, evaluate_indicator('SAM', currentData.SAM));
+        indicators.SAM.previous = _.assign({ value: previousData.SAM}, evaluate_indicator('SAM', previousData.SAM));
+        indicators.SAM.allValues = _.cloneDeep( baseAllValues );
+        indicators.GAN.name = 'Malnutrition Rate (Underweight)';
+        indicators.GAN.current = _.assign({ value: currentData.GAN}, evaluate_indicator('GAN', currentData.GAN));
+        indicators.GAN.previous = _.assign({ value: previousData.GAN}, evaluate_indicator('GAN', previousData.GAN));
+        indicators.GAN.allValues = _.cloneDeep( baseAllValues );
+        indicators.ADD.name = 'Acute Diarrhoeal Disease (Prevalence)';
+        indicators.ADD.current = _.assign({ value: currentData.ADD}, evaluate_indicator('ADD', currentData.ADD));
+        indicators.ADD.previous = _.assign({ value: previousData.ADD}, evaluate_indicator('ADD', previousData.ADD));
+        indicators.ADD.allValues = _.cloneDeep( baseAllValues );
+        indicators.HWAT.name = 'Households without access to toilet';
+        indicators.HWAT.current = _.assign({ value: currentData.HWAT}, evaluate_indicator('HWAT', currentData.HWAT));
+        indicators.HWAT.previous = _.assign({ value: previousData.HWAT}, evaluate_indicator('HWAT', previousData.HWAT));
+        indicators.HWAT.allValues = _.cloneDeep( baseAllValues );
+        indicators.HWAW.name = 'Households without access to water';
+        indicators.HWAW.current = _.assign({ value: currentData.HWAW}, evaluate_indicator('HWAW', currentData.HWAW));
+        indicators.HWAW.previous = _.assign({ value: previousData.HWAW}, evaluate_indicator('HWAW', previousData.HWAW));
+        indicators.HWAW.allValues = _.cloneDeep( baseAllValues );
+        indicators.WSC.name = '% of water sources positive with e.coli and other contaminants';
+        indicators.WSC.current = _.assign({ value: currentData.WSC}, evaluate_indicator('WSC', currentData.WSC));
+        indicators.WSC.previous = _.assign({ value: previousData.WSC}, evaluate_indicator('WSC', previousData.WSC));
+        indicators.WSC.allValues = _.cloneDeep( baseAllValues );
+        indicators.EXND.name = 'Exposure to natural disasters (number of incidents reported)';
+        indicators.EXND.current = _.assign({ value: currentData.EXND}, evaluate_indicator('EXND', currentData.EXND));
+        indicators.EXND.previous = _.assign({ value: previousData.EXND}, evaluate_indicator('EXND', previousData.EXND));
+        indicators.EXND.allValues = _.cloneDeep(baseAllValues);
+
+        // New let's fill the arrays with it's values
+        _.forEachRight(washsData, function(wash){
+            var data = wash.dataValues;
+            var date = data.lastUpdateSAM;
+            var value = data.SAM ? data.SAM : undefined;
+            if (date != undefined & value >= 0) indicators.SAM.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+            date = data.lastUpdateGAN;
+            value = data.GAN ? data.GAN : undefined;
+            if (date != undefined & value >= 0) indicators.GAN.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+            date = data.lastUpdateADD;
+            value = data.ADD ? data.ADD : undefined;
+            if (date != undefined & value >= 0) indicators.ADD.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+            date = data.lastUpdateHWAT;
+            value = data.HWAT ? data.HWAT : undefined;
+            if (date != undefined & value >= 0) indicators.HWAT.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+            date = data.lastUpdateHWAW;
+            value = data.HWAW ? data.HWAW : undefined;
+            if (date != undefined & value >= 0) indicators.HWAW.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+            date = data.lastUpdateWSC;
+            value = data.WSC ? data.WSC : undefined;
+            if (date != undefined & value >= 0) indicators.WSC.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+            date = data.lastUpdateEXND;
+            value = data.EXND ? data.EXND : undefined;
+            if (date != undefined & value >= 0) indicators.EXND.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+        });
+
+        return {indicators:indicators, allDates:allDates};
+    }
+
     var calculate_preparedness = function(indicators) {
         var index_sum = 0;
         var output = {};
         for (var indicator in indicators) {
             index_sum = index_sum + indicators[indicator].current.score;
         }
-        if (index_sum <= 14) {
+        var index= 50*(index_sum -7)/7;
+        output.value = index;
+        if (index <= 50) {
             output = {
-                'value': index_sum,
                 'label': 'Poorly resiliente',
-                'title': 'Have a lot of work to do'
+                'messages': ['Ouch!', 'have a lot of work to do', 'could improve so much more']
             };
-        } else if (index_sum <= 17) {
+        } else if (index <= 71.728571429) {
             output = {
-                'value': index_sum,
                 'label': 'Moderately resilient',
-                'title': 'Not Bad!'
+                'messages': ['Not Bad!', 'are not completely unprepared', 'could improve so much more']
             };
         } else {
             output = {
-                'value': index_sum,
                 'label': 'Highly resilient',
-                'title': 'Congratulations'
+                'messages': ['Congratulations!', 'are well prepared', 'can still improve your score']
             }
         }
         return output;
@@ -387,7 +468,7 @@ var washPlaceLast = function(req, res, next) {
         for (var indicator in indicators) {
             //console.log(indicators);
             var current = indicators[indicator].current,
-                previous = indicators[indicator].last;
+                previous = indicators[indicator].previous;
             if (current.value > previous.value) {
                 var message = "The <span class='contrast' id='wash_score'>" + indicators[indicator].name +
                               "</span> has increased since the last update.";
@@ -405,7 +486,7 @@ var washPlaceLast = function(req, res, next) {
         var messages = [];
         for (var indicator in indicators) {
             var current = indicators[indicator].current,
-                previous = indicators[indicator].last;
+                previous = indicators[indicator].previous;
             if (current.value < previous.value) {
                 var message = "The <span class='contrast' id='wash_score'>" + indicators[indicator].name +
                               "</span> has decreased since the last update.";
@@ -419,22 +500,50 @@ var washPlaceLast = function(req, res, next) {
         return messages;
     }
 
-    var washChartData = function(indicators) {
+    var washBarChartData = function(indicators) {
         var data = {
             categories: [],
             series: []
-
         }
-        for (var indicator in indicators) {
-          if (indicator != 'HWAW' && indicator != 'HWAT') {
-            data.categories.push(indicator);
+        _.forEach(indicators, function(indicatorData, indicatorKey){
+            data.categories.push(indicatorKey);
             data.series.push({
-                name: indicator, //indicators[indicator].name,
-                data: [indicators[indicator].current.value]
+                name: indicatorKey,
+                data: [indicatorData.current.value]
             });
-          }
-        }
+        });
         return data;
+    }
+
+    var washSeriesChartData = function(indicators, allDates) {
+        var data = {
+            categories: [],
+            series: []
+        }
+        data.categories = allDates;
+        _.forEach(indicators, function(indicatorData, indicatorKey){
+            data.series.push({
+                name: indicatorKey,
+                data: indicatorData.allValues
+            })
+        });
+        return data;
+    }
+
+    var dateToMonthYear = function(date, format){
+        // Receives a date, as string, in the format;
+        // Wed Jul 01 2015 00:00:00 GMT-0400 (EDT)
+        // and returns it in 'month/Year', month a one or
+        // two digits number and year a 4 digits number.
+        var monthYear = new Date(date);
+        if (format == "str"){
+            monthYear = monthYear.getMonth() + "/" + monthYear.getFullYear();
+        } else if (format == 'allDates'){
+            monthYear = monthYear.getFullYear() + "-" + monthYear.getMonth();
+        } else {
+            monthYear = {year: monthYear.getFullYear(), month: monthYear.getMonth()};
+        }
+        return monthYear;
     }
 
     // Creating the output variable, mainly to define its format.
@@ -442,15 +551,43 @@ var washPlaceLast = function(req, res, next) {
         placeID: undefined,
         placeName: undefined,
         indicators: {
-            SAM:  { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } },
-            GAN:  { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } },
-            ADD:  { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } },
-            HWAT: { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } },
-            HWAW: { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } },
-            WSC:  { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } },
-            EXND: { name: undefined, current: { value: undefined, score: undefined, label: undefined }, last: { value: undefined, score: undefined, label: undefined } }
+            SAM:  { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: [] // ordered list with n items, n equals the max number of dates for all indicators
+            },
+            GAN:  { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: []
+            },
+            ADD:  { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: []
+            },
+            HWAT: { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: []
+            },
+            HWAW: { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: []
+            },
+            WSC:  { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: []
+            },
+            EXND: { name: undefined,
+                    current: { value: undefined, score: undefined, label: undefined },
+                    previous: { value: undefined, score: undefined, label: undefined },
+                    allValues: []
+            }
         },
-        preparedness: { value: undefined, label: undefined, title: undefined },
+        preparedness: { value: undefined, label: undefined, messages: [] },
         lastUpdate: { name: undefined, role: undefined, org: undefined, date: undefined },
         allGood: false,
         noneGood: true,
@@ -458,7 +595,11 @@ var washPlaceLast = function(req, res, next) {
         goodToKnowMessages: [],
         warningMessages: [],
         positiveMessages: [],
-        chart: {
+        barChart: {
+            categories: undefined,
+            series: undefined
+        },
+        seriesChart: {
             categories: undefined,
             series: undefined
         }
@@ -470,53 +611,15 @@ var washPlaceLast = function(req, res, next) {
 
     washOutput.placeID = place.id;
     washOutput.placeName = place.name;
-    washOutput.indicators = {
-        SAM:  {
-            'name': 'Malnutrition Rate (Stunting)',
-            'current': _.assign({ value: currentData.SAM}, evaluate_indicator('SAM', currentData.SAM)),
-            'last': _.assign({ value: previousData.SAM}, evaluate_indicator('SAM', previousData.SAM))
-        },
-        GAN:  {
-            name: 'Malnutrition Rate (Underweight)',
-            current: _.assign({ value: currentData.GAN}, evaluate_indicator('GAN', currentData.GAN)),
-            last: _.assign({ value: previousData.GAN}, evaluate_indicator('GAN', previousData.GAN))
-        },
-        ADD:  {
-            name: 'Acute Diarrhoeal Disease (Prevalence)',
-            current: _.assign({ value: currentData.ADD}, evaluate_indicator('ADD', currentData.ADD)),
-            last: _.assign({ value: previousData.ADD}, evaluate_indicator('ADD', previousData.ADD))
-        },
-        HWAT: {
-            name: 'Households without access to toilet',
-            current: _.assign({ value: currentData.HWAT}, evaluate_indicator('HWAT', currentData.HWAT)),
-            last: _.assign({ value: previousData.HWAT}, evaluate_indicator('HWAT', previousData.HWAT))
-        },
-        HWAW: {
-            name: 'Households without access to water',
-            current: _.assign({ value: currentData.HWAW}, evaluate_indicator('HWAW', currentData.HWAW)),
-            last: _.assign({ value: previousData.HWAW}, evaluate_indicator('HWAW', previousData.HWAW))
-        },
-        WSC:  {
-            name: '% of water sources positive with e.coli and other contaminants',
-            current: _.assign({ value: currentData.WSC}, evaluate_indicator('WSC', currentData.WSC)),
-            last: _.assign({ value: previousData.WSC}, evaluate_indicator('WSC', previousData.WSC))
-        },
-        EXND: {
-            name: 'Exposure to natural disasters (number of incidents reported)',
-            current: _.assign({ value: currentData.EXND}, evaluate_indicator('EXND', currentData.EXND)),
-            last: _.assign({ value: previousData.EXND}, evaluate_indicator('EXND', previousData.EXND))
-        }
-    };
+    var processIndicators = evaluate_indicators(washOutput.indicators, data.washs, currentData, previousData);
+    washOutput.indicators = processIndicators.indicators;
+    washOutput.allDates = processIndicators.allDates;
     washOutput.preparedness = calculate_preparedness(washOutput.indicators);
     washOutput.lastUpdate.name = currentData.name;
     washOutput.lastUpdate.role = currentData.role;
+    washOutput.lastUpdate.org = currentData.organization;
     washOutput.lastUpdate.email = currentData.email[0];
-    // Converting the date to Month/Year
-    var createdAt = new Date(data.createdAt);
-    createdAt = monthNames[createdAt.getMonth()] +
-                "/" +
-                createdAt.getFullYear();
-    washOutput.lastUpdate.date = currentData.createdAt;
+    washOutput.lastUpdate.date = dateToMonthYear(data.createdAt, "str");
     washOutput.allGood = washOutput.preparedness.value == 21 ? true : false;
     washOutput.noneGood = washCheckNoneGood(washOutput.indicators);
     washOutput.improveScoreMessage = washImproveMessage(washOutput.allGood, washOutput.noneGood, washOutput.indicators);
@@ -524,7 +627,13 @@ var washPlaceLast = function(req, res, next) {
     washOutput.warningMessages = washGetWarnings(washOutput.indicators);
     washOutput.positiveMessages = washGetPositives(washOutput.indicators);
 
-    washOutput.chart = washChartData(washOutput.indicators);
+    if(data.washs.length > 1) {
+        washOutput.seriesChart = washSeriesChartData(washOutput.indicators, washOutput.allDates);
+        washOutput.barChart = false;
+    } else {
+        washOutput.barChart = washBarChartData(washOutput.indicators);
+        washOutput.seriesChart = false;
+    }
 
     var mapper = function(item) {
       var result = {};

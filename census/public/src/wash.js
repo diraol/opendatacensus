@@ -15,7 +15,7 @@ var loadPlaceWashData = function(placeId) {
         }).appendTo('#positive_messages');
     }
 
-    var buildChart = function(chartData){
+    var buildBarChart = function(chartData){
 
         $('#chart1').highcharts({
             chart: {
@@ -25,7 +25,6 @@ var loadPlaceWashData = function(placeId) {
                 spacingLeft: 5,
                 spacingRight: 5,
                 width: '593'
-                //position: 'absolute'
             },
             title: {
                 text: 'See your performance on relative indicators'
@@ -41,14 +40,47 @@ var loadPlaceWashData = function(placeId) {
 
     }
 
+    var buildSeriesChart = function(chartData){
+
+        $('#chart1').highcharts({
+            chart: {
+                type: 'spline',
+                spacingBottom: 5,
+                spacingTop: 5,
+                spacingLeft: 5,
+                spacingRight: 5,
+                width: '593'
+            },
+            title: {
+                text: 'See your performance on relative indicators'
+            },
+            xAxis: {
+                categories: chartData.categories
+            },
+            plotOptions: {
+                series: {
+                    connectNulls: true
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: chartData.series
+        });
+
+    }
+
+
     var populateCard = function(data) {
         //First check if there is any data for the city
         if (data) {
             //If there is data, show the card with it
             $(".placeName").html(data.placeName);
 
-            //TODO: Change the 'Congratulations message'
-            $("#card_msg1_title").html(data.preparedness.title);
+            // Change the 'Congratulations message'
+            $("#card_msg1").html(data.preparedness.messages[0]);
+            $("#card_msg2").html(data.preparedness.messages[1]);
+            $("#card_msg3").html(data.preparedness.messages[2]);
 
             // Calculates and fill the field of resilience index
             $("#wash_score").html(data.preparedness.value);
@@ -98,7 +130,11 @@ var loadPlaceWashData = function(placeId) {
             }
 
             // Build  the chart...
-            buildChart(data.chart);
+            if (data.seriesChart) {
+                buildSeriesChart(data.seriesChart)
+            } else {
+                buildBarChart(data.barChart);
+            }
 
             // Person who updated the data
             $("#last_update_user .name").html(data.lastUpdate.name);
