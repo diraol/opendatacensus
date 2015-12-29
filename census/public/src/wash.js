@@ -216,8 +216,6 @@ $(document).ready(function(){
   //Load the card based on the url hash (#)
   if (window.location.hash) {
     var hashPlace = window.location.hash.substring(1).replace(/_/g," ");
-    console.log(hashPlace);
-    console.log(placesId[hashPlace]);
     //placesId is built on the header.html file by node
     loadPlaceWashData(placesId[hashPlace]);
   }

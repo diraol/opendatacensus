@@ -37,16 +37,6 @@ window.onload = function (){
 
 $(document).ready(function(){
 
-  //function $_GET() {
-    //var vars = {};
-    //var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      //vars[key] = value;
-    //});
-    //return vars;
-  //}
-
-  //var location = window.location.href.split("?")[0];
-
   // HEADER PLACE SEARCH AUTOCOMPLETE
     $('#place-select').autocomplete({
       source: places,
@@ -66,17 +56,5 @@ $(document).ready(function(){
 
     curtain.on('click', hideCard);
     close_card.on('click', hideCard);
-
-  //window.onclick = function(){
-    // if(card_visible) {
-    //   card_visible = false;
-    //   curtain.style.display = "none";
-    //   card_modal.style.display = "none";
-    // }else{
-    //   card_visible = true;
-    //   curtain.style.display = "block";
-    //   card_modal.style.display = "block";
-    // }
-  //}
 
 });
