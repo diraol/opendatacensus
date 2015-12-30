@@ -32,15 +32,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       comment: 'Datetime last update SAM'
     },
-    GAN: {
+    GAM: {
       type: DataTypes.INTEGER,
       allowNull: false,
       comment: ''
     },
-    lastUpdateGAN: {
+    lastUpdateGAM: {
       type: DataTypes.DATE,
       allowNull: true,
-      comment: 'Datetime last update GAN'
+      comment: 'Datetime last update GAM'
     },
     ADD: {
       type: DataTypes.INTEGER,

@@ -89,8 +89,8 @@ var loadPlaceWashData = function(placeId) {
             // Fill in the basic data (scores and labels)
             $("#SAM .value").html(data.indicators.SAM.current.value);
             $("#SAM .label").text(data.indicators.SAM.current.label);
-            $("#GAN .value").html(data.indicators.GAN.current.value);
-            $("#GAN .label").html(data.indicators.GAN.current.label);
+            $("#GAM .value").html(data.indicators.GAM.current.value);
+            $("#GAM .label").html(data.indicators.GAM.current.label);
             $("#ADD .value").html(data.indicators.ADD.current.value);
             $("#ADD .label").html(data.indicators.ADD.current.label);
             $("#HWAT .value").html(data.indicators.HWAT.current.value);

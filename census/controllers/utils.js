@@ -332,7 +332,7 @@ var washForCard = function(data) {
           AVERAGE: { min_value: 5, max_value: 15, score: 2 },
           GOOD: { min_value: 0, max_value: 5, score: 3 }
       },
-      GAN: {
+      GAM: {
           POOR: { min_value: 15, max_value: 100, score: 1 },
           AVERAGE: { min_value: 5, max_value: 15, score: 2 },
           GOOD: { min_value: 0, max_value: 5, score: 3 }
@@ -396,7 +396,7 @@ var washForCard = function(data) {
   var evaluate_indicators = function(indicators, washsData, currentData, previousData) {
       var allDates = [];
       var dateFields = ['lastUpdateSAM',
-                        'lastUpdateGAN',
+                        'lastUpdateGAM',
                         'lastUpdateADD',
                         'lastUpdateHWAT',
                         'lastUpdateHWAW',
@@ -421,10 +421,10 @@ var washForCard = function(data) {
       indicators.SAM.current = _.assign({ value: currentData.SAM}, evaluate_indicator('SAM', currentData.SAM));
       indicators.SAM.previous = _.assign({ value: previousData.SAM}, evaluate_indicator('SAM', previousData.SAM));
       indicators.SAM.allValues = _.cloneDeep( baseAllValues );
-      indicators.GAN.name = 'Malnutrition Rate (Underweight)';
-      indicators.GAN.current = _.assign({ value: currentData.GAN}, evaluate_indicator('GAN', currentData.GAN));
-      indicators.GAN.previous = _.assign({ value: previousData.GAN}, evaluate_indicator('GAN', previousData.GAN));
-      indicators.GAN.allValues = _.cloneDeep( baseAllValues );
+      indicators.GAM.name = 'Malnutrition Rate (Underweight)';
+      indicators.GAM.current = _.assign({ value: currentData.GAM}, evaluate_indicator('GAM', currentData.GAM));
+      indicators.GAM.previous = _.assign({ value: previousData.GAM}, evaluate_indicator('GAM', previousData.GAM));
+      indicators.GAM.allValues = _.cloneDeep( baseAllValues );
       indicators.ADD.name = 'Acute Diarrhoeal Disease (Prevalence)';
       indicators.ADD.current = _.assign({ value: currentData.ADD}, evaluate_indicator('ADD', currentData.ADD));
       indicators.ADD.previous = _.assign({ value: previousData.ADD}, evaluate_indicator('ADD', previousData.ADD));
@@ -452,9 +452,9 @@ var washForCard = function(data) {
           var date = data.lastUpdateSAM;
           var value = data.SAM ? data.SAM : undefined;
           if (date != undefined & value >= 0) indicators.SAM.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
-          date = data.lastUpdateGAN;
-          value = data.GAN ? data.GAN : undefined;
-          if (date != undefined & value >= 0) indicators.GAN.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
+          date = data.lastUpdateGAM;
+          value = data.GAM ? data.GAM : undefined;
+          if (date != undefined & value >= 0) indicators.GAM.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
           date = data.lastUpdateADD;
           value = data.ADD ? data.ADD : undefined;
           if (date != undefined & value >= 0) indicators.ADD.allValues[allDates.indexOf(dateToMonthYear(date, 'allDates'))] = value;
@@ -556,7 +556,7 @@ var washForCard = function(data) {
       }
       // Check 1, 2 and 3
       if (indicators.SAM.current.score == 1 &&
-          indicators.GAN.current.score == 1 &&
+          indicators.GAM.current.score == 1 &&
           indicators.ADD.current.score == 1 ) {
               messages.push("The combination of a high level of Severe Acute Malnutrition with a high level of Global Acute Malnutrition and a high prevalence of Acute Diarrhoeal Disease will put your city/province at risk of WASH-related outbreaks during future emergencies.");
       }
@@ -568,7 +568,7 @@ var washForCard = function(data) {
               messages.push("The combination of a high prevalence of Acute Diarrhoeal Disease with a high number of households without access to toilets, and a high percentage of water sources positive with e.coli and other contaminants and and a high exposure to natural disasters will put your city/province at high risk during future emergencies.");
       }
       // Check 2, 3, 4, 5 and 6
-      if (indicators.GAN.current.score == 1 &&
+      if (indicators.GAM.current.score == 1 &&
           indicators.ADD.current.score == 1 &&
           indicators.HWAT.current.score == 1 &&
           indicators.HWAW.current.score == 1 &&
@@ -694,7 +694,7 @@ var washForCard = function(data) {
                     allValues: [] // ordered list with n items,
                                     //n equals the max number of dates for all indicators
             },
-            GAN:  { name: undefined,
+            GAM:  { name: undefined,
                     current: { value: undefined, score: undefined, label: undefined },
                     previous: { value: undefined, score: undefined, label: undefined },
                     allValues: []
