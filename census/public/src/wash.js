@@ -155,6 +155,7 @@ var loadPlaceWashData = function(placeId) {
                         "https://plus.google.com/share?url=" + encodeURI(window.location.host + "/#"  + hash));
 
             // Updating the print CARD url
+            $("#print_card").off('click');
             $("#print_card").on('click', function(){
                 printPop(placeId);
             });
