@@ -154,6 +154,9 @@ var loadPlaceWashData = function(placeId) {
             $("#card_share a.gp").attr('href',
                         "https://plus.google.com/share?url=" + encodeURI(window.location.host + "/#"  + hash));
 
+            // Setting placeId on the update form
+            $("#updateData [name='place']").val(placeId);
+
             // Updating the print CARD url
             $("#print_card").off('click');
             $("#print_card").on('click', function(){

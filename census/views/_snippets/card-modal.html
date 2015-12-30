@@ -157,7 +157,11 @@
     <div id="issues">
       <div class="issue" id="issue_left">
         Is the data outdated?
-        <a class="button mt10">UPDATE THE DATA</a>
+        <form id="updateData" action="/wash/submit/" method="POST">
+          <input type="hidden" name="place" value=""/>
+          <input type="hidden" name="from" value="washCard"/>
+          <a class="button mt10" onClick="$('#updateData').submit()">UPDATE THE DATA</a>
+        </form>
       </div>
       <div class="issue" id="issue_right">
         Is there a problem with the data or the person who submitted it?
