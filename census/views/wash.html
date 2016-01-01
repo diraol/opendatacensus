@@ -91,12 +91,14 @@
     <label for="SAM" class="col-sm-5 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0" max="100">
+        <input name="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0" max="100"
+               value="{% if (formData and formData.SAM) %}{{ formData.SAM }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateSAM" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateSAM" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateSAM) %}{{ formData.lastUpdateSAM }}{% endif %}">
     </div>
   </div>
 
@@ -104,12 +106,14 @@
     <label for="GAM" class="col-sm-5 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="GAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0" max="100">
+        <input name="GAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0" max="100"
+               value="{% if (formData and formData.GAM) %}{{ formData.GAM }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateGAM" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateGAM" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateGAM) %}{{ formData.lastUpdateGAM }}{% endif %}">
     </div>
   </div>
 
@@ -117,12 +121,14 @@
     <label for="ADD" class="col-sm-5 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="ADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0" max="100">
+        <input name="ADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0" max="100"
+               value="{% if (formData and formData.ADD) %}{{ formData.ADD }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateADD" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateADD" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateADD) %}{{ formData.lastUpdateADD }}{% endif %}">
     </div>
   </div>
 
@@ -130,12 +136,14 @@
     <label for="HWAT" class="col-sm-5 control-label">Households without access to toilet</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="HWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0" max="100">
+        <input name="HWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0" max="100"
+               value="{% if (formData and formData.HWAT) %}{{ formData.HWAT }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateHWAT" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateHWAT" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateHWAT) %}{{ formData.lastUpdateHWAT }}{% endif %}">
     </div>
   </div>
 
@@ -143,12 +151,14 @@
     <label for="HWAW" class="col-sm-5 control-label">Households without access to water</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="HWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0" max="100">
+        <input name="HWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0" max="100"
+               value="{% if (formData and formData.HWAW) %}{{ formData.HWAW }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateHWAW" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateHWAW" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateHWAW) %}{{ formData.lastUpdateHWAW }}{% endif %}">
     </div>
   </div>
 
@@ -156,12 +166,14 @@
     <label for="WSC" class="col-sm-5 control-label">% of water sources positive with e.coli and other contaminants</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="WSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0" max="100">
+        <input name="WSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0" max="100"
+               value="{% if (formData and formData.WSC) %}{{ formData.WSC }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateWSC" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateWSC" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateWSC) %}{{ formData.lastUpdateWSC }}{% endif %}">
     </div>
   </div>
 
@@ -169,40 +181,46 @@
     <label for="EXND" class="col-sm-5 control-label">Exposure to natural disasters</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input name="EXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100">
+        <input name="EXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100"
+               value="{% if (formData and formData.EXND) %}{{ formData.EXND }}{% endif %}">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" name="lastUpdateEXND" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateEXND" placeholder="Last update of this indicator"
+             value="{% if (formData and formData.lastUpdateEXND) %}{{ formData.lastUpdateEXND }}{% endif %}">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputName" class="col-sm-5 control-label">Your Name</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="inputName" placeholder="Your Name">
+      <input type="text" class="form-control" name="inputName" placeholder="Your Name"
+             value="{% if (formData and formData.inputName) %}{{ formData.inputName }}{% endif %}">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputOrganization" class="col-sm-5 control-label">Your Organization</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="inputOrganization" placeholder="Your Organization">
+      <input type="text" class="form-control" name="inputOrganization" placeholder="Your Organization"
+             value="{% if (formData and formData.inputOrganization) %}{{ formData.inputOrganization }}{% endif %}">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputRole" class="col-sm-5 control-label">Your role</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" name="inputRole" placeholder="Your Role">
+      <input type="text" class="form-control" name="inputRole" placeholder="Your Role"
+             value="{% if (formData and formData.inputRole) %}{{ formData.inputRole }}{% endif %}">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputEmail" class="col-sm-5 control-label">Your E-mail</label>
     <div class="col-sm-7">
-      <input type="email" class="form-control" name="inputEmail" placeholder="Email">
+      <input type="email" class="form-control" name="inputEmail" placeholder="Email"
+             value="{% if (formData and formData.inputEmail) %}{{ formData.inputEmail }}{% endif %}">
     </div>
   </div>
 

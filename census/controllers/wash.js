@@ -48,8 +48,10 @@ var submitWashPostHandler = function(req, res, data) {
 
       res.statusCode = 400;
       var settingName = 'wash_submit_page';
+
       res.render('wash.html', {
         places: modelUtils.translateSet(req, data.places),
+        placeId: req.body.place,
         errors: errors,
         formData: req.body
       });
