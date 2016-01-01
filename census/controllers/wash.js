@@ -7,30 +7,21 @@ var uuid = require('node-uuid');
 var utils = require('./utils');
 var modelUtils = require('../models').utils;
 
-var submitGetHandler = function(req, res, data) {
-  // var addDetails = _.find(data.questions, function(q) {
-  //   return q.id === 'details';
-  // });
-  //var current = data.currentState.match;
+var submitWashGetHandler = function(req, res, data) {
 
   var settingName = 'wash_submit_page';
   var submitInstructions = req.params.site.settings[settingName];
   res.render('wash.html', {
-    // submitInstructions: submitInstructions ? marked(submitInstructions) : '',
     places: modelUtils.translateSet(req, data.places),
-    //current: current,
-    //datasets: modelUtils.translateSet(req, data.datasets)
-    //questions: data.questions,
-    //addDetails: addDetails,
-    //year: req.app.get('year')
+    submittedMessage: req.query.sm === 't'
   });
 };
 
-var submitPostHandler = function(req, res, data) {
+var submitWashPostHandler = function(req, res, data) {
   if (req.body.from && req.body.from == "washCard") {
     // PreLoad the data for the given place
     var currentPlace = req.body.place;
-    // Retrieve data from database last update
+    delete req.body.from;
 
     var settingName = 'wash_submit_page';
     res.render('wash.html', {
@@ -47,25 +38,18 @@ var submitPostHandler = function(req, res, data) {
     var anonymous = true;
     var submitterId = utils.ANONYMOUS_USER_ID;
     var query;
-    var current = data.currentState.match;
+    var current;
+    if (data.washs[0]) current = data.washs[0].dataValues;
 
-    errors = utils.validateData(req);
+    errors = utils.validateWashData(req);
 
     if (errors) {
-      var addDetails = _.find(data.questions, function(q) {
-        return q.id === 'details';
-      });
+      console.log(errors);
 
       res.statusCode = 400;
       var settingName = 'wash_submit_page';
       res.render('wash.html', {
-        //submitInstructions: req.params.site.settings[settingName],
         places: modelUtils.translateSet(req, data.places),
-        //datasets: modelUtils.translateSet(req, data.datasets),
-        //questions: data.questions,
-        //addDetails: addDetails,
-        //year: req.app.get('year'),
-        //current: current,
         errors: errors,
         formData: req.body
       });
@@ -81,10 +65,26 @@ var submitPostHandler = function(req, res, data) {
         objToSave.id = uuid.v4();
         objToSave.site = req.params.site.id;
         objToSave.place = req.body.place;
-        //objToSave.dataset = req.body.dataset;
-        //objToSave.details = req.body.details;
-        //objToSave.year = req.app.get('year');
-        objToSave.submitterId = submitterId;
+        objToSave.SAM = req.body.SAM ? req.body.SAM : undefined;
+        objToSave.lastUpdateSAM = req.body.lastUpdateSAM ? req.body.lastUpdateSAM : undefined;
+        objToSave.GAM = req.body.GAM ? req.body.GAM : undefined;
+        objToSave.lastUpdateGAM = req.body.lastUpdateGAM ? req.body.lastUpdateGAM : undefined;
+        objToSave.ADD = req.body.ADD ? req.body.ADD : undefined;
+        objToSave.lastUpdateADD = req.body.lastUpdateADD ? req.body.lastUpdateADD : undefined;
+        objToSave.HWAT = req.body.HWAT ? req.body.HWAT : undefined;
+        objToSave.lastUpdateHWAT = req.body.lastUpdateHWAT ? req.body.lastUpdateHWAT : undefined;
+        objToSave.HWAW = req.body.HWAW ? req.body.HWAW : undefined;
+        objToSave.lastUpdateHWAW = req.body.lastUpdateHWAW ? req.body.lastUpdateHWAW : undefined;
+        objToSave.WSC = req.body.WSC ? req.body.WSC : undefined;
+        objToSave.lastUpdateWSC = req.body.lastUpdateWSC ? req.body.lastUpdateWSC : undefined;
+        objToSave.EXND = req.body.EXND ? req.body.EXND : undefined;
+        objToSave.lastUpdateEXND = req.body.lastUpdateEXND ? req.body.lastUpdateEXND : undefined;
+        objToSave.name = req.body.inputName;
+        objToSave.organization = req.body.inputOrganization;
+        objToSave.role = req.body.inputRole;
+        objToSave.email = req.body.inputEmail;
+        objToSave.createdAt = Date.now();
+        objToSave.updatedAt = Date.now();
 
         saveStrategy = 'create';
       } else if (current.isCurrent) {
@@ -93,12 +93,6 @@ var submitPostHandler = function(req, res, data) {
         objToSave.id = uuid.v4();
         objToSave.site = req.params.site.id;
         objToSave.place = req.body.place;
-        objToSave.dataset = req.body.dataset;
-        objToSave.submissionNotes = req.body.details;
-        objToSave.details = req.body.details;
-        objToSave.year = req.app.get('year');
-        objToSave.isCurrent = false;
-        objToSave.submitterId = submitterId;
 
         saveStrategy = 'create';
       } else {
@@ -111,16 +105,8 @@ var submitPostHandler = function(req, res, data) {
         saveStrategy = 'update';
       }
 
-      answers = req.body;
-      delete answers.place;
-      delete answers.dataset;
-      delete answers.year;
-      delete answers.details;
-      delete answers.anonymous;
-      objToSave.answers = utils.normalizedAnswers(answers);
-
       if (saveStrategy === 'create') {
-        query = req.app.get('models').Entry.create(objToSave);
+        query = req.app.get('models').Wash.create(objToSave);
       } else if (saveStrategy === 'update') {
         query = objToSave.save();
       }
@@ -135,175 +121,44 @@ var submitPostHandler = function(req, res, data) {
           msg = 'There was an error!';
           req.flash('error', msg);
         } else {
-          msgTmpl = 'Thanks for your submission.REVIEWED You can check ' +
-            'back here any time to see the current status.';
+          msgTmpl = 'Thanks for your submission.';
 
-          if (!result.isCurrent) {
-            msg = msgTmpl.replace('REVIEWED',
-              ' It will now be reviewed by the editors.');
-            submissionPath = '/submission/' + result.id;
-            redirectPath = submissionPath;
-          } else {
-            msg = msgTmpl.replace('REVIEWED', '');
-            submissionPath = '/submission/' + result.id;
-            redirectPath = '/place/' + result.place;
-          }
-
-          req.flash('info', msg);
+          redirectPath = '/wash/submit/?sm=t';
         }
-        res.redirect(redirectPath + '?post_submission=' + submissionPath);
+        res.redirect(redirectPath);
       }).catch(console.trace.bind(console));
     }
   }
 };
 
-// var pendingEntry = function(req, res) {
-//   var dataOptions;
-//   var entryQueryParams = {
-//     where: {id: req.params.id},
-//     include: [
-//       {model: req.app.get('models').User, as: 'Submitter'},
-//       {model: req.app.get('models').User, as: 'Reviewer'}
-//     ]
-//   };
-//
-//   req.app.get('models').Entry.findOne(entryQueryParams)
-//     .then(function(result) {
-//       if (!result) {
-//         res.status(404).send('There is no submission with id ' + req.params.id);
-//         return;
-//       }
-//       dataOptions = _.merge(modelUtils.getDataOptions(req), {
-//         place: result.place,
-//         dataset: result.dataset,
-//         ynQuestions: false,
-//         with: {
-//           Entry: false
-//         }
-//       });
-//       var settingName = 'disqus_shortname';
-//       modelUtils.getData(dataOptions)
-//         .then(function(data) {
-//           data.current = result;
-//           data.reviewers = utils.getReviewers(req, data);
-//           data.canReview = utils.canReview(data.reviewers, req.user);
-//           data[settingName] = config.get('disqus_shortname');
-//           data.reviewClosed = result.reviewResult ||
-//             (result.year !== req.app.get('year'));
-//           data.reviewInstructions = config.get('review_page');
-//           data.questions = utils.getFormQuestions(req, data.questions);
-//           res.render('review.html', data);
-//         }).catch(console.trace.bind(console));
-//     });
-// };
+var submitWash = function(req, res) {
+  var dataOptions = _.merge(
+    modelUtils.getDataOptions(req),
+    {
+      cascade: false,
+      ynQuestions: false,
+      with: {
+          Entry: false,
+          Dataset: false,
+          Question: false,
+          Faq: false,
+          Places: false,
+          Wash: true
+      }
+    }
+  );
 
-var submit = function(req, res) {
-  var dataOptions = _.merge(modelUtils.getDataOptions(req), {
-    Places: true
-  });
   modelUtils.getData(dataOptions)
     .then(function(data) {
-      //data.questions = utils.getFormQuestions(req, data.questions);
-      //data.currentState = utils.getCurrentState(data, req);
       if (req.method === 'POST') {
-        submitPostHandler(req, res, data);
+        submitWashPostHandler(req, res, data);
       } else {
-        submitGetHandler(req, res, data);
+        submitWashGetHandler(req, res, data);
       }
     }).catch(console.trace.bind(console));
 };
 
 
-
-/*
-var reviewPost = function(req, res) {
-  var acceptSubmission = req.body.submit === 'Publish';
-  var answers;
-
-  req.app.get('models').Entry.findById(req.params.id).then(function(result) {
-    if (!result) {
-      res.send(400, 'There is no matching entry.');
-      return;
-    }
-
-    var dataOptions = _.merge(modelUtils.getDataOptions(req), {
-      place: result.place,
-      dataset: result.dataset,
-      cascade: true,
-      with: {
-        Question: false
-      }
-    });
-    modelUtils.getData(dataOptions)
-      .then(function(data) {
-        data.reviewers = utils.getReviewers(req, data);
-        if (!utils.canReview(data.reviewers, req.user)) {
-          res.status(403).send('You are not allowed to review this entry');
-          return;
-        }
-
-        var ex = _.first(data.entries);
-        result.reviewerId = req.user.id;
-        result.reviewed = true;
-        result.reviewComments = req.body.reviewcomments;
-        result.details = req.body.details;
-
-        answers = req.body;
-        delete answers.place;
-        delete answers.dataset;
-        delete answers.year;
-        delete answers.anonymous;
-        delete answers.reviewcomments;
-        delete answers.submit;
-        delete answers.details;
-        result.answers = utils.normalizedAnswers(answers);
-
-        if (acceptSubmission) {
-          result.isCurrent = true;
-          result.reviewResult = true;
-        } else {
-          result.reviewResult = false;
-        }
-
-        result.save().then(function() {
-          if (ex && ex.year === result.year) {
-            if (acceptSubmission) {
-              ex.isCurrent = false;
-            }
-
-            ex.save().then(function() {
-              var msg;
-              if (acceptSubmission) {
-                msg = 'Submission processed and entered into the census.';
-                req.flash('info', msg);
-              } else {
-                msg = 'Submission marked as rejected.';
-                req.flash('info', msg);
-              }
-              res.redirect('/');
-            }).catch(console.trace.bind(console));
-          } else {
-            var msg;
-            if (acceptSubmission) {
-              msg = 'Submission processed and entered into the census.';
-              req.flash('info', msg);
-            } else {
-              msg = 'Submission marked as rejected.';
-              req.flash('info', msg);
-            }
-            res.redirect('/');
-          }
-        }).catch(console.trace.bind(console));
-      }).catch(console.trace.bind(console));
-  }).catch(console.trace.bind(console));
-};
-
-*/
-
-
-
 module.exports = {
-  submit: submit,
-  //pendingEntry: pendingEntry,
-  //reviewPost: reviewPost
+  submitWash: submitWash,
 };

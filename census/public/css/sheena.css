@@ -863,4 +863,15 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.alert-error {
+  font-size: 14px;
+  color: red;
+}
+
+.alert-thanks {
+  font-size: 18px;
+  text-align: center;
+  color: green;
+  font-weight: bold;
+}
 /**/

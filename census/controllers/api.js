@@ -203,7 +203,7 @@ var washPlaceLast = function(req, res, next) {
       'SAM',
       'lastUpdateSAM',
       'GAM',
-      'lasUpdateGAM',
+      'lastUpdateGAM',
       'ADD',
       'lastUpdateADD',
       'HWAT',

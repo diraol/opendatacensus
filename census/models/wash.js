@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     SAM: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateSAM: {
@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     GAM: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateGAM: {
@@ -54,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     HWAT: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateHWAT: {
@@ -64,7 +64,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     HWAW: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateHWAW: {
@@ -74,7 +74,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     WSC: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateWSC: {
@@ -84,15 +84,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     EXND: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateEXND: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,

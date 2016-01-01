@@ -160,6 +160,115 @@ var validateData = function(req, mappedErrors) {
   return errors;
 };
 
+var validateWashData = function(req, mappedErrors) {
+    var errors;
+    var mapped = mappedErrors || false;
+
+    req.checkBody('place',              'Can not be empty').notEmpty();
+    req.checkBody('inputName',          'Can not be empty').notEmpty();
+    req.checkBody('inputOrganization',  'Can not be empty').notEmpty();
+    req.checkBody('inputRole',          'Can not be empty').notEmpty();
+    req.checkBody('inputEmail',         'Can not be empty or incorrect Email format.').isEmail();
+    req.checkBody('lastUpdateSAM', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('lastUpdateGAM', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('lastUpdateADD', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('lastUpdateEXND', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+
+    var tests = {
+        'place': {
+            notEmpty: true,
+            errorMessage: 'You must select a Place'
+        },
+        'SAM': {
+          optional: true,
+          inPercentageRange: true,
+          errorMessage: 'Severe Acute Malnutrition value incorrect'
+        },
+        'GAM': {
+          optional: true,
+          inPercentageRange: true,
+          errorMessage: 'Global Acute Malnutrition value incorrect'
+        },
+        'ADD': {
+          optional: true,
+          inPercentageRange: true,
+          errorMessage: 'Acute Diarrhoeal Disease value incorrect'
+        },
+        'HWAT': {
+          optional: true,
+          inPercentageRange: true,
+          errorMessage: 'Households without access to toilet value incorrect'
+        },
+        'HWAW': {
+          optional: true,
+          inPercentageRange: true,
+          errorMessage: 'Households without access to water value incorrect'
+        },
+        'EXND': {
+          optional: true,
+          inPercentageRange: true,
+          errorMessage: '% of water sources positive with e.coli and other contaminants value incorrect'
+        },
+        'lastUpdateSAM': {
+          optional: true,
+          isDate: true,
+          errorMessage: 'You must set Last Update for Severe Acute Malnutrition, use the format "year-month" (eg.: 2015-12)'
+        },
+        'lastUpdateGAM': {
+          optional: true,
+          isDate: true,
+          errorMessage: 'You must set Last Update for Global Acute Malnutrition, use the format "year-month" (eg.: 2015-12)'
+        },
+        'lastUpdateADD': {
+          optional: true,
+          isDate: true,
+          errorMessage: 'You must set Last Update for Acute Diarrhoeal Disease, use the format "year-month" (eg.: 2015-12)'
+        },
+        'lastUpdateHWAT': {
+          optional: true,
+          isDate: true,
+          errorMessage: 'You must set Last Update for Households without access to toilet, use the format "year-month" (eg.: 2015-12)'
+        },
+        'lastUpdateHWAW': {
+          optional: true,
+          isDate: true,
+          errorMessage: 'You must set Last Update for Households without access to water, use the format "year-month" (eg.: 2015-12)'
+        },
+        'lastUpdateEXND': {
+          optional: true,
+          isDate: true,
+          errorMessage: 'You must set Last Update for % of water sources positive with e.coli and other contaminants, use the format "year-month" (eg.: 2015-12)'
+        },
+        'inputName': {
+          notEmpty: true,
+          message: 'You must set your Name'
+        },
+        'inputEmail': {
+          notEmpty: true,
+          isEmail: {
+            errorMessage: 'Invalid Email'
+          },
+          message: 'You must set your email'
+        },
+        'inputOrganization': {
+          notEmpty: true,
+          message: 'You must set your organization'
+        },
+        'inputRole': {
+          notEmpty: true,
+          message: 'You must set your role in your organization'
+        }
+    }
+    //req.checkBody(tests);
+
+    errors = req.validationErrors(mapped)
+
+    return errors;
+}
+
 var splitFields = function(data) {
   return _.each(data.trim().split(FIELD_SPLITTER), function(str) {
     str.trim();
@@ -743,9 +852,12 @@ var washForCard = function(data) {
         }
     }
 
-    var place = data.place.dataValues,
-        currentData = data.washs[0].dataValues,
-        previousData = data.washs[1].dataValues;
+    var place = data.place.dataValues;
+    var currentData = data.washs[0].dataValues;
+    var previousData = {};
+    if (data.washs.length > 1) {
+      previousData = data.washs[1].dataValues;
+    }
 
     washOutput.placeID = place.id;
     washOutput.placeName = place.name;
@@ -759,7 +871,7 @@ var washForCard = function(data) {
     washOutput.lastUpdate.role = currentData.role;
     washOutput.lastUpdate.org = currentData.organization;
     washOutput.lastUpdate.email = currentData.email[0];
-    washOutput.lastUpdate.date = dateToMonthYear(data.createdAt, "str");
+    washOutput.lastUpdate.date = dateToMonthYear(currentData.createdAt, "str");
     washOutput.allGood = washOutput.preparedness.value == 21 ? true : false;
     washOutput.noneGood = washCheckNoneGood(washOutput.indicators);
     washOutput.improveScoreMessage = washImproveMessage(washOutput.allGood, washOutput.noneGood, washOutput.indicators);
@@ -783,6 +895,7 @@ var washForCard = function(data) {
 
 module.exports = {
   validateData: validateData,
+  validateWashData: validateWashData,
   placeMapper: placeMapper,
   datasetMapper: datasetMapper,
   questionMapper: questionMapper,

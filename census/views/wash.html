@@ -34,8 +34,13 @@
   {{ submitInstructions }}
 </div>
 {% endif %}
+{% if submittedMessage %}
+<div class="alert alert-thanks">
+  Thanks for submitting data!
+</div>
+{% endif %}
 
-<form action="" method="POST" class="form submission-create" autocomplete="on">
+<form id="submitWash" action="" method="POST" class="form submission-create" autocomplete="on">
 
   <!--
       Name of the city province - text
@@ -59,7 +64,7 @@
   <fieldset>
 
     <div class="form-group">
-      <label for="inputXXX" class="col-sm-8 control-label">{{gettext("Name of the city province")}}</label>
+      <label for="place" class="col-sm-8 control-label">{{gettext("Name of the city province")}}</label>
       <div class="col-sm-4">
         <div class="input-group">
           <select name="place" required autocomplete="off">
@@ -83,173 +88,128 @@
   </div>
 
   <div class="form-group">
-    <label for="inputSAM" class="col-sm-5 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
+    <label for="SAM" class="col-sm-5 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0" max="100">
+        <input name="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="inputSevereAcuteMalnutritionLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateSAM" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputGAM" class="col-sm-5 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
+    <label for="GAM" class="col-sm-5 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputGAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0" max="100">
+        <input name="GAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="GAMLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateGAM" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputADD" class="col-sm-5 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
+    <label for="ADD" class="col-sm-5 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0" max="100">
+        <input name="ADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="ADDLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateADD" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputHWAT" class="col-sm-5 control-label">Households without access to toilet</label>
+    <label for="HWAT" class="col-sm-5 control-label">Households without access to toilet</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputHWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0" max="100">
+        <input name="HWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="HWATLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateHWAT" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputHWAW" class="col-sm-5 control-label">Households without access to water</label>
+    <label for="HWAW" class="col-sm-5 control-label">Households without access to water</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputHWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0" max="100">
+        <input name="HWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="HWAWLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateHWAW" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputWSC" class="col-sm-5 control-label">% of water sources positive with e.coli and other contaminants</label>
+    <label for="WSC" class="col-sm-5 control-label">% of water sources positive with e.coli and other contaminants</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputWSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0" max="100">
+        <input name="WSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0" max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="WSCLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateWSC" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="inputEXND" class="col-sm-5 control-label">Exposure to natural disasters</label>
+    <label for="EXND" class="col-sm-5 control-label">Exposure to natural disasters</label>
     <div class="col-sm-3">
       <div class="input-group">
-        <input id="inputEXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100">
+        <input name="EXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100">
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
-      <input type="date" class="form-control" id="inputExposureNaturalDisastersLastUpdate" placeholder="Last update of this indicator">
+      <input type="date" class="form-control" name="lastUpdateEXND" placeholder="Last update of this indicator">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputName" class="col-sm-5 control-label">Your Name</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" id="inputName" placeholder="Your Name">
+      <input type="text" class="form-control" name="inputName" placeholder="Your Name">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputOrganization" class="col-sm-5 control-label">Your Organization</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" id="inputOrganization" placeholder="Your Organization">
+      <input type="text" class="form-control" name="inputOrganization" placeholder="Your Organization">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputRole" class="col-sm-5 control-label">Your role</label>
     <div class="col-sm-7">
-      <input type="text" class="form-control" id="inputRole" placeholder="Your Role">
+      <input type="text" class="form-control" name="inputRole" placeholder="Your Role">
     </div>
   </div>
 
   <div class="form-group">
     <label for="inputEmail" class="col-sm-5 control-label">Your E-mail</label>
     <div class="col-sm-7">
-      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      <input type="email" class="form-control" name="inputEmail" placeholder="Email">
     </div>
   </div>
 
-<!--
-    <div class="row">
-      <div class="col-xs-4">
-      </div>
-      <div class="col-xs-4">
-        <label>{{gettext("Dataset")}}<br/>
-          <select name="dataset" id="dataset-select" required>
-            <option value="">{{gettext("Please select")}}</option>
-            {% for dataset in datasets %}
-            <option value="{{dataset.id}}" {% if (formData and dataset.id == formData.dataset) or (current and dataset.id == current.dataset) %}selected="true"{% endif %}>{{dataset.name}}</option>
-            {% endfor %}
-          </select>
-
-          {% for dataset in datasets %}
-          <div class="dataset-description js-dataset-{{dataset.id}}" style="display: none;">
-            <span class="help-block">
-              {{dataset.description}}
-            </span>
-          </div>
-          {% endfor %}
-        </label>
-      </div>
-      <div class="col-xs-4">
-        <label>{{ format("%(sitename)s Year", { sitename: site.settings.title_short }) }}<br/>
-          <strong>{{ year }}</strong>
-        </label>
-      </div>
-    </div>
   </fieldset>
 
-  <div class="row"><p>&nbsp;</p></div>
-
-  <div class="row">
-    <div class="col-xs-12 alert alert-warning">
-    <h4>{{ currentUser.firstName }}, {{ gettext('would you prefer your submission to remain anonymous?') }}</h4>
-    <span class="help-block">{{gettext('By default, submissions to the census are credited to the submitter. If you would prefer to remain anonymous, please indicate so by checking the box.')}}</span>
-    <input type="radio" title="{{ gettext ('Anonymous submission')}}" name="anonymous" value="false" checked /> {{ gettext('Identify me as the submitter') }}
-    <br />
-    <input type="radio" title="{{ gettext ('Anonymous submission')}}" name="anonymous" value="true" /> {{ gettext('Keep my submission anonymous') }}
-    </div>
-  </div>
-
-  -->
-
-</fieldset>
-
-<div class="row"><p>&nbsp;</p></div>
   <div class="controls" style="margin-top: 30px;">
-    <button type="submit" class="btn btn-lg btn-success" data-loading-text="Saving ..." style="float: left; margin-right: 30px;">{{gettext("Submit")}}</button>
+    <button type="submit" onClick="javascript:$('#submitWash').submit()" class="btn btn-lg btn-success" data-loading-text="Saving ..." style="float: left; margin-right: 30px;">{{gettext("Submit")}}</button>
     <p class="help-block">{{gettext("By submitting material to the index you agreeing to <a href=\"http://okfn.org/terms-of-use/\">terms of use</a> and also to license your contribution (to the extent there are any rights in it!) under the <a href=\"http://opendatacommons.org/licenses/pddl/1.0/\">Open Data Commons Public Domain Dedication and License</a>.")}}</p>
   </div>
 
