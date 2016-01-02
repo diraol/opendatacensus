@@ -31,3 +31,6 @@ var buildSeriesChart = function(chartData){
 
 }
 
+$(document).ready(function(){
+    window.print();
+})

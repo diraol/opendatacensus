@@ -194,7 +194,6 @@ var printPop = function(placeID) {
     var strWindowFeatures = "menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,personalbar=no";
     printWindow = window.open('/print/wash/' + placeID ,'',strWindowFeatures);
     printWindow.focus();
-    printWindow.print();
 }
 
 $(document).ready(function(){
