@@ -18,7 +18,13 @@
 
   <div id="footer_links">
     <a href="http://opendatacommons.org/licenses/pddl/1.0">Data License (Public Domain)</a> |
-    <a href="https://github.com/okfn/opendatacensus/">Source code</a>
+    <a href="https://github.com/okfn/opendatacensus/">Source code</a> | 
+    {% if currentUser %}
+      {{format("Logged in as %(name)s.", { name: currentUser.firstName })}}
+      <a href="{{ logoutUrl }}">{{gettext("Log out")}}</a>
+    {% else %}
+      <a href="{{ loginUrl }}">{{gettext("Login")}}</a>
+    {% endif %}
   </div>
 
   {% include '_snippets/card-modal.html' %}
