@@ -41,8 +41,6 @@ function start() {
     l[i] = e.trim(); return;
   });
 
-  nunjucksGlobals.currentTime = Date.now();
-
   var subdomainOptions = {
     base: config.get('base_domain')
   };
@@ -74,6 +72,8 @@ function start() {
     autoescape: false,
     express: app
   });
+
+  env.addGlobal('currentTime', Date.now());
 
   _.each(templateFilters, function(value, key, list) {
     env.addFilter(key, value);
