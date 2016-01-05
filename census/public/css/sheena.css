@@ -365,11 +365,6 @@ body.about #content ul li strong{
     padding: 30px;
 }
 
-#print_card{
-    font-size: 12px;
-    line-height: 18px;
-    padding: 50px;
-}
 #print_card #card_title{
     font-size: 26px;
     line-height: 30px;
@@ -499,7 +494,10 @@ input, textarea{
     font-size: 18px;
     text-align: center;
 }
-
+#warn_messages .card_msg_tx,
+#positive_messages .card_msg_tx{
+  text-align: left;
+}
 .mobile .card_msg_tx{
     font-size: 14px;
 }
@@ -595,8 +593,12 @@ hr{
 #chart{
     width: 100%;
     /*height: 150px;*/
-    background-color: #eee;
+    /*background-color: #eee;*/
     margin-bottom: 40px;
+    padding-right: auto;
+    padding-left: auto;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
     /*padding-top: 90px;*/
     font-size: 40px;
@@ -652,6 +654,7 @@ hr{
 #card_share{
     width: 100%;
     text-align: center;
+    padding-bottom: 20px;
 }
 
 .share_bt{

@@ -11,7 +11,7 @@ var buildSeriesChart = function(chartData){
             animation: false
         },
         title: {
-            text: 'See your performance on relative indicators'
+            text: 'See your indicators'
         },
         xAxis: {
             categories: chartData.categories
@@ -20,7 +20,6 @@ var buildSeriesChart = function(chartData){
             series: {
                 connectNulls: true,
                 animation: false
-
             },
         },
         credits: {

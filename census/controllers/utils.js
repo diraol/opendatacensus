@@ -696,7 +696,7 @@ var washForCard = function(data) {
           var current = indicators[indicator].current,
               previous = indicators[indicator].previous;
           if (current.value > previous.value) {
-              var message = "The <span class='contrast' id='wash_score'>" + indicators[indicator].name +
+              var message = "The <span class='contrast'>" + indicators[indicator].name +
                             "</span> has increased since the last update.";
               messages.push(message);
           }
@@ -717,7 +717,7 @@ var washForCard = function(data) {
           var current = indicators[indicator].current,
               previous = indicators[indicator].previous;
           if (current.value < previous.value) {
-              var message = "The <span class='contrast' id='wash_score'>" + indicators[indicator].name +
+              var message = "The <span class='contrast'>" + indicators[indicator].name +
                             "</span> has decreased since the last update.";
               messages.push(message);
           }
