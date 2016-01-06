@@ -67,6 +67,9 @@ function start() {
   app.set('authDomain', config.get('auth_subdomain'));
   app.set('systemDomain', config.get('system_subdomain'));
   app.set('urlTmpl', config.get('urlTmpl'));
+  if (process.env.GOOGLE_SITE_VERIFICATION) {
+    app.set('googleSiteVerification', process.env.GOOGLE_SITE_VERIFICATION);
+  }
 
   env = nunjucks.configure('census/views', {
     autoescape: false,
