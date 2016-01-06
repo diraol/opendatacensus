@@ -78,6 +78,9 @@ function start() {
 
   env.addGlobal('currentTime', Date.now());
 
+  if (process.env.GOOGLE_SITE_VERIFICATION) {
+    env.addGlobal('googleSiteVerification', process.env.GOOGLE_SITE_VERIFICATION);
+  }
   _.each(templateFilters, function(value, key, list) {
     env.addFilter(key, value);
   });
