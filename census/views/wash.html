@@ -23,7 +23,7 @@
     </p>
     {% for error in errors %}
     <ul>
-        <li>{{ error.param }}: {{ error.msg }} {% if error.value %}(Current is '{{ error.value }}'){% endif %}</li>
+        <li>{{ error.msg }} {% if error.value %}(Current is '{{ error.value }}'){% endif %}</li>
     </ul>
     {% endfor %}
 </div>
@@ -64,8 +64,8 @@
   <fieldset>
 
     <div class="form-group">
-      <label for="place" class="col-sm-8 control-label">{{gettext("Name of the city province")}}</label>
-      <div class="col-sm-4">
+      <label for="place" class="col-sm-7 control-label">{{gettext("Name of the city province")}}</label>
+      <div class="col-sm-5">
         <div class="input-group">
           <select name="place" required autocomplete="off">
             <option disabled>{{gettext("Please select")}}</option>
@@ -84,111 +84,133 @@
     </div>
 
   <div class="row">
-    <label class="col-sm-4 col-sm-offset-8 conntrol-label">Last update of the indicator</label>
+    <label class="col-sm-4 col-sm-offset-7 control-label">Last update of the indicator</label>
+    <label class="col-sm-1 control-label">No Data</label>
   </div>
 
   <div class="form-group">
     <label for="SAM" class="col-sm-5 control-label">Severe Acute Malnutrition (Under 5 Rate)</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="SAM" type="number" class="form-control decimal" aria-label="Severe Acute Malnutrition (Under 5 Rate)" min="0" max="100"
-               value="{% if (formData and formData.SAM) %}{{ formData.SAM }}{% endif %}">
+               value="{% if (formData and formData.SAM) %}{{ formData.SAM }}{% endif %}" {% if (formData and formData.nullSAM) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateSAM" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateSAM) %}{{ formData.lastUpdateSAM }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateSAM) %}{{ formData.lastUpdateSAM }}{% endif %}" {% if (formData and formData.nullSAM) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1">
+      <input type='checkbox' {% if (formData and formData.nullSAM) %}checked{% endif %} class="form-control" name='nullSAM' onclick='disableInput(this)' data-target='SAM'/>
     </div>
   </div>
 
   <div class="form-group">
     <label for="GAM" class="col-sm-5 control-label">Global Acute Malnutrition (Under 5 Rate)</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="GAM" type="number" class="form-control decimal" aria-label="Global Acute Malnutrition (Under 5 Rate)" min="0" max="100"
-               value="{% if (formData and formData.GAM) %}{{ formData.GAM }}{% endif %}">
+               value="{% if (formData and formData.GAM) %}{{ formData.GAM }}{% endif %}" {% if (formData and formData.nullGAM) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateGAM" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateGAM) %}{{ formData.lastUpdateGAM }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateGAM) %}{{ formData.lastUpdateGAM }}{% endif %}" {% if (formData and formData.nullGAM) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1 text-center">
+      <input type='checkbox' {% if (formData and formData.nullGAM) %}checked{% endif %} class="form-control" name='nullGAM' onclick='disableInput(this)' data-target='GAM'/>
     </div>
   </div>
 
   <div class="form-group">
     <label for="ADD" class="col-sm-5 control-label">Acute Diarrhoeal Disease (Prevalence)</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="ADD" type="number" class="form-control decimal" aria-label="Acute Diarrhoeal Disease (Prevalence)" min="0" max="100"
-               value="{% if (formData and formData.ADD) %}{{ formData.ADD }}{% endif %}">
+               value="{% if (formData and formData.ADD) %}{{ formData.ADD }}{% endif %}" {% if (formData and formData.nullADD) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateADD" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateADD) %}{{ formData.lastUpdateADD }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateADD) %}{{ formData.lastUpdateADD }}{% endif %}" {% if (formData and formData.nullADD) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1">
+      <input type='checkbox' {% if (formData and formData.nullADD) %}checked{% endif %} class="form-control" name='nullADD' onclick='disableInput(this)' data-target='ADD'/>
     </div>
   </div>
 
   <div class="form-group">
     <label for="HWAT" class="col-sm-5 control-label">Households without access to toilet</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="HWAT" type="number" class="form-control decimal" aria-label="Households without access to toilet" min="0" max="100"
-               value="{% if (formData and formData.HWAT) %}{{ formData.HWAT }}{% endif %}">
+               value="{% if (formData and formData.HWAT) %}{{ formData.HWAT }}{% endif %}" {% if (formData and formData.nullHWAT) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateHWAT" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateHWAT) %}{{ formData.lastUpdateHWAT }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateHWAT) %}{{ formData.lastUpdateHWAT }}{% endif %}" {% if (formData and formData.nullHWAT) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1">
+      <input type='checkbox' {% if (formData and formData.nullHWAT) %}checked{% endif %} class="form-control" name='nullHWAT' onclick='disableInput(this)' data-target='HWAT'/>
     </div>
   </div>
 
   <div class="form-group">
     <label for="HWAW" class="col-sm-5 control-label">Households without access to water</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="HWAW" type="number" class="form-control decimal" aria-label="Households without access to water" min="0" max="100"
-               value="{% if (formData and formData.HWAW) %}{{ formData.HWAW }}{% endif %}">
+               value="{% if (formData and formData.HWAW) %}{{ formData.HWAW }}{% endif %}" {% if (formData and formData.nullHWAW) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateHWAW" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateHWAW) %}{{ formData.lastUpdateHWAW }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateHWAW) %}{{ formData.lastUpdateHWAW }}{% endif %}" {% if (formData and formData.nullHWAW) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1">
+      <input type='checkbox' {% if (formData and formData.nullHWAW) %}checked{% endif %} class="form-control" name='nullHWAW' onclick='disableInput(this)' data-target='HWAW'/>
     </div>
   </div>
 
   <div class="form-group">
     <label for="WSC" class="col-sm-5 control-label">% of water sources positive with e.coli and other contaminants</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="WSC" type="number" class="form-control decimal" aria-label="% of water sources positive with e.coli and other contaminants" min="0" max="100"
-               value="{% if (formData and formData.WSC) %}{{ formData.WSC }}{% endif %}">
+               value="{% if (formData and formData.WSC) %}{{ formData.WSC }}{% endif %}" {% if (formData and formData.nullWSC) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateWSC" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateWSC) %}{{ formData.lastUpdateWSC }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateWSC) %}{{ formData.lastUpdateWSC }}{% endif %}" {% if (formData and formData.nullWSC) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1">
+      <input type='checkbox' {% if (formData and formData.nullWSC) %}checked{% endif %} class="form-control" name='nullWSC' onclick='disableInput(this)' data-target='WSC'/>
     </div>
   </div>
 
   <div class="form-group">
     <label for="EXND" class="col-sm-5 control-label">Exposure to natural disasters</label>
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <div class="input-group">
         <input name="EXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100"
-               value="{% if (formData and formData.EXND) %}{{ formData.EXND }}{% endif %}">
+               value="{% if (formData and formData.EXND) %}{{ formData.EXND }}{% endif %}" {% if (formData and formData.nullEXND) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
     </div>
     <div class="col-sm-4">
       <input type="date" class="form-control" name="lastUpdateEXND" placeholder="Last update of this indicator"
-             value="{% if (formData and formData.lastUpdateEXND) %}{{ formData.lastUpdateEXND }}{% endif %}">
+             value="{% if (formData and formData.lastUpdateEXND) %}{{ formData.lastUpdateEXND }}{% endif %}" {% if (formData and formData.nullEXND) %}disabled{% endif %}>
+    </div>
+    <div class="col-sm-1">
+      <input type='checkbox' {% if (formData and formData.nullEXND) %}checked{% endif %} class="form-control" name='nullEXND' onclick='disableInput(this)' data-target='EXND'/>
     </div>
   </div>
 
@@ -209,7 +231,7 @@
   </div>
 
   <div class="form-group">
-    <label for="inputRole" class="col-sm-5 control-label">Your role</label>
+    <label for="inputRole" class="col-sm-5 control-label">Your Role</label>
     <div class="col-sm-7">
       <input type="text" class="form-control" name="inputRole" placeholder="Your Role"
              value="{% if (formData and formData.inputRole) %}{{ formData.inputRole }}{% endif %}">

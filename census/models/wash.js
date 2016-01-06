@@ -44,7 +44,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     ADD: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       comment: ''
     },
     lastUpdateADD: {

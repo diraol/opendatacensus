@@ -1,3 +1,22 @@
+var disableInput = function(el) {
+    var targetName = $(el).data('target');
+    var targetVal = $("input[name='" + targetName + "']");
+    var targetDate = $("input[name='lastUpdate" + targetName + "']");
+    targetVal.attr('disabled',el.checked);
+    targetDate.attr('disabled',el.checked);
+    if (el.checked) {
+        targetVal.data('oldVal',targetVal.val());
+        targetDate.data('oldVal',targetDate.val());
+        targetVal.val('');
+        targetDate.val('');
+    } else {
+        targetVal.val(targetVal.data('oldVal'));
+        targetDate.val(targetDate.data('oldVal'));
+        targetVal.data('oldVal','');
+        targetDate.data('oldVal','');
+    }
+}
+
 $(document).ready(function(){
 
   $("input.decimal").keydown(function(event) {

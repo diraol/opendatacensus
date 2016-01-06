@@ -164,105 +164,92 @@ var validateWashData = function(req, mappedErrors) {
     var errors;
     var mapped = mappedErrors || false;
 
-    req.checkBody('place',              'Can not be empty').notEmpty();
-    req.checkBody('inputName',          'Can not be empty').notEmpty();
-    req.checkBody('inputOrganization',  'Can not be empty').notEmpty();
-    req.checkBody('inputRole',          'Can not be empty').notEmpty();
-    req.checkBody('inputEmail',         'Can not be empty or incorrect Email format.').isEmail();
-    req.checkBody('lastUpdateSAM', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
-    req.checkBody('lastUpdateGAM', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
-    req.checkBody('lastUpdateADD', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
-    req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
-    req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
-    req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
-    req.checkBody('lastUpdateEXND', 'Incorrect Date Format').optional({ checkFalsy: true  }).isDate();
+    req.checkBody('place',              'Can not be empty').notEmpty().withMessage('You must select a Place');
 
-    var tests = {
-        'place': {
-            notEmpty: true,
-            errorMessage: 'You must select a Place'
-        },
-        'SAM': {
-          optional: true,
-          inPercentageRange: true,
-          errorMessage: 'Severe Acute Malnutrition value incorrect'
-        },
-        'GAM': {
-          optional: true,
-          inPercentageRange: true,
-          errorMessage: 'Global Acute Malnutrition value incorrect'
-        },
-        'ADD': {
-          optional: true,
-          inPercentageRange: true,
-          errorMessage: 'Acute Diarrhoeal Disease value incorrect'
-        },
-        'HWAT': {
-          optional: true,
-          inPercentageRange: true,
-          errorMessage: 'Households without access to toilet value incorrect'
-        },
-        'HWAW': {
-          optional: true,
-          inPercentageRange: true,
-          errorMessage: 'Households without access to water value incorrect'
-        },
-        'EXND': {
-          optional: true,
-          inPercentageRange: true,
-          errorMessage: '% of water sources positive with e.coli and other contaminants value incorrect'
-        },
-        'lastUpdateSAM': {
-          optional: true,
-          isDate: true,
-          errorMessage: 'You must set Last Update for Severe Acute Malnutrition, use the format "year-month" (eg.: 2015-12)'
-        },
-        'lastUpdateGAM': {
-          optional: true,
-          isDate: true,
-          errorMessage: 'You must set Last Update for Global Acute Malnutrition, use the format "year-month" (eg.: 2015-12)'
-        },
-        'lastUpdateADD': {
-          optional: true,
-          isDate: true,
-          errorMessage: 'You must set Last Update for Acute Diarrhoeal Disease, use the format "year-month" (eg.: 2015-12)'
-        },
-        'lastUpdateHWAT': {
-          optional: true,
-          isDate: true,
-          errorMessage: 'You must set Last Update for Households without access to toilet, use the format "year-month" (eg.: 2015-12)'
-        },
-        'lastUpdateHWAW': {
-          optional: true,
-          isDate: true,
-          errorMessage: 'You must set Last Update for Households without access to water, use the format "year-month" (eg.: 2015-12)'
-        },
-        'lastUpdateEXND': {
-          optional: true,
-          isDate: true,
-          errorMessage: 'You must set Last Update for % of water sources positive with e.coli and other contaminants, use the format "year-month" (eg.: 2015-12)'
-        },
-        'inputName': {
-          notEmpty: true,
-          message: 'You must set your Name'
-        },
-        'inputEmail': {
-          notEmpty: true,
-          isEmail: {
-            errorMessage: 'Invalid Email'
-          },
-          message: 'You must set your email'
-        },
-        'inputOrganization': {
-          notEmpty: true,
-          message: 'You must set your organization'
-        },
-        'inputRole': {
-          notEmpty: true,
-          message: 'You must set your role in your organization'
-        }
+    // Checking indicators data
+    if (req.body.nullSAM) {
+      req.body.SAM = null;
+      req.body.lastUpdateSAM = null;
+    } else {
+      req.checkBody('SAM', 'Severe Acute Malnutrition value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateSAM',  'Incorrect Date Format').notEmpty().withMessage('You must set a date for Severe Acute Malnutrition')
+        .isDate().withMessage('Invalid date on Severe Acute Malnutrition')
+        .isBefore().withMessage('The date for Severe Acute Malnutrition must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for Severe Acute Malnutrition must be newer than 01-01-1900');
     }
-    //req.checkBody(tests);
+
+    if (req.body.nullGAM) {
+      req.body.GAM = null;
+      req.body.lastUpdateGAM = null;
+    } else {
+      req.checkBody('GAM', 'Global Acute Malnutrition value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateGAM',  'Incorrect Date Format').notEmpty().withMessage('You must set a date for Global Acute Malnutrition')
+        .isDate().withMessage('Invalid date on Global Acute Malnutrition')
+        .isBefore().withMessage('The date for Global Acute Malnutrition must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for Global Acute Malnutrition must be newer than 01-01-1900');
+    }
+
+    if (req.body.nullADD) {
+      req.body.ADD = null;
+      req.body.lastUpdateADD = null;
+    } else {
+      req.checkBody('ADD', 'Acute Diarrhoeal Disease value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateADD',  'Incorrect Date Format').notEmpty().withMessage('You must set a date for Acute Diarrhoeal Disease')
+        .isDate().withMessage('Invalid date on Acute Diarrhoeal Disease')
+        .isBefore().withMessage('The date for Acute Diarrhoeal Disease must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for Acute Diarrhoeal Disease must be newer than 01-01-1900');
+    }
+
+    if (req.body.nullHWAT) {
+      req.body.HWAT = null;
+      req.body.lastUpdateHWAT = null;
+    } else {
+      req.checkBody('HWAT', 'Household without access to toilet value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateHWAT', 'Incorrect Date Format').notEmpty().withMessage('You must set a date for Households without access to toilet')
+        .isDate().withMessage('Invalid date on Households without access to toilet')
+        .isBefore().withMessage('The date for Households without access to toilet must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for Households without access to toilet must be newer than 01-01-1900');
+    }
+
+    if (req.body.nullHWAW) {
+      req.body.HWAW = null;
+      req.body.lastUpdateHWAW = null;
+    } else {
+      req.checkBody('HWAW', 'Household withou access to water value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateHWAW', 'Incorrect Date Format').notEmpty().withMessage('You must set a date for Households without access to water')
+        .isDate().withMessage('Invalid date on Households without access to water')
+        .isBefore().withMessage('The date for Households without access to water must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for Households without access to water must be newer than 01-01-1900');
+    }
+
+    if (req.body.nullWSC) {
+      req.body.WSC = null;
+      req.body.lastUpdateWSC = null;
+    } else {
+      req.checkBody('WSC', '% of water sources positive with e.coli and other contaminants value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateWSC', 'Incorrect Date Format').notEmpty().withMessage('You must set a date for % of water sources positiove with e.coli and other contaminants')
+        .isDate().withMessage('Invalid date on % of water sources positiove with e.coli and other contaminants')
+        .isBefore().withMessage('The date for % of water sources positiove with e.coli and other contaminants must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for % of water sources positiove with e.coli and other contaminants must be newer than 01-01-1900');
+    }
+
+    if (req.body.nullEXND) {
+      req.body.EXND = null;
+      req.body.lastUpdateEXND = null;
+    } else {
+      req.checkBody('EXND', 'Exposure to natural disasters value must be between 0 and 100').isInt({min: 0, max: 100});
+      req.checkBody('lastUpdateEXND', 'Incorrect Date Format').notEmpty().withMessage('You must set a date for Exposure to natural disasters')
+        .isDate().withMessage('Invalid date on Exposure to natural disasters')
+        .isBefore().withMessage('The date for Exposure to natural disasters must be older than now')
+        .isAfter('1900-01-01').withMessage('The date for Exposure to natural disasters must be newer than 01-01-1900');
+    }
+
+    // Checks for personal information
+    req.checkBody('inputName',          'Can not be empty').notEmpty().withMessage('You must set your Name');
+    req.checkBody('inputOrganization',  'Can not be empty').notEmpty().withMessage('You must set your Organization');
+    req.checkBody('inputRole',          'Can not be empty').notEmpty().withMessage('You must set your Role on your organization');
+    req.checkBody('inputEmail',         'Can not be empty or incorrect Email format.').notEmpty().withMessage('You must set your Email')
+      .isEmail().withMessage('Invalid email value');
 
     errors = req.validationErrors(mapped)
 
