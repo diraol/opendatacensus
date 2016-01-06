@@ -44,7 +44,6 @@ var submitWashPostHandler = function(req, res, data) {
     errors = utils.validateWashData(req);
 
     if (errors) {
-      console.log(errors);
 
       res.statusCode = 400;
       var settingName = 'wash_submit_page';
