@@ -34,27 +34,3 @@ window.onload = function (){
   console.log( "MOBILE: " + mobile );
 
 } // window.onload
-
-$(document).ready(function(){
-
-  // HEADER PLACE SEARCH AUTOCOMPLETE
-    $('#place-select').autocomplete({
-      source: places,
-      appendTo: "#place-select-group"
-    });
-
-  // Control of modal/curtain hide
-    var curtain = $('#curtain'),
-      card_modal = $('#modal'),
-      close_card = $('#close_card');
-
-    var hideCard = function() {
-      card_modal.fadeOut(180);
-      curtain.fadeOut(200);
-      window.location.hash = '';
-    }
-
-    curtain.on('click', hideCard);
-    close_card.on('click', hideCard);
-
-});

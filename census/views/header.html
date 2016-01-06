@@ -13,7 +13,7 @@
         <div class="form-group">
           <div id="place-select-group">
             <div id="search_bt"/></div>
-            <input id="place-select" type="search" class="form-control" placeholder="type the city or province name"/>
+            <input id="place-select" type="search" class="form-control" placeholder="type the city or province name" onkeypress="displayOnEnter(event);"/>
             <script>
               var places = [
                 {% for place in places %}

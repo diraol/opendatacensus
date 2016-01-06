@@ -203,20 +203,55 @@ var printPop = function(placeID) {
     printWindow.focus();
 }
 
+var displayCard = function() {
+    currentPlace = $("#place-select").val();
+    //placesId is built on the header.html file by node
+    loadPlaceWashData(placesId[currentPlace]);
+}
+
+var displayOnEnter = function(e) {
+    if (e.keyCode == 13) {
+        displayCard();
+    }
+}
+
+var hideCard = function() {
+  card_modal.fadeOut(180);
+  curtain.fadeOut(200);
+  window.location.hash = '';
+  $("#place-select").val('');
+}
+
+var curtain = $('#curtain'),
+    card_modal = $('#modal'),
+    close_card = $('#close_card');
+
 $(document).ready(function(){
 
   // Adds the click listener to the search_bt
   $("#search_bt").on('click', function() {
-    currentPlace = $("#place-select").val();
-    //placesId is built on the header.html file by node
-    loadPlaceWashData(placesId[currentPlace]);
+    displayCard();
   });
+
+  // HEADER PLACE SEARCH AUTOCOMPLETE
+  $('#place-select').autocomplete({
+    source: places,
+    appendTo: "#place-select-group",
+    select: function( event, ui ) {
+      $('#place-select').val(ui.item.value);
+      displayCard();
+    }
+  });
+
+  // Control of modal/curtain hide
+  curtain.on('click', hideCard);
+  close_card.on('click', hideCard);
 
   //Load the card based on the url hash (#)
   if (window.location.hash) {
     var hashPlace = window.location.hash.substring(1).replace(/_/g," ");
-    //placesId is built on the header.html file by node
-    loadPlaceWashData(placesId[hashPlace]);
+    $("#place-select").val(hashPlace);
+    displayCard();
   }
 
 });
