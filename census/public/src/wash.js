@@ -155,9 +155,9 @@ var loadPlaceWashData = function(placeId) {
 
             // Updating social media share on the card
             $("#card_share a.tw").attr('href',
-                        "http://twitter.com/share?url=" + encodeURI(window.location.host + "/#"  + hash) + "&text=");
+                        "http://twitter.com/share?url=" + encodeURIComponent(window.location.host + "/#"  + hash) + "&text=");
             $("#card_share a.fb").attr('href',
-                        "http://www.facebook.com/sharer/sharer.php?u=" + encodeURI(window.location.host + "/#" + hash ));
+                        "http://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.host + "/#" + hash ));
             $("#card_share a.gp").attr('href',
                         "https://plus.google.com/share?url=" + encodeURI(window.location.host + "/#"  + hash));
 

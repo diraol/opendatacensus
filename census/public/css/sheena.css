@@ -185,6 +185,10 @@ html{
     background-position: center;
 }
 
+#search_bt:hover{
+   background: #555 url('/img/search.png') no-repeat scroll left top;
+}
+
 #search_results{
     position: absolute;
 }
