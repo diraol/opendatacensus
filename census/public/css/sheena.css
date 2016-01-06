@@ -11,6 +11,10 @@
 .yellow_bg{ background-color:#e7aa49; }
 .green_bg{ background-color:#78c75b; }
 
+.indicator .poor{ background-color:#e95353; }
+.indicator .average{ background-color:#e7aa49; }
+.indicator .good{ background-color:#78c75b; }
+
 body,
 html{
     color:#000;

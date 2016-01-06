@@ -89,18 +89,25 @@ var loadPlaceWashData = function(placeId) {
             // Fill in the basic data (scores and labels)
             $("#SAM .value").html(data.indicators.SAM.current.value);
             $("#SAM .label").text(data.indicators.SAM.current.label);
+            $("#SAM").attr('class', data.indicators.SAM.current.label.toLowerCase() + ' indicator_score');
             $("#GAM .value").html(data.indicators.GAM.current.value);
             $("#GAM .label").html(data.indicators.GAM.current.label);
+            $("#GAM").attr('class', data.indicators.GAM.current.label.toLowerCase() + ' indicator_score');
             $("#ADD .value").html(data.indicators.ADD.current.value);
             $("#ADD .label").html(data.indicators.ADD.current.label);
+            $("#ADD").attr('class', data.indicators.ADD.current.label.toLowerCase() + ' indicator_score');
             $("#HWAT .value").html(data.indicators.HWAT.current.value);
             $("#HWAT .label").html(data.indicators.HWAT.current.label);
+            $("#HWAT").attr('class', data.indicators.HWAT.current.label.toLowerCase() + ' indicator_score');
             $("#HWAW .value").html(data.indicators.HWAW.current.value);
             $("#HWAW .label").html(data.indicators.HWAW.current.label);
+            $("#HWAW").attr('class', data.indicators.HWAW.current.label.toLowerCase() + ' indicator_score');
             $("#WSC .value").html(data.indicators.WSC.current.value);
             $("#WSC .label").html(data.indicators.WSC.current.label);
+            $("#WSC").attr('class', data.indicators.WSC.current.label.toLowerCase() + ' indicator_score');
             $("#EXND .value").html(data.indicators.EXND.current.value);
             $("#EXND .label").html(data.indicators.EXND.current.label);
+            $("#EXND").attr('class', data.indicators.EXND.current.label.toLowerCase() + ' indicator_score');
 
             // Fill the warning messages
             // First clear the relationship_messages div
