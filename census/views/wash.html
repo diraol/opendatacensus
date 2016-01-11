@@ -200,7 +200,7 @@
     <label for="EXND" class="col-sm-5 control-label">Exposure to natural disasters</label>
     <div class="col-sm-2">
       <div class="input-group">
-        <input name="EXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0", max="100"
+        <input name="EXND" type="number" class="form-control decimal" aria-label="Exposure to natural disasters" min="0" max="100"
                value="{% if (formData and formData.EXND) %}{{ formData.EXND }}{% endif %}" {% if (formData and formData.nullEXND) %}disabled{% endif %}>
         <span class="input-group-addon">%</span>
       </div>
