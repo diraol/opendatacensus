@@ -13,8 +13,21 @@
     <!--[if lt IE 9]>
       <script src="/vendor/respond.min.js"</script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <![endif]-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if !IE]> -->
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <![endif]-->
+    <!--[if gt IE 8]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.34/jquery.min.js"></script>
+      <script>
+          if (!window.jQuery) {
+              window.jQuery = $;
+          }
+      </script>
+    <![endif]-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="/src/wash_print.js?{{currentTime}}"></script>
