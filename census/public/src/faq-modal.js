@@ -1,3 +1,11 @@
+var hideFaqCard = function() {
+  var curtain = $('#faq_curtain'),
+      card_modal = $('#faq_modal');
+      ;
+
+  card_modal.fadeOut(180);
+  curtain.fadeOut(200);
+}
 $(document).ready(function (){
 
     $('.faq_item').on('click',function(){
@@ -22,4 +30,6 @@ $(document).ready(function (){
         $('#faq_curtain').fadeIn(180);
 
     });
+
+    $('#faq_close_card').on('click', hideFaqCard);
 });
