@@ -15,9 +15,9 @@ var loadPlaceWashData = function(placeId) {
         }).appendTo('#positive_messages');
     }
 
-    var buildBarChart = function(chartData){
+    var buildBarChart = function(chartData, chartContainer){
 
-        $('#chart1').highcharts({
+        $(chartContainer).highcharts({
             chart: {
                 type: 'column',
                 spacingBottom: 5,
@@ -40,9 +40,9 @@ var loadPlaceWashData = function(placeId) {
 
     }
 
-    var buildSeriesChart = function(chartData){
+    var buildSeriesChart = function(chartData, chartContainer){
 
-        $('#chart1').highcharts({
+        $(chartContainer).highcharts({
             chart: {
                 type: 'spline',
                 spacingBottom: 5,
@@ -136,11 +136,20 @@ var loadPlaceWashData = function(placeId) {
                 }
             }
 
-            // Build  the chart...
             if (data.seriesChart) {
-                buildSeriesChart(data.seriesChart)
+                // Build the negative chart...
+                if (data.seriesChart.negative)
+                    buildSeriesChart(data.seriesChart.negative, "#neg_chart");
+                // Build the positive chart
+                if (data.seriesChart.positive)
+                    buildSeriesChart(data.seriesChart.positive, "#pos_chart");
             } else {
-                buildBarChart(data.barChart);
+                // Build the negative chart...
+                if (data.barChart.negative)
+                    buildBarChart(data.barChart.negative, "#neg_chart");
+                // Build the positive chart
+                if (data.barChart.positive)
+                    buildBarChart(data.barChart.positive, "#pos_chart");
             }
 
             // Person who updated the data

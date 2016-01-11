@@ -722,15 +722,30 @@ var washForCard = function(data) {
    */
   var washBarChartData = function(indicators) {
       var data = {
-          categories: [],
-          series: []
-      }
+          positive: {
+              categories: [],
+              series: []
+          },
+          negative: {
+              categories: [],
+              series: []
+          }
+      };
+
       _.forEach(indicators, function(indicatorData, indicatorKey){
-          data.categories.push(indicatorKey);
-          data.series.push({
-              name: indicatorKey,
-              data: [indicatorData.current.value]
-          });
+          if (indicatorData.current.label == "GOOD") {
+              data.positive.categories.push(indicatorKey);
+              data.positive.series.push({
+                  name: indicatorKey,
+                  data: [indicatorData.current.value]
+              });
+          } else {
+              data.negative.categories.push(indicatorKey);
+              data.negative.series.push({
+                  name: indicatorKey,
+                  data: [indicatorData.current.value]
+              });
+          }
       });
       return data;
   }
@@ -741,15 +756,49 @@ var washForCard = function(data) {
    */
   var washSeriesChartData = function(indicators, allDates) {
       var data = {
-          categories: [],
-          series: []
-      }
-      data.categories = allDates;
+          positive: {
+              categories: [],
+              series: []
+          },
+          negative: {
+              categories: [],
+              series: []
+          }
+      };
+
+      data.positive.categories = allDates;
+      data.negative.categories = allDates;
       _.forEach(indicators, function(indicatorData, indicatorKey){
-          data.series.push({
-              name: indicatorKey,
-              data: indicatorData.allValues
-          })
+          var pos = false;
+
+          if (indicatorData.previous){
+            if(indicatorData.current.value < indicatorData.previous.value) {
+              pos = true;
+            } else {
+              pos = false;
+            }
+          } else {
+            if (indicatorData.current.label == "GOOD") {
+              pos = true;
+            } else {
+              pos = false;
+            }
+          }
+
+          if (pos){
+            data.positive.series.push({
+                name: indicatorKey,
+                data: indicatorData.allValues
+            });
+
+          } else {
+            data.negative.series.push({
+                name: indicatorKey,
+                data: indicatorData.allValues
+            });
+
+          }
+
       });
       return data;
   }
@@ -830,8 +879,14 @@ var washForCard = function(data) {
         warningMessages: [],
         positiveMessages: [],
         barChart: {
-            categories: undefined,
-            series: undefined
+            positive: {
+                categories: undefined,
+                series: undefined
+            },
+            negative: {
+                categories: undefined,
+                series: undefined
+            }
         },
         seriesChart: {
             categories: undefined,
