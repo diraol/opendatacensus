@@ -13,13 +13,13 @@ $(document).ready(function (){
             dtvz = target.find('.dtvz').html();
 
         // Set the recovered values into the card
-        $('#title_bold').html(qst);
+        $('#faq_title_bold').html(qst);
         $('#card_faq .asw').html(asw);
         $('#card_faq .dtvz').html(dtvz);
 
         // Show the card
-        $('#modal').fadeIn(200);
-        $('#curtain').fadeIn(180);
+        $('#faq_modal').fadeIn(200);
+        $('#faq_curtain').fadeIn(180);
 
     });
 });
