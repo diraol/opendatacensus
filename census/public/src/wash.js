@@ -3,14 +3,14 @@ window.lastPlaceId = undefined;
 var loadPlaceWashData = function(placeId) {
     var writeWarningMessage = function(message){
         $('<div/>', {
-            class: 'card_msg_tx',
+            'class': 'card_msg_tx',
             html: message
         }).appendTo('#warn_messages');
     }
 
     var writePositiveMessage = function(message){
         $('<div/>', {
-            class: 'card_msg_tx',
+            'class': 'card_msg_tx',
             html: message
         }).appendTo('#positive_messages');
     }
@@ -115,7 +115,7 @@ var loadPlaceWashData = function(placeId) {
             if (!$.isEmptyObject(data.warningMessages)) {
                 // card_msg_title
                 $('<div/>', {
-                    class: 'card_msg_title',
+                    'class': 'card_msg_title',
                     text: 'Warning'
                 }).appendTo("#warn_messages");
                 for (var message in data.warningMessages) {
@@ -128,7 +128,7 @@ var loadPlaceWashData = function(placeId) {
             if (!$.isEmptyObject(data.positiveMessages)) {
                 // card_msg_title
                 $('<div/>', {
-                    class: 'card_msg_title',
+                    'class': 'card_msg_title',
                     text: 'Positive Note'
                 }).appendTo("#positive_messages");
                 for (var message in data.positiveMessages) {
