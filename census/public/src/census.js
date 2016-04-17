@@ -62,11 +62,11 @@ $(document).ready(function($) {
     $('#sorting')
       .addClass('sorting')
       .html(function (idx) {
-        return '<b>Sort:</b> ' +
+        return '<b>Sort:</b><br/>' +
             '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="alpha">' +
           '<label>' +
             'alphabetically' +
-          '</label> ' +
+          '</label><br/> ' +
             '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="score" checked>' +
           '<label>' +
             'by score' +

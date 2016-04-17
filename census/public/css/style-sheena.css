@@ -1488,6 +1488,10 @@
   margin-top: 0;
 }
 
+#overview-container #sorting input {
+    width: auto;
+}
+
 #overview-container .container {
   padding: 0;
 }
