@@ -63,14 +63,14 @@ $(document).ready(function($) {
       .addClass('sorting')
       .html(function (idx) {
         return '<b>Sort:</b> ' +
+            '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="alpha">' +
           '<label>' +
             'alphabetically' +
           '</label> ' +
-            '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="alpha">' +
+            '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="score" checked>' +
           '<label>' +
             'by score' +
-          '</label>' +
-            '<input type="radio" name="sorttable-' + idx + '" class="sort-table" value="score" checked>';
+          '</label>';
       });
 
     $('.sort-table').change(function(){
