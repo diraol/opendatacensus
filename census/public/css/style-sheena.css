@@ -676,6 +676,7 @@
 }
 #overview-container .sexyHeader table tr th {
     border-bottom: 1px solid #dddddd;
+    width: 75px !important;
 }
 
 #overview-container table.response-summary thead tr th div,
@@ -689,10 +690,17 @@
 #overview-container .sexyHeader table tr th div a {
     display: block;
     -webkit-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    line-height: 0.8;
+    text-align: left;
+}
+
+#overview-container table.response-summary thead tr th div a,
+#overview-container .sexyHeader table tr th div a {
+    padding-bottom: 8px;
 }
 
 #overview-container table.response-summary thead tr th.number,
@@ -1509,4 +1517,3 @@
   margin-left: auto;
   margin-right: auto;
 }
-
