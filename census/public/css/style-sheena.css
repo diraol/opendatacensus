@@ -1519,3 +1519,6 @@
   margin-left: auto;
   margin-right: auto;
 }
+.faq_item .asw:first-letter {
+    text-transform: capitalize;
+}
