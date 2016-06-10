@@ -136,6 +136,7 @@ var loadPlaceWashData = function(placeId) {
                 }
             }
 
+            /* Commentted out to hide the graphs - request made by Cedric
             if (data.seriesChart) {
                 // Build the negative chart...
                 if (data.seriesChart.negative)
@@ -151,6 +152,7 @@ var loadPlaceWashData = function(placeId) {
                 if (data.barChart.positive)
                     buildBarChart(data.barChart.positive, "#pos_chart");
             }
+            */
 
             // Person who updated the data
             $("#last_update_user .name").html(data.lastUpdate.name);
