@@ -27,6 +27,7 @@
       <li><a href="/admin/load/places">{{ gettext('Reload Places') }}</a></li>
       <li><a href="/admin/load/datasets">{{ gettext('Reload Datasets') }}</a></li>
       <li><a href="/admin/load/questions">{{ gettext('Reload Questions') }}</a></li>
+      <li><a href="/admin/load/faqs">{{ gettext('Reload FAQs') }}</a></li>
     </ul>
   </div>
 </div>
@@ -69,6 +70,19 @@
     </ul>
     {% else %}
     {{ gettext('No questions') }}
+    {% endif %}
+  </div>
+  <div class="col-xs-6">
+    <h2>{{ gettext('Current FAQs') }}</h2>
+    <a target="_blank" href="{{ site.settings.faqs }}">View Spreadsheet</a>
+    {% if faqs %}
+    <ul>
+      {% for faq in faqs %}
+      <li>{{ faq }}: {{ faq.question }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    {{ gettext('No faq') }}
     {% endif %}
   </div>
 </div>
